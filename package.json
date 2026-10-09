@@ -1,0 +1,17 @@
+{
+  "name": "mr-nosotras-las-brujas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MR- Nosotras, las brujas · sistema para Foundry VTT",
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/gen-ayudas.mjs && node scripts/build.mjs",
+    "tarot": "node scripts/tarot.mjs",
+    "zip": "node scripts/gen-ayudas.mjs && node scripts/build.mjs && node scripts/zip.mjs"
+  },
+  "devDependencies": {
+    "classic-level": "^2.0.0"
+  }
+}

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1500" width="900" height="1500">
+  <rect width="900" height="1500" rx="40" fill="#241433"/>
+  <rect x="26" y="26" width="848" height="1448" rx="26" fill="none" stroke="#c9a227" stroke-width="6"/>
+  <rect x="48" y="48" width="804" height="1404" rx="16" fill="none" stroke="#c9a227" stroke-width="2"/>
+  <path d="M 90 140 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 300 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 460 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 620 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 780 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 940 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 1100 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 1260 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 90 1420 q 45 -40 90 0 q 45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 140 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 300 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 460 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 620 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 780 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 940 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 1100 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 1260 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  <path d="M 810 1420 q -45 -40 90 0 q -45 40 90 0" fill="none" stroke="#c9a227" stroke-width="6" opacity="0.65"/>
+  
+  <g transform="translate(450 750)" fill="#efe3c8" stroke="#c9a227" stroke-width="6">
+    <path d="M -286 0 a 110 110 0 1 0 220 0 a 68.2 68.2 0 1 1 -220 0" transform="translate(-22 0)"/>
+    <circle r="110"/>
+    <path d="M 286 0 a 110 110 0 1 1 -220 0 a 68.2 68.2 0 1 0 220 0" transform="translate(22 0)"/>
+  </g>
+  <text x="450" y="1310" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" fill="#c9a227" letter-spacing="6">NOSOTRAS, LAS BRUJAS</text>
+</svg>

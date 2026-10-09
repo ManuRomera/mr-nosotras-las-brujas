@@ -1,0 +1,65 @@
+<div class="nb-cuerpo nb-cuerpo-pueblo">
+  <header class="nb-hoja-cabecera">
+    <div class="nb-retrato">
+      <img src="{{actor.img}}" alt="" data-retrato="{{actor.id}}" data-edit="img"
+           data-action="{{#if editando}}editImage{{else}}showPortraitArtwork{{/if}}"
+           data-tooltip="{{#if editando}}Cambiar retrato{{else}}Ver retrato{{/if}}">
+      <div class="nb-herramientas">
+        {{#if editable}}
+        <button type="button" data-action="editar" class="{{#if editando}}activo{{/if}}"
+                data-tooltip="{{#if editando}}Bloquear la ficha{{else}}Desbloquear retrato y borrados{{/if}}">
+          <i class="fa-solid {{#if editando}}fa-lock-open{{else}}fa-lock{{/if}}"></i></button>
+        <button type="button" data-action="retrato" data-tooltip="Encuadre del retrato"><i class="fa-solid fa-crop-simple"></i></button>
+        {{/if}}
+        <button type="button" data-action="compacto" data-tooltip="{{#if compacto}}Ficha completa{{else}}Modo compacto{{/if}}">
+          <i class="fa-solid {{#if compacto}}fa-up-right-and-down-left-from-center{{else}}fa-down-left-and-up-right-to-center{{/if}}"></i></button>
+      </div>
+    </div>
+    <div class="nb-nombre">
+      {{#if editando}}<input type="text" name="name" value="{{actor.name}}" placeholder="Nombre del pueblo">
+      {{else}}<h1>{{actor.name}}</h1>{{/if}}
+      <span class="nb-tenue">Pueblo</span>
+    </div>
+  </header>
+
+  <main class="nb-principal">
+  <section class="nb-frases" aria-label="Preparación del pueblo">
+    <p class="nb-frase">Nos une
+      <input type="text" class="nb-ancho" name="system.une" value="{{system.une}}" placeholder="qué une al grupo" {{disabled (not editando)}} aria-label="Qué une al grupo">
+    </p>
+    <p class="nb-frase">Y nos reunimos en
+      <input type="text" class="nb-ancho" name="system.refugio" value="{{system.refugio}}" placeholder="dónde, sin ser molestadas" {{disabled (not editando)}} aria-label="Dónde se reúnen">
+    </p>
+    <p class="nb-frase">Acusa a la cautiva
+      <input type="text" name="system.acusador.nombre" value="{{system.acusador.nombre}}" placeholder="quién" {{disabled (not editando)}} aria-label="Acusador">
+      <span class="nb-vin-etiqueta">y su relación con ella es</span>
+      <input type="text" class="nb-ancho" name="system.acusador.relacion" value="{{system.acusador.relacion}}" placeholder="…" {{disabled (not editando)}} aria-label="Relación con la cautiva">
+    </p>
+    <p class="nb-nota">R 17–18: estas respuestas se dan juntas al empezar. La relación del acusador también la cuenta cada Hermana en su hoja (R 19).</p>
+  </section>
+
+  <details data-memoria="rasgos" {{#if secciones.rasgos}}open{{/if}}>
+    <summary><h3><i class="fa-solid fa-village"></i> Rasgos del pueblo <span class="nb-tenue">edificios, ocupaciones, costumbres…</span></h3></summary>
+    <ul class="nb-lista-rasgos">
+      {{#each rasgos}}
+      <li>
+        <input type="text" name="system.rasgos.{{i}}.texto" value="{{texto}}" placeholder="un rasgo significativo" {{disabled (not ../editando)}} aria-label="Rasgo">
+        {{#if ../editando}}<button type="button" class="nb-icono" data-action="quitarFila" data-lista="rasgos" data-indice="{{i}}" data-tooltip="Quitar rasgo"><i class="fa-solid fa-trash"></i></button>{{/if}}
+      </li>
+      {{/each}}
+    </ul>
+    {{#if editando}}
+    <div class="nb-anadir">
+      <input type="text" data-nueva="rasgos" placeholder="escribe el rasgo…" aria-label="Nuevo rasgo">
+      <button type="button" class="nb-boton nb-boton-suave" data-action="anadirFila" data-lista="rasgos"><i class="fa-solid fa-plus"></i> Añadir rasgo</button>
+    </div>
+    {{/if}}
+  </details>
+
+  <details data-memoria="notas" {{#if secciones.notas}}open{{/if}}>
+    <summary><h3><i class="fa-solid fa-feather"></i> Notas</h3></summary>
+    {{#if editable}}<prose-mirror name="system.notas" value="{{system.notas}}" toggled>{{{notas}}}</prose-mirror>
+    {{else}}<div class="nb-notas">{{{notas}}}</div>{{/if}}
+  </details>
+  </main>
+</div>

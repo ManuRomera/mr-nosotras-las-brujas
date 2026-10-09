@@ -1,0 +1,38 @@
+<div class="nb-tc nb-tono-{{tono}} nb-tipo-{{tipo}}">
+  <header class="nb-tc-cabecera">
+    <div class="nb-tc-rotulo">
+      <span class="nb-cinta">{{#if icono}}<i class="{{icono}}"></i> {{/if}}{{etiqueta}}</span>
+      {{#if subtitulo}}<span class="nb-tc-sub">{{subtitulo}}</span>{{/if}}
+    </div>
+    {{#if carta}}
+    <figure class="nb-tc-carta">
+      <img src="{{carta.img}}" alt="{{carta.nombre}}">
+      <figcaption>{{carta.nombre}}</figcaption>
+    </figure>
+    {{/if}}
+  </header>
+
+  <h3 class="nb-tc-titulo">{{titulo}}</h3>
+  {{#if texto}}<p class="nb-tc-texto">{{texto}}</p>{{/if}}
+  {{#if cita}}<blockquote class="nb-papel">{{cita}}</blockquote>{{/if}}
+
+  {{#if lista}}
+  <details class="nb-lista-opciones">
+    <summary>{{lista.titulo}}</summary>
+    <div class="nb-chips">
+      {{#each lista.items}}<button type="button" class="nb-chip" data-nb-accion="{{accion}}" {{{attrs}}}>{{texto}}</button>{{/each}}
+    </div>
+  </details>
+  {{/if}}
+
+  {{#if botones}}
+  <footer class="nb-tc-botones">
+    {{#each botones}}
+    <button type="button" class="nb-boton {{#if dueno}}nb-boton-principal{{/if}}" data-nb-accion="{{accion}}" {{#if dueno}}data-dueno="{{dueno}}"{{/if}} {{{attrs}}}>
+      {{#if icono}}<i class="{{icono}}"></i> {{/if}}{{etiqueta}}
+    </button>
+    {{/each}}
+  </footer>
+  {{/if}}
+  {{#if pie}}<p class="nb-tc-pie">{{pie}}</p>{{/if}}
+</div>

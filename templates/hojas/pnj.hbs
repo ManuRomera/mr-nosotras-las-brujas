@@ -1,0 +1,47 @@
+<div class="nb-cuerpo nb-cuerpo-pnj">
+  <header class="nb-hoja-cabecera">
+    <div class="nb-retrato">
+      <img src="{{actor.img}}" alt="" data-retrato="{{actor.id}}" data-edit="img"
+           data-action="{{#if editando}}editImage{{else}}showPortraitArtwork{{/if}}"
+           data-tooltip="{{#if editando}}Cambiar retrato{{else}}Ver retrato{{/if}}">
+      <div class="nb-herramientas">
+        {{#if editable}}
+        <button type="button" data-action="editar" class="{{#if editando}}activo{{/if}}"
+                data-tooltip="{{#if editando}}Bloquear la ficha{{else}}Desbloquear retrato y borrados{{/if}}">
+          <i class="fa-solid {{#if editando}}fa-lock-open{{else}}fa-lock{{/if}}"></i></button>
+        <button type="button" data-action="retrato" data-tooltip="Encuadre del retrato"><i class="fa-solid fa-crop-simple"></i></button>
+        {{/if}}
+      </div>
+    </div>
+    <div class="nb-nombre">
+      {{#if editando}}<input type="text" name="name" value="{{actor.name}}" placeholder="Nombre del PNJ">
+      {{else}}<h1>{{actor.name}}</h1>{{/if}}
+      <span class="nb-tenue">Personaje no jugador</span>
+    </div>
+  </header>
+
+  <main class="nb-principal">
+  <section class="nb-campos" aria-label="PNJ">
+    <label class="nb-campo">
+      <span>Arcano (arquetipo)</span>
+      <select name="system.arcano">
+        {{#each opcionesArcano}}<option value="{{romano}}" {{#if elegido}}selected{{/if}}>{{#if romano}}{{romano}} · {{/if}}{{nombre}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if system.arquetipo}}<p class="nb-arquetipo"><i class="fa-solid fa-masks-theater"></i> {{system.arquetipo}}</p>{{/if}}
+    <label class="nb-campo"><span>Papel en la comunidad</span>
+      <input type="text" name="system.papel" value="{{system.papel}}" placeholder="sacristán, labrador, comadre…" {{disabled (not editable)}}></label>
+    <label class="nb-campo"><span>Descriptor</span>
+      <input type="text" name="system.descriptor" value="{{system.descriptor}}" placeholder="cómo se le ve" {{disabled (not editable)}}></label>
+    <label class="nb-campo"><span>Impulso o motivación</span>
+      <input type="text" name="system.impulso" value="{{system.impulso}}" placeholder="qué quiere" {{disabled (not editable)}}></label>
+    <p class="nb-nota">Pocos rasgos basta (R 24). El arcano de la escena puede sugerir su actitud.</p>
+  </section>
+
+  <details data-memoria="notas" {{#if secciones.notas}}open{{/if}}>
+    <summary><h3><i class="fa-solid fa-feather"></i> Notas</h3></summary>
+    {{#if editable}}<prose-mirror name="system.notas" value="{{system.notas}}" toggled>{{{notas}}}</prose-mirror>
+    {{else}}<div class="nb-notas">{{{notas}}}</div>{{/if}}
+  </details>
+  </main>
+</div>

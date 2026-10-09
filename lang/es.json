@@ -1,0 +1,9 @@
+{
+  "TYPES": {
+    "Actor": {
+      "hermana": "Hermana",
+      "pnj": "Personaje no jugador",
+      "pueblo": "Pueblo"
+    }
+  }
+}

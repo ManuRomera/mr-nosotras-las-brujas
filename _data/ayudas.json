@@ -1,0 +1,127 @@
+[
+ {
+  "_id": "ayudasJuego00000",
+  "name": "NB · Ayudas de juego",
+  "pages": [
+   {
+    "_id": "ayudaPag00000001",
+    "name": "Cómo se usa en Foundry",
+    "type": "text",
+    "title": {
+     "show": true,
+     "level": 1
+    },
+    "text": {
+     "format": 1,
+     "content": "<div class=\"nb-manual\">\n<p><strong>MR- Nosotras, las brujas</strong> lleva el ritual del juego a Foundry: mazos de arcanos, escena con concepto, sospechas boca abajo, Laudes y las inversiones de La Jueza.</p>\n<ol>\n<li><strong>Cread las Hermanas.</strong> Cada jugadora crea un Actor de tipo <em>Hermana</em> (o se lo asigna la Jueza). En la ficha se responden las frases de la hoja, los vínculos con los diecinueve arcanos y la relación con la acusada.</li>\n<li><strong>Preparad el pueblo.</strong> El Actor <em>Pueblo</em> guarda lo que une al grupo, el refugio y quién acusa a la cautiva. Los PNJ se crean con tipo <em>PNJ</em>: basta un arcano, un papel y un descriptor.</li>\n<li><strong>La Jueza abre el tracker</strong> (botón en el directorio de Actores o en la barra de herramientas de la escena). Ahí están la fase, la escena en marcha, las inversiones, los robos y el recuento.</li>\n<li><strong>Mazo y robo:</strong> al entrar en la partida se crean solos los mazos de Arcanos Mayores y Menores. La Jueza define el <em>objetivo, el lugar y los PNJ</em> de la escena, roba un Mayor para el concepto y, al terminar, roba dos Menores a cada Hermana <em>con límite de robos</em> (por defecto dos).</li>\n<li><strong>Escena compartida:</strong> cada Hermana roba su Mayor. El número más alto es el concepto dominante; el segundo, el PNJ. En empate de máximo mandan todas las empatadas.</li>\n<li><strong>Laudes</strong> revela las sospechas boca abajo, suma por Hermana —las entregadas suman a quien las recibe— y acusa al máximo (con empate, a todas). Las acusadas quedan anotadas en la partida y se ven en el tracker.</li>\n<li><strong>La Jueza</strong> puede invertir un concepto (una vez por carta y por partida, sin recuperar), echar mano del dado de 1 a 6 y leer el dado de las ayudas en el chat.</li>\n<li><strong>Ajustes del sistema:</strong> valores de las figuras (sota, caballero, dama y rey), quién recibe los menores robados, robos por Hermana y tamaño de letra. Los cambios los hace el GM.</li>\n<li><strong>Memoria de ventanas:</strong> las fichas recuerdan posición, tamaño y secciones plegadas. <em>Configuración → Memoria de ventanas → Olvidar posiciones</em> si algo queda fuera de sitio.</li>\n</ol>\n<p>Todo el sistema está en español y las tiradas de dados y demás usos del dado son <em>tu partido, tus reglas</em>: pregúntalo si dudas de algo marcado a verificar.</p>\n</div>"
+    },
+    "sort": 1000,
+    "ownership": {
+     "default": -1
+    }
+   },
+   {
+    "_id": "ayudaPag00000002",
+    "name": "Tabla de vínculos",
+    "type": "text",
+    "title": {
+     "show": true,
+     "level": 1
+    },
+    "text": {
+     "format": 1,
+     "content": "<div class=\"nb-manual\">\n<p>Rellena el hueco con el nombre de la Hermana a quien corresponda el vínculo (R 22). En la ficha, al elegir el arcano en un vínculo, esta pregunta se rellena sola.</p>\n<table><thead><tr><th>Arcano</th><th>Vínculos</th></tr></thead><tbody><tr><td>(0) El Loco</td><td>Tus Hermanas son importantes para ti, pero <em>________</em> suele meterse en problemas. ¿Qué te genera eso y qué haces por ello?</td></tr><tr><td>(I) El Mago</td><td><em>________</em> y yo compartimos un secreto. ¿Cuál es?</td></tr><tr><td>(II) La Sacerdotisa</td><td>¡La mala conducta de <em>________</em> pone en peligro su alma! ¿Cómo intentas ayudarle a encontrar el buen camino?</td></tr><tr><td>(III) La Emperatriz</td><td>Has intentado explicarle a <em>________</em> el poder de una mujer. ¿Por qué quieres darle estos consejos?</td></tr><tr><td>(IV) El Emperador</td><td>Te da la sensación de que tu Hermana <em>________</em> no tiene tanta capacidad como tú. ¿Le seguirás o intentarás imponerte?</td></tr><tr><td>(V) El Papa</td><td>Sueles saber qué conviene a tus Hermanas, pero <em>________</em> es una persona de la que debes estar al tanto siempre. ¿Por qué?</td></tr><tr><td>(VI) Los Enamorados</td><td><em>________</em> es una persona buena y fiel. Confío plenamente en ella. ¿Qué despierta en ti tal confianza?</td></tr><tr><td>(VII) El Carro</td><td><em>________</em> es demasiado conformista con su vida. ¿Qué ha hecho que te haga pensar esto?</td></tr><tr><td>(VIII) La Jueza</td><td>Sientes que <em>________</em> ha sido muy severa contigo. ¿En qué situación?</td></tr><tr><td>(IX) El Ermitaño</td><td>Sospecho que <em>________</em> me oculta algo… ¿Qué será?</td></tr><tr><td>(X) La Rueda de la Fortuna</td><td>Nunca sé qué esperar de <em>________</em>. ¿Qué le hace tan inesperada?</td></tr><tr><td>(XI) La Fuerza</td><td>Soy afortunada de tener a alguien como <em>________</em> a mi lado. ¿Por qué?</td></tr><tr><td>(XII) El Colgado</td><td>Algo de <em>________</em> no me gusta. ¿De qué se trata?</td></tr><tr><td>(XIII) La Muerte</td><td><em>________</em> ha dado por superada una discusión que tuvieron. ¿Crees que esa diferencia quedó zanjada?</td></tr><tr><td>(XIV) Templanza</td><td>Debo ser fuerte por <em>________</em>. ¿Cómo llegaste a esa conclusión?</td></tr><tr><td>(XV) El Diablo</td><td><em>________</em> me lleva por mal camino. ¿Qué cosas te incita a hacer?</td></tr><tr><td>(XVI) La Torre de Dios</td><td>Siempre he admirado/envidiado a <em>________</em>. ¿Qué me lleva a cuestionar esto ahora?</td></tr><tr><td>(XX) El Juicio</td><td>Es inevitable que a <em>________</em> le sucedan cosas. ¿Qué tipo de situaciones suele enfrentar, para bien o para mal?</td></tr><tr><td>(XXI) El Mundo</td><td>Idealizas a <em>________</em>. ¿Qué te ha hecho verle así?</td></tr></tbody></table>\n</div>"
+    },
+    "sort": 2000,
+    "ownership": {
+     "default": -1
+    }
+   },
+   {
+    "_id": "ayudaPag00000003",
+    "name": "Conceptos · jugadoras",
+    "type": "text",
+    "title": {
+     "show": true,
+     "level": 1
+    },
+    "text": {
+     "format": 1,
+     "content": "<div class=\"nb-manual\">\n<p>Concepto positivo · carta normal (lo que aporta la escena cuando no está invertida).</p>\n<table><thead><tr><th>Arcano</th><th>Concepto</th></tr></thead><tbody><tr><td>(0) El Loco</td><td>Inicio, Espontaneidad</td></tr><tr><td>(I) El Mago</td><td>Diplomacia, Autoconfianza</td></tr><tr><td>(II) La Sacerdotisa</td><td>Misterio, Cautela</td></tr><tr><td>(III) La Emperatriz</td><td>Naturaleza, Belleza</td></tr><tr><td>(IV) El Emperador</td><td>Liderazgo, Estabilidad</td></tr><tr><td>(V) El Papa</td><td>Sabiduría, Inspiración</td></tr><tr><td>(VI) Los Enamorados</td><td>Toma de decisiones, Amor</td></tr><tr><td>(VII) El Carro</td><td>Éxito, Triunfo</td></tr><tr><td>(VIII) La Jueza</td><td>Justicia, Equidad</td></tr><tr><td>(IX) El Ermitaño</td><td>Prudencia, Autoconocimiento</td></tr><tr><td>(X) La Rueda de la Fortuna</td><td>Suerte, Resiliencia</td></tr><tr><td>(XI) La Fuerza</td><td>Superación, Unión</td></tr><tr><td>(XII) El Colgado</td><td>Discernimiento, Lucidez</td></tr><tr><td>(XIII) La Muerte</td><td>Fin (cierre de un ciclo), Transición</td></tr><tr><td>(XIV) Templanza</td><td>Paciencia, Moderación</td></tr><tr><td>(XV) El Diablo</td><td>Esfuerzo, Apego</td></tr><tr><td>(XVI) La Torre de Dios</td><td>Libertad, Fortuna</td></tr><tr><td>(XX) El Juicio</td><td>Triunfo, Paz Interior</td></tr><tr><td>(XXI) El Mundo</td><td>Completitud, Integración</td></tr></tbody></table>\n</div>"
+    },
+    "sort": 3000,
+    "ownership": {
+     "default": -1
+    }
+   },
+   {
+    "_id": "ayudaPag00000004",
+    "name": "Conceptos · directora",
+    "type": "text",
+    "title": {
+     "show": true,
+     "level": 1
+    },
+    "text": {
+     "format": 1,
+     "content": "<div class=\"nb-manual\">\n<p>Concepto negativo · carta invertida (concepto de dirección cuando la Jueza la invierte, R 66–69).</p>\n<table><thead><tr><th>Arcano</th><th>Concepto</th></tr></thead><tbody><tr><td>(0) El Loco</td><td>Inocencia, Vanidad</td></tr><tr><td>(I) El Mago</td><td>Evasión, Avaricia</td></tr><tr><td>(II) La Sacerdotisa</td><td>Soberbia, Paranoia</td></tr><tr><td>(III) La Emperatriz</td><td>Vagancia, Inacción</td></tr><tr><td>(IV) El Emperador</td><td>Poder, Estancamiento</td></tr><tr><td>(V) El Papa</td><td>Servidumbre, Obligación</td></tr><tr><td>(VI) Los Enamorados</td><td>Placer, Indecisión</td></tr><tr><td>(VII) El Carro</td><td>Conformismo, Retroceso</td></tr><tr><td>(VIII) La Jueza</td><td>Severidad, Violencia</td></tr><tr><td>(IX) El Ermitaño</td><td>Introspección, Miedo</td></tr><tr><td>(X) La Rueda de la Fortuna</td><td>Cambio, Descubrimiento</td></tr><tr><td>(XI) La Fuerza</td><td>Despotismo, Salvajismo</td></tr><tr><td>(XII) El Colgado</td><td>Egoísmo, Envidia</td></tr><tr><td>(XIII) La Muerte</td><td>Inercia, Enfermedad</td></tr><tr><td>(XIV) Templanza</td><td>Desorden, Negligencia</td></tr><tr><td>(XV) El Diablo</td><td>Dominación, Experimentación</td></tr><tr><td>(XVI) La Torre de Dios</td><td>Descontrol, Adversidad</td></tr><tr><td>(XX) El Juicio</td><td>Inevitabilidad, Fracaso</td></tr><tr><td>(XXI) El Mundo</td><td>Encierro, Idealización</td></tr></tbody></table>\n</div>"
+    },
+    "sort": 4000,
+    "ownership": {
+     "default": -1
+    }
+   },
+   {
+    "_id": "ayudaPag00000005",
+    "name": "Arquetipos para PNJ",
+    "type": "text",
+    "title": {
+     "show": true,
+     "level": 1
+    },
+    "text": {
+     "format": 1,
+     "content": "<div class=\"nb-manual\">\n<p>El arcano escogido para la escena sugiere el arquetipo de los PNJ que aparecen en ella (R 24).</p>\n<table><thead><tr><th>Arcano</th><th>Arquetipo</th></tr></thead><tbody><tr><td>(0) El Loco</td><td>El niño</td></tr><tr><td>(I) El Mago</td><td>El hombre de ciencias</td></tr><tr><td>(II) La Sacerdotisa</td><td>La madre superiora</td></tr><tr><td>(III) La Emperatriz</td><td>La madre</td></tr><tr><td>(IV) El Emperador</td><td>El padre</td></tr><tr><td>(V) El Papa</td><td>La autoridad</td></tr><tr><td>(VI) Los Enamorados</td><td>El pretendiente</td></tr><tr><td>(VII) El Carro</td><td>El soldado</td></tr><tr><td>(VIII) La Jueza</td><td>La institutriz</td></tr><tr><td>(IX) El Ermitaño</td><td>El hombre sabio</td></tr><tr><td>(X) La Rueda de la Fortuna</td><td>El apostador</td></tr><tr><td>(XI) La Fuerza</td><td>El herrero</td></tr><tr><td>(XII) El Colgado</td><td>El mártir</td></tr><tr><td>(XIII) La Muerte</td><td>El médico</td></tr><tr><td>(XIV) Templanza</td><td>La mujer joven</td></tr><tr><td>(XV) El Diablo</td><td>El tabernero</td></tr><tr><td>(XVI) La Torre de Dios</td><td>El vigía</td></tr><tr><td>(XX) El Juicio</td><td>El inquisidor</td></tr><tr><td>(XXI) El Mundo</td><td>El errante</td></tr></tbody></table>\n</div>"
+    },
+    "sort": 5000,
+    "ownership": {
+     "default": -1
+    }
+   },
+   {
+    "_id": "ayudaPag00000006",
+    "name": "Fases del día y marcadores",
+    "type": "text",
+    "title": {
+     "show": true,
+     "level": 1
+    },
+    "text": {
+     "format": 1,
+     "content": "<div class=\"nb-manual\">\n<p>La partida avanza por las fases del día; la Jueza las cambia en el tracker y cada cambio se anuncia en el chat.</p>\n<table><thead><tr><th>Fase</th><th>Qué toca</th></tr></thead><tbody><tr><td>Prima</td><td>Se introduce el arresto, el recuerdo inicial y la reunión en el refugio.</td></tr><tr><td>Sexta</td><td>Primera ronda de actuaciones en aplicación del plan.</td></tr><tr><td>Vísperas</td><td>Reencuentro, balance y planificación del grupo.</td></tr><tr><td>Completas</td><td>Ronda de actuaciones nocturnas, potencialmente arriesgadas.</td></tr><tr><td>Maitines</td><td>Falso refugio; la amenaza alcanza a las Hermanas.</td></tr><tr><td>Laudes</td><td>Último encuentro y determinación de nuevas acusaciones.</td></tr><tr><td>Final del juego</td><td>Juicio, condena y epílogo.</td></tr></tbody></table>\n<p>Los marcadores de fase (La Estrella, El Sol y La Luna) no son cartas del mazo: acompañan a las fases desde el tracker.</p>\n<table><thead><tr><th>Marcador</th><th>Fases</th><th>Romano</th></tr></thead><tbody><tr><td>La Estrella</td><td>prima, visperas, maitines</td><td>XVII</td></tr><tr><td>La Luna</td><td>completas</td><td>XVIII</td></tr><tr><td>El Sol</td><td>sexta</td><td>XIX</td></tr></tbody></table>\n<p>Los arcanos menores se reparten por pintas: Oros (oros), Copas (copas), Espadas (espadas), Bastos (bastos).</p>\n</div>"
+    },
+    "sort": 6000,
+    "ownership": {
+     "default": -1
+    }
+   },
+   {
+    "_id": "ayudaPag00000007",
+    "name": "Dado de 1 a 6",
+    "type": "text",
+    "title": {
+     "show": true,
+     "level": 1
+    },
+    "text": {
+     "format": 1,
+     "content": "<div class=\"nb-manual\">\n<p>Dado opcional de La Jueza (R 72–73): añade un giro a lo que ocurre. Se tira con <em>1d6</em> desde el tracker.</p>\n<table><thead><tr><th>Cara</th><th>Ejemplo</th></tr></thead><tbody><tr><td>Sí, pero…</td><td>El testigo ayuda, pero alguien descubre la reunión.</td></tr><tr><td>No, pero…</td><td>El alcalde rechaza hablar, pero deja escapar un nombre.</td></tr><tr><td>Sí, pero solo si…</td><td>El sacerdote ayudará si se entrega una prueba comprometedora.</td></tr><tr><td>No, y además…</td><td>La petición fracasa y aumentan las sospechas.</td></tr><tr><td>Sí, y además…</td><td>Aparece la prueba y se suma un nuevo aliado.</td></tr><tr><td>Necesitas ayuda…</td><td>La protagonista requerirá la intervención de otra persona.</td></tr></tbody></table>\n</div>"
+    },
+    "sort": 7000,
+    "ownership": {
+     "default": -1
+    }
+   }
+  ]
+ }
+]

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs><radialGradient id="cielo" cx="50%" cy="38%" r="80%"><stop offset="0%" stop-color="#3d2154"/><stop offset="60%" stop-color="#241433"/><stop offset="100%" stop-color="#150c20"/></radialGradient></defs>
+  <rect width="1600" height="900" fill="url(#cielo)"/>
+  <g fill="#efe3c8" opacity="0.85">
+    <circle cx="0" cy="0" r="1"/>
+    <circle cx="271" cy="137" r="2"/>
+    <circle cx="542" cy="274" r="3"/>
+    <circle cx="813" cy="411" r="1"/>
+    <circle cx="1084" cy="548" r="2"/>
+    <circle cx="1355" cy="685" r="3"/>
+    <circle cx="26" cy="822" r="1"/>
+    <circle cx="297" cy="59" r="2"/>
+    <circle cx="568" cy="196" r="3"/>
+    <circle cx="839" cy="333" r="1"/>
+    <circle cx="1110" cy="470" r="2"/>
+    <circle cx="1381" cy="607" r="3"/>
+    <circle cx="52" cy="744" r="1"/>
+    <circle cx="323" cy="881" r="2"/>
+    <circle cx="594" cy="118" r="3"/>
+    <circle cx="865" cy="255" r="1"/>
+    <circle cx="1136" cy="392" r="2"/>
+    <circle cx="1407" cy="529" r="3"/>
+    <circle cx="78" cy="666" r="1"/>
+    <circle cx="349" cy="803" r="2"/>
+    <circle cx="620" cy="40" r="3"/>
+    <circle cx="891" cy="177" r="1"/>
+    <circle cx="1162" cy="314" r="2"/>
+    <circle cx="1433" cy="451" r="3"/>
+    <circle cx="104" cy="588" r="1"/>
+    <circle cx="375" cy="725" r="2"/>
+    <circle cx="646" cy="862" r="3"/>
+    <circle cx="917" cy="99" r="1"/>
+    <circle cx="1188" cy="236" r="2"/>
+    <circle cx="1459" cy="373" r="3"/>
+    <circle cx="130" cy="510" r="1"/>
+    <circle cx="401" cy="647" r="2"/>
+    <circle cx="672" cy="784" r="3"/>
+    <circle cx="943" cy="21" r="1"/>
+    <circle cx="1214" cy="158" r="2"/>
+    <circle cx="1485" cy="295" r="3"/>
+    <circle cx="156" cy="432" r="1"/>
+    <circle cx="427" cy="569" r="2"/>
+    <circle cx="698" cy="706" r="3"/>
+    <circle cx="969" cy="843" r="1"/>
+    <circle cx="1240" cy="80" r="2"/>
+    <circle cx="1511" cy="217" r="3"/>
+    <circle cx="182" cy="354" r="1"/>
+    <circle cx="453" cy="491" r="2"/>
+    <circle cx="724" cy="628" r="3"/>
+    <circle cx="995" cy="765" r="1"/>
+    <circle cx="1266" cy="2" r="2"/>
+    <circle cx="1537" cy="139" r="3"/>
+    <circle cx="208" cy="276" r="1"/>
+    <circle cx="479" cy="413" r="2"/>
+    <circle cx="750" cy="550" r="3"/>
+    <circle cx="1021" cy="687" r="1"/>
+    <circle cx="1292" cy="824" r="2"/>
+    <circle cx="1563" cy="61" r="3"/>
+    <circle cx="234" cy="198" r="1"/>
+    <circle cx="505" cy="335" r="2"/>
+    <circle cx="776" cy="472" r="3"/>
+    <circle cx="1047" cy="609" r="1"/>
+    <circle cx="1318" cy="746" r="2"/>
+    <circle cx="1589" cy="883" r="3"/>
+  </g>
+  
+  <g transform="translate(800 330)" fill="#efe3c8" stroke="#c9a227" stroke-width="6">
+    <path d="M -247 0 a 95 95 0 1 0 190 0 a 58.9 58.9 0 1 1 -190 0" transform="translate(-19 0)"/>
+    <circle r="95"/>
+    <path d="M 247 0 a 95 95 0 1 1 -190 0 a 58.9 58.9 0 1 0 190 0" transform="translate(19 0)"/>
+  </g>
+  <path d="M 460 470 H 1140" stroke="#c9a227" stroke-width="3"/>
+  <text x="800" y="580" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="86" fill="#efe3c8" letter-spacing="10">NOSOTRAS, LAS BRUJAS</text>
+  <text x="800" y="660" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-style="italic" fill="#c9a227">Sistema para Foundry VTT</text>
+</svg>

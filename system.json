@@ -1,0 +1,84 @@
+{
+  "id": "mr-nosotras-las-brujas",
+  "title": "MR- Nosotras, las brujas",
+  "description": "Sistema para Foundry VTT de Nosotras, las brujas, el juego de rol narrativo de Hernán D'Andreis y Keith Monardes (Primigenia Austral) sobre persecución, sospechas y acusaciones de brujería. Trae el tarot completo de 78 cartas con sus mazos, el tracker de La Jueza con las siete fases, las sospechas y el recuento de Laudes, más las ayudas de juego.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351"
+  },
+  "authors": [
+    {
+      "name": "Hernán D'Andreis · Keith Monardes",
+      "flags": { "rol": "Juego original, textos y ambientación" }
+    },
+    {
+      "name": "Primigenia Austral",
+      "url": "https://primigenia-austral.itch.io/nosotras-las-brujas",
+      "flags": { "rol": "Editorial" }
+    },
+    {
+      "name": "Manu Romera",
+      "url": "https://github.com/ManuRomera",
+      "flags": { "rol": "Implementación para Foundry VTT" }
+    }
+  ],
+  "url": "https://github.com/ManuRomera/mr-nosotras-las-brujas",
+  "manifest": "https://github.com/ManuRomera/mr-nosotras-las-brujas/releases/latest/download/system.json",
+  "download": "https://github.com/ManuRomera/mr-nosotras-las-brujas/releases/latest/download/mr-nosotras-las-brujas.zip",
+  "readme": "https://github.com/ManuRomera/mr-nosotras-las-brujas#readme",
+  "changelog": "https://github.com/ManuRomera/mr-nosotras-las-brujas/blob/main/CHANGELOG.md",
+  "bugs": "https://github.com/ManuRomera/mr-nosotras-las-brujas/issues",
+  "license": "LICENSE",
+  "esmodules": [
+    "mr-nosotras-las-brujas.mjs"
+  ],
+  "styles": [
+    "styles/mr-nosotras-las-brujas.css"
+  ],
+  "languages": [
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "hermana": { "htmlFields": ["notas"] },
+      "pnj": { "htmlFields": ["notas"] },
+      "pueblo": { "htmlFields": ["notas"] }
+    }
+  },
+  "packs": [
+    {
+      "name": "ayudas",
+      "label": "NB · Ayudas de juego",
+      "path": "packs/ayudas",
+      "type": "JournalEntry",
+      "system": "mr-nosotras-las-brujas",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "MR- Nosotras, las brujas",
+      "sorting": "m",
+      "color": "#5b2a6e",
+      "packs": ["ayudas"]
+    }
+  ],
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
+  "socket": true,
+  "background": "systems/mr-nosotras-las-brujas/assets/portadas/portada.svg",
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/mr-nosotras-las-brujas/assets/portadas/portada.svg",
+      "thumbnail": "systems/mr-nosotras-las-brujas/assets/tarot/mayores/XV.svg"
+    }
+  ]
+}

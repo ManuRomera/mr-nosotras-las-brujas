@@ -1,0 +1,459 @@
+/* ════════════════════════════════════════════════════════════════════
+   MR- Nosotras, las brujas · hoja de estilos
+   Identidad: noche violácea, papel viejo y oro. Las hojas son la ficha
+   impresa (papel con tinta); el tracker y el chat van sobre la noche.
+   Legibilidad primero: nada de texto pequeño sobre texturas.
+   ════════════════════════════════════════════════════════════════════ */
+
+@font-face { font-family: "NB Oswald"; src: url("../fonts/oswald.woff2") format("woff2"); font-weight: 200 700; font-display: swap; }
+@font-face { font-family: "NB Barlow"; src: url("../fonts/barlow-sc-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "NB Barlow"; src: url("../fonts/barlow-sc-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "NB Barlow"; src: url("../fonts/barlow-sc-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "NB Barlow"; src: url("../fonts/barlow-sc-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "NB Barlow"; src: url("../fonts/barlow-sc-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "NB Caveat"; src: url("../fonts/caveat.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+
+/* Variables globales: el chat, los diarios y el directorio están fuera del marco de ventana. */
+:root {
+  --nb-noche: #1d1229;
+  --nb-noche-2: #241433;
+  --nb-noche-3: #2d1b3f;
+  --nb-borde: #4a3a63;
+  --nb-borde-suave: #37294e;
+  --nb-hueso: #eee4f4;
+  --nb-hueso-2: #b9aac8;
+  --nb-hueso-3: #8d7fa0;
+  --nb-papel: #efe3c8;
+  --nb-papel-2: #e5d6b6;
+  --nb-papel-3: #d6c39c;
+  --nb-tinta: #241b2e;
+  --nb-tinta-2: #4a3d57;
+  --nb-oro: #c9a227;
+  --nb-oro-2: #9a7413;
+  --nb-vino: #7a2f4a;
+  --nb-vino-2: #a34a6b;
+  --nb-acero: #3d5a6c;
+  --nb-verde: #4a6b3a;
+  --nb-luna: #8f7bb8;
+  --nb-titulo: "NB Oswald", "Oswald", "Arial Narrow", sans-serif;
+  --nb-texto: "NB Barlow", "Barlow Semi Condensed", "Signika", sans-serif;
+  --nb-mano: "NB Caveat", "Caveat", cursive;
+  --nb-ruido: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 0 .055 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.mr-nosotras-las-brujas {
+  font-family: var(--nb-texto);
+  color: var(--nb-hueso);
+}
+
+/* ─── Marco de ventana ─────────────────────────────────────────────── */
+.application.mr-nosotras-las-brujas {
+  background: var(--nb-noche);
+  border: 1px solid var(--nb-borde);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .7);
+  color: var(--nb-hueso);
+}
+.application.mr-nosotras-las-brujas .window-header {
+  background: linear-gradient(#150d20, #1f1330);
+  border-bottom: 1px solid var(--nb-borde);
+  color: var(--nb-hueso-2);
+  font-family: var(--nb-titulo);
+  letter-spacing: .04em;
+}
+.application.mr-nosotras-las-brujas .window-header .window-title {
+  font-weight: 500; text-transform: uppercase; font-size: calc(13px * var(--nb-escala, 1));
+}
+.application.mr-nosotras-las-brujas .window-content { padding: 0; background: var(--nb-noche); color: var(--nb-hueso); overflow: hidden; }
+.application.nb-hermana .window-header { border-bottom-color: var(--nb-vino); }
+.application.nb-pnj .window-header { border-bottom-color: var(--nb-acero); }
+.application.nb-pueblo .window-header { border-bottom-color: var(--nb-verde); }
+.application.nb-tracker .window-header { border-bottom-color: var(--nb-oro-2); }
+.application.nb-dialogo .window-content { overflow: auto; padding: 12px 14px 4px; }
+
+/* ─── Controles comunes ────────────────────────────────────────────── */
+.mr-nosotras-las-brujas input[type="text"],
+.mr-nosotras-las-brujas input:not([type]),
+.mr-nosotras-las-brujas textarea,
+.mr-nosotras-las-brujas select {
+  width: 100%;
+  background: rgba(255, 255, 255, .03);
+  border: none;
+  border-bottom: 1px dashed var(--nb-borde);
+  border-radius: 0;
+  color: var(--nb-hueso);
+  font-family: var(--nb-texto);
+  font-size: calc(14px * var(--nb-escala, 1));
+  padding: 3px 6px;
+  box-shadow: none;
+  outline: none;
+  transition: background .15s, border-color .15s;
+}
+.mr-nosotras-las-brujas textarea { resize: vertical; line-height: 1.3; min-height: 2.6em; field-sizing: content; }
+.mr-nosotras-las-brujas select { height: 28px; cursor: pointer; width: auto; min-width: 90px; }
+.mr-nosotras-las-brujas select option { background: var(--nb-noche-2); color: var(--nb-hueso); }
+.mr-nosotras-las-brujas input:hover:not(:disabled), .mr-nosotras-las-brujas textarea:hover:not(:disabled), .mr-nosotras-las-brujas select:hover:not(:disabled) { background: rgba(255, 255, 255, .06); }
+.mr-nosotras-las-brujas input:focus, .mr-nosotras-las-brujas textarea:focus, .mr-nosotras-las-brujas select:focus {
+  background: rgba(201, 162, 39, .08); border-bottom-color: var(--nb-oro);
+}
+.mr-nosotras-las-brujas input:disabled, .mr-nosotras-las-brujas textarea:disabled, .mr-nosotras-las-brujas select:disabled {
+  background: transparent; border-bottom-color: transparent; color: inherit; opacity: 1; cursor: default;
+}
+.mr-nosotras-las-brujas ::placeholder { color: var(--nb-hueso-3); opacity: .8; font-style: italic; }
+/* Los botones con icono Font Awesome llevan su fuente en la propia clase: no se tocan. */
+.mr-nosotras-las-brujas button:not([class*="fa-"]) { font-family: var(--nb-titulo); }
+.mr-nosotras-las-brujas :focus-visible { outline: 2px solid var(--nb-oro); outline-offset: 1px; }
+.mr-nosotras-las-brujas small, .mr-nosotras-las-brujas .nb-tenue { color: var(--nb-hueso-3); }
+.mr-nosotras-las-brujas small { font-size: calc(11px * var(--nb-escala, 1)); font-family: var(--nb-texto); letter-spacing: 0; text-transform: none; font-weight: 400; }
+.mr-nosotras-las-brujas .nb-centro { text-align: center; }
+
+.mr-nosotras-las-brujas ::-webkit-scrollbar { width: 8px; height: 8px; }
+.mr-nosotras-las-brujas ::-webkit-scrollbar-thumb { background: #4a3a63; border-radius: 4px; border: 2px solid var(--nb-noche); }
+.mr-nosotras-las-brujas ::-webkit-scrollbar-track { background: transparent; }
+.mr-nosotras-las-brujas * { scrollbar-color: #4a3a63 transparent; scrollbar-width: thin; }
+
+/* Cinta: los rótulos */
+.mr-nosotras-las-brujas .nb-cinta {
+  display: inline-flex; align-items: center; gap: 6px; margin: 0;
+  padding: 3px 12px 2px;
+  background: linear-gradient(180deg, rgba(255,255,255,.14), transparent 60%), var(--nb-oro);
+  color: var(--nb-tinta);
+  font-family: var(--nb-titulo);
+  font-size: calc(12.5px * var(--nb-escala, 1));
+  font-weight: 600; letter-spacing: .09em; text-transform: uppercase; line-height: 1.35;
+  clip-path: polygon(0 10%, 2% 0, 30% 6%, 60% 0, 98% 5%, 100% 0, 99% 55%, 100% 100%, 70% 94%, 35% 100%, 3% 95%, 0 100%, 1% 50%);
+  border: none; white-space: nowrap;
+}
+
+/* Botones */
+.mr-nosotras-las-brujas .nb-boton,
+.mr-nosotras-las-brujas .nb-boton-mini,
+.mr-nosotras-las-brujas .nb-icono {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--nb-noche-3); color: var(--nb-hueso);
+  border: 1px solid var(--nb-borde); border-radius: 4px;
+  font-size: calc(13px * var(--nb-escala, 1)); font-weight: 500;
+  letter-spacing: .05em; text-transform: uppercase;
+  padding: 5px 12px; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.mr-nosotras-las-brujas .nb-boton:hover, .mr-nosotras-las-brujas .nb-boton-mini:hover, .mr-nosotras-las-brujas .nb-icono:hover {
+  background: var(--nb-borde-suave); border-color: var(--nb-oro-2); color: var(--nb-hueso);
+}
+.mr-nosotras-las-brujas .nb-boton-mini { padding: 3px 7px; font-size: calc(12px * var(--nb-escala, 1)); }
+.mr-nosotras-las-brujas .nb-icono { padding: 2px 5px; border: none; background: transparent; font-size: calc(12px * var(--nb-escala, 1)); }
+.mr-nosotras-las-brujas .nb-boton-principal {
+  background: linear-gradient(180deg, #d9b539, var(--nb-oro-2));
+  border-color: #e6c760; color: #1d1229;
+}
+.mr-nosotras-las-brujas .nb-boton-principal:hover { background: linear-gradient(180deg, #e9c955, #b8891a); color: #1d1229; }
+.mr-nosotras-las-brujas .nb-boton-suave { background: transparent; border-style: dashed; color: var(--nb-hueso-2); }
+.mr-nosotras-las-brujas .nb-boton.activo, .mr-nosotras-las-brujas .nb-boton-mini.activo { border-color: var(--nb-oro); color: var(--nb-oro); background: rgba(201, 162, 39, .12); }
+.mr-nosotras-las-brujas button:disabled { opacity: .5; cursor: default; }
+
+/* Chips */
+.mr-nosotras-las-brujas .nb-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--nb-noche-3); border: 1px solid var(--nb-borde); border-radius: 999px;
+  color: var(--nb-hueso-2); font-family: var(--nb-texto); font-size: calc(13px * var(--nb-escala, 1));
+  padding: 3px 10px; cursor: pointer;
+}
+.mr-nosotras-las-brujas .nb-chip:hover { border-color: var(--nb-oro-2); color: var(--nb-hueso); }
+.mr-nosotras-las-brujas .nb-chip.activa { background: rgba(201, 162, 39, .16); border-color: var(--nb-oro); color: var(--nb-hueso); }
+.mr-nosotras-las-brujas .nb-chip-img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 1px solid var(--nb-borde); }
+.mr-nosotras-las-brujas .nb-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Campos y notas */
+.mr-nosotras-las-brujas .nb-campo {
+  display: flex; flex-direction: column; gap: 2px; margin: 0 0 8px;
+  color: var(--nb-hueso-3);
+  font-family: var(--nb-titulo); font-size: calc(11.5px * var(--nb-escala, 1));
+  font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+}
+.mr-nosotras-las-brujas .nb-campo > span { display: block; }
+.mr-nosotras-las-brujas .nb-nota { margin: 4px 0 6px; color: var(--nb-hueso-3); font-size: calc(12.5px * var(--nb-escala, 1)); line-height: 1.35; }
+.mr-nosotras-las-brujas .nb-nota i { margin-right: 4px; }
+
+/* Tabla */
+.mr-nosotras-las-brujas .nb-tabla { width: 100%; border-collapse: collapse; font-size: calc(13px * var(--nb-escala, 1)); }
+.mr-nosotras-las-brujas .nb-tabla th {
+  text-align: left; font-family: var(--nb-titulo); font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  font-size: calc(11.5px * var(--nb-escala, 1)); color: var(--nb-oro);
+  border-bottom: 1px solid var(--nb-borde); padding: 4px 6px;
+}
+.mr-nosotras-las-brujas .nb-tabla td { border-bottom: 1px dashed var(--nb-borde-suave); padding: 4px 6px; vertical-align: middle; color: var(--nb-hueso-2); }
+.mr-nosotras-las-brujas .nb-tabla td b { color: var(--nb-hueso); }
+.mr-nosotras-las-brujas .nb-mini { width: 30px; height: 50px; object-fit: cover; border-radius: 3px; border: 1px solid var(--nb-borde); vertical-align: middle; margin-right: 6px; background: var(--nb-noche-2); }
+
+/* Lista de opciones del chat */
+.mr-nosotras-las-brujas .nb-lista-opciones { margin: 6px 0; border: 1px dashed var(--nb-borde); border-radius: 6px; padding: 4px 8px; }
+.mr-nosotras-las-brujas .nb-lista-opciones summary { cursor: pointer; font-family: var(--nb-titulo); font-size: calc(12.5px * var(--nb-escala, 1)); letter-spacing: .06em; text-transform: uppercase; color: var(--nb-oro); }
+.mr-nosotras-las-brujas .nb-lista-opciones.elegida { opacity: .7; }
+
+/* ═══ Hojas: la ficha impresa sobre papel ═══════════════════════════ */
+.mr-nosotras-las-brujas .nb-cuerpo {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--nb-ruido), linear-gradient(160deg, var(--nb-papel) 0%, var(--nb-papel-2) 60%, var(--nb-papel-3) 100%);
+  color: var(--nb-tinta);
+  padding: 14px 18px 20px;
+  container-type: inline-size;
+}
+.mr-nosotras-las-brujas .nb-cuerpo ::placeholder { color: rgba(36, 27, 46, .45); }
+.mr-nosotras-las-brujas .nb-cuerpo input[type="text"],
+.mr-nosotras-las-brujas .nb-cuerpo input:not([type]),
+.mr-nosotras-las-brujas .nb-cuerpo textarea,
+.mr-nosotras-las-brujas .nb-cuerpo select {
+  background: rgba(255, 255, 255, .35);
+  border-bottom: 1px dashed rgba(36, 27, 46, .5);
+  color: var(--nb-tinta);
+}
+.mr-nosotras-las-brujas .nb-cuerpo input:focus, .mr-nosotras-las-brujas .nb-cuerpo textarea:focus, .mr-nosotras-las-brujas .nb-cuerpo select:focus {
+  background: rgba(255, 255, 255, .7); border-bottom-color: var(--nb-oro-2);
+}
+.mr-nosotras-las-brujas .nb-cuerpo select option { background: var(--nb-papel); color: var(--nb-tinta); }
+.mr-nosotras-las-brujas .nb-cuerpo .nb-tenue, .mr-nosotras-las-brujas .nb-cuerpo small { color: rgba(36, 27, 46, .55); }
+.mr-nosotras-las-brujas .nb-cuerpo .nb-cinta { background: linear-gradient(180deg, rgba(255,255,255,.3), transparent 60%), var(--nb-vino); color: var(--nb-papel); }
+.mr-nosotras-las-brujas .nb-cuerpo .nb-boton {
+  background: rgba(36, 27, 46, .08); border-color: rgba(36, 27, 46, .4); color: var(--nb-tinta);
+}
+.mr-nosotras-las-brujas .nb-cuerpo .nb-boton:hover { background: rgba(36, 27, 46, .16); border-color: var(--nb-vino); }
+.mr-nosotras-las-brujas .nb-cuerpo .nb-boton-suave { background: transparent; border-style: dashed; color: var(--nb-tinta-2); }
+.mr-nosotras-las-brujas .nb-cuerpo .nb-boton-principal { background: linear-gradient(180deg, #d9b539, var(--nb-oro-2)); border-color: #b8891a; color: #1d1229; }
+.mr-nosotras-las-brujas .nb-cuerpo .nb-icono { color: rgba(36, 27, 46, .6); }
+.mr-nosotras-las-brujas .nb-cuerpo .nb-campo { color: rgba(36, 27, 46, .65); }
+
+/* Cabecera de hoja */
+.mr-nosotras-las-brujas .nb-hoja-cabecera { display: flex; gap: 14px; align-items: flex-start; flex: none; margin-bottom: 10px; }
+.mr-nosotras-las-brujas .nb-retrato { position: relative; width: 92px; flex: 0 0 92px; }
+.mr-nosotras-las-brujas .nb-retrato > img {
+  width: 92px; height: 92px; object-fit: cover; border-radius: 6px;
+  border: 2px solid var(--nb-tinta); box-shadow: 3px 3px 0 rgba(36, 27, 46, .35);
+  cursor: pointer; background: var(--nb-papel-3);
+}
+.mr-nosotras-las-brujas .nb-herramientas { display: flex; gap: 4px; margin-top: 6px; }
+.mr-nosotras-las-brujas .nb-herramientas button {
+  background: rgba(36, 27, 46, .08); border: 1px solid rgba(36, 27, 46, .35); border-radius: 4px;
+  color: var(--nb-tinta); cursor: pointer; padding: 2px 6px; font-size: 12px;
+}
+.mr-nosotras-las-brujas .nb-herramientas button:hover { background: rgba(36, 27, 46, .18); }
+.mr-nosotras-las-brujas .nb-herramientas button.activo { background: var(--nb-vino); color: var(--nb-papel); border-color: var(--nb-vino); }
+.mr-nosotras-las-brujas .nb-nombre { flex: 1; }
+.mr-nosotras-las-brujas .nb-nombre h1 {
+  margin: 0; font-family: var(--nb-titulo); font-size: calc(28px * var(--nb-escala, 1));
+  letter-spacing: .03em; text-transform: uppercase; color: var(--nb-tinta); line-height: 1.1;
+}
+.mr-nosotras-las-brujas .nb-nombre input { font-size: calc(22px * var(--nb-escala, 1)); font-family: var(--nb-titulo); font-weight: 600; }
+
+/* Frases de la hoja */
+.mr-nosotras-las-brujas .nb-frases { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 12px; }
+.mr-nosotras-las-brujas .nb-frase {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px;
+  margin: 0; font-family: var(--nb-mano); font-size: calc(21px * var(--nb-escala, 1));
+  line-height: 1.5; color: var(--nb-tinta);
+}
+.mr-nosotras-las-brujas .nb-frase b { color: var(--nb-vino); }
+.mr-nosotras-las-brujas .nb-frase input {
+  display: inline-block; width: auto; min-width: 120px; flex: 1 1 160px;
+  font-family: var(--nb-mano); font-size: calc(20px * var(--nb-escala, 1));
+  background: transparent; border: none; border-bottom: 1px dashed rgba(36, 27, 46, .5);
+  color: var(--nb-tinta); padding: 0 4px;
+}
+.mr-nosotras-las-brujas .nb-frase input.nb-ancho { flex: 2 1 220px; }
+.mr-nosotras-las-brujas .nb-frase input:focus { background: rgba(255, 255, 255, .55); border-bottom-color: var(--nb-oro-2); }
+.mr-nosotras-las-brujas .nb-vin-etiqueta { color: var(--nb-tinta-2); }
+
+/* Secciones plegables de las hojas */
+.mr-nosotras-las-brujas .nb-cuerpo details { border-top: 1px solid rgba(36, 27, 46, .3); padding: 6px 0; }
+.mr-nosotras-las-brujas .nb-cuerpo details > summary { cursor: pointer; list-style: none; }
+.mr-nosotras-las-brujas .nb-cuerpo details > summary::-webkit-details-marker { display: none; }
+.mr-nosotras-las-brujas .nb-cuerpo details > summary h3 {
+  display: flex; align-items: center; gap: 8px; margin: 0;
+  font-family: var(--nb-titulo); font-size: calc(15px * var(--nb-escala, 1));
+  letter-spacing: .07em; text-transform: uppercase; color: var(--nb-vino);
+}
+.mr-nosotras-las-brujas .nb-pnj .nb-cuerpo details > summary h3 { color: var(--nb-acero); }
+.mr-nosotras-las-brujas .nb-pueblo .nb-cuerpo details > summary h3 { color: var(--nb-verde); }
+.mr-nosotras-las-brujas .nb-cuerpo details > summary h3 .nb-tenue { font-family: var(--nb-texto); font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+/* Vínculos */
+.mr-nosotras-las-brujas .nb-vinculos { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.mr-nosotras-las-brujas .nb-vinculo { padding: 8px 10px; background: rgba(255, 255, 255, .28); border: 1px dashed rgba(36, 27, 46, .35); border-radius: 6px; }
+.mr-nosotras-las-brujas .nb-vinculo:hover { border-color: var(--nb-vino); }
+.mr-nosotras-las-brujas .nb-vin-frase {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px; margin: 0;
+  font-family: var(--nb-mano); font-size: calc(20px * var(--nb-escala, 1)); line-height: 1.5;
+}
+.mr-nosotras-las-brujas .nb-vin-quien { min-width: 110px; flex: 0 1 160px; }
+.mr-nosotras-las-brujas .nb-vin-texto { min-width: 160px; flex: 1 1 220px; font-style: italic; }
+.mr-nosotras-las-brujas .nb-vin-pie { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; }
+.mr-nosotras-las-brujas .nb-vin-pie select { font-size: calc(12.5px * var(--nb-escala, 1)); min-width: 150px; }
+.mr-nosotras-las-brujas .nb-vin-pregunta { flex: 1 1 100%; margin: 4px 0 0; font-family: var(--nb-texto); font-style: italic; font-size: calc(13.5px * var(--nb-escala, 1)); line-height: 1.4; color: rgba(36, 27, 46, .75); }
+.mr-nosotras-las-brujas .nb-enlace {
+  display: inline-flex; align-items: center; gap: 5px; background: transparent;
+  border: none; color: var(--nb-vino); font-family: var(--nb-texto); font-size: calc(13px * var(--nb-escala, 1));
+  cursor: pointer; padding: 0;
+}
+.mr-nosotras-las-brujas .nb-enlace:hover { color: var(--nb-vino-2); text-decoration: underline; }
+
+/* Sospechas en la hoja */
+.mr-nosotras-las-brujas .nb-sospechas { list-style: none; margin: 8px 0 4px; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.mr-nosotras-las-brujas .nb-sospechas li { display: flex; align-items: center; gap: 6px; font-size: calc(14px * var(--nb-escala, 1)); padding: 3px 8px; background: rgba(255, 255, 255, .3); border-radius: 4px; }
+.mr-nosotras-las-brujas .nb-sospechas li i { color: var(--nb-vino); width: 16px; text-align: center; }
+
+/* Campos de PNJ y pueblo */
+.mr-nosotras-las-brujas .nb-campos { display: flex; flex-direction: column; gap: 4px; }
+.mr-nosotras-las-brujas .nb-arquetipo {
+  margin: 0 0 8px; font-family: var(--nb-mano); font-size: calc(20px * var(--nb-escala, 1));
+  color: var(--nb-acero);
+}
+.mr-nosotras-las-brujas .nb-lista-rasgos { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.mr-nosotras-las-brujas .nb-lista-rasgos li { display: flex; gap: 6px; align-items: center; }
+.mr-nosotras-las-brujas .nb-anadir { display: flex; gap: 6px; align-items: center; margin-top: 6px; }
+.mr-nosotras-las-brujas .nb-anadir input { flex: 1; }
+.mr-nosotras-las-brujas .nb-notas { font-size: calc(14px * var(--nb-escala, 1)); line-height: 1.45; }
+.mr-nosotras-las-brujas .nb-principal { flex: 1; min-height: 0; overflow-y: auto; padding: 0 4px 8px; }
+
+/* ─── Contenido rico (prose-mirror) ────────────────────────────────── */
+.mr-nosotras-las-brujas prose-mirror { background: rgba(255, 255, 255, .3); border: 1px dashed rgba(36, 27, 46, .35); border-radius: 6px; color: var(--nb-tinta); padding: 6px 8px; }
+
+/* ═══ Chat: tarjetas sobre la noche ═════════════════════════════════ */
+.nb-tc {
+  background: linear-gradient(165deg, var(--nb-noche-3), var(--nb-noche-2));
+  border: 1px solid var(--nb-borde); border-radius: 8px;
+  color: var(--nb-hueso); padding: 10px 12px; margin: 0;
+  font-family: var(--nb-texto);
+}
+.nb-tc .nb-tc-cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.nb-tc .nb-tc-rotulo { display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; min-width: 0; }
+.nb-tc .nb-tc-sub { font-size: calc(12.5px * var(--nb-escala, 1)); color: var(--nb-hueso-3); }
+.nb-tc .nb-tc-carta { margin: 0; text-align: center; flex: 0 0 92px; width: 92px; }
+.nb-tc .nb-tc-carta img { width: 84px; height: 140px; object-fit: cover; border-radius: 6px; border: 2px solid var(--nb-oro-2); box-shadow: 0 4px 14px rgba(0, 0, 0, .55); }
+.nb-tc .nb-tc-carta figcaption { margin-top: 4px; font-family: var(--nb-mano); font-size: calc(16px * var(--nb-escala, 1)); color: var(--nb-oro); }
+.nb-tc .nb-tc-titulo { margin: 8px 0 4px; font-family: var(--nb-titulo); font-size: calc(17px * var(--nb-escala, 1)); letter-spacing: .04em; text-transform: uppercase; color: var(--nb-hueso); line-height: 1.2; }
+.nb-tc .nb-tc-texto { margin: 0 0 6px; font-size: calc(14px * var(--nb-escala, 1)); line-height: 1.4; color: var(--nb-hueso-2); }
+.nb-tc .nb-tc-pie { margin: 8px 0 0; font-size: calc(12px * var(--nb-escala, 1)); color: var(--nb-hueso-3); font-style: italic; }
+.nb-tc .nb-tc-botones { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.nb-tc .nb-boton { background: var(--nb-noche); }
+.nb-tc .nb-boton-principal { background: linear-gradient(180deg, #d9b539, var(--nb-oro-2)); color: #1d1229; }
+.nb-tc .nb-papel { margin: 6px 0; padding: 6px 10px; background: rgba(239, 227, 200, .1); border-left: 3px solid var(--nb-oro); font-family: var(--nb-mano); font-size: calc(18px * var(--nb-escala, 1)); }
+.nb-tono-fase { border-color: var(--nb-oro-2); }
+.nb-tono-fase .nb-cinta { background: linear-gradient(180deg, rgba(255,255,255,.14), transparent 60%), var(--nb-oro); }
+.nb-tono-sospecha { border-color: var(--nb-vino); }
+.nb-tono-sospecha .nb-cinta { background: linear-gradient(180deg, rgba(255,255,255,.14), transparent 60%), var(--nb-vino-2); }
+.nb-tono-voz { border-color: var(--nb-acero); }
+.nb-tono-voz .nb-cinta { background: linear-gradient(180deg, rgba(255,255,255,.14), transparent 60%), var(--nb-acero); color: var(--nb-hueso); }
+
+/* ═══ Tracker de La Jueza ═══════════════════════════════════════════ */
+.mr-nosotras-las-brujas .nb-tracker .window-content { background: linear-gradient(180deg, var(--nb-noche-2), var(--nb-noche)); }
+.nb-jz-scroll { position: absolute; inset: 0; overflow: auto; padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+.nb-jz-fase { display: flex; gap: 12px; align-items: center; padding: 10px 12px; background: rgba(201, 162, 39, .07); border: 1px solid var(--nb-oro-2); border-radius: 8px; }
+.nb-jz-marcador { width: 58px; height: 96px; object-fit: cover; border-radius: 5px; border: 2px solid var(--nb-oro-2); box-shadow: 0 4px 12px rgba(0, 0, 0, .5); }
+.nb-jz-fase-txt { flex: 1; min-width: 0; }
+.nb-jz-fase-txt h2 { margin: 4px 0 2px; font-family: var(--nb-titulo); font-size: calc(24px * var(--nb-escala, 1)); letter-spacing: .05em; text-transform: uppercase; color: var(--nb-oro); line-height: 1.1; }
+.nb-jz-fase-txt p { margin: 0; font-size: calc(13px * var(--nb-escala, 1)); line-height: 1.35; }
+.nb-jz-fase-botones { display: flex; flex-direction: column; gap: 4px; }
+.nb-jz-barra { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.nb-jz-inversiones { margin-left: auto; display: inline-flex; gap: 6px; align-items: center; color: var(--nb-oro); font-family: var(--nb-titulo); font-size: calc(13px * var(--nb-escala, 1)); letter-spacing: .06em; }
+.nb-jz-panel { background: rgba(255, 255, 255, .03); border: 1px solid var(--nb-borde-suave); border-radius: 8px; padding: 10px 12px; }
+.nb-jz-panel > header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.nb-jz-panel > header h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-family: var(--nb-titulo); font-size: calc(15px * var(--nb-escala, 1)); letter-spacing: .07em; text-transform: uppercase; color: var(--nb-hueso); }
+.nb-jz-panel > header h3 i { color: var(--nb-oro); }
+.nb-jz-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
+@container (max-width: 480px) { .nb-jz-campos { grid-template-columns: 1fr; } }
+.nb-jz-participantes, .nb-jz-robar { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.nb-jz-pnjs { margin: 6px 0; }
+.nb-jz-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.nb-jz-add-pnj { display: flex; gap: 6px; align-items: center; }
+.nb-jz-add-pnj select { flex: 1; }
+.nb-jz-mayores { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.nb-jz-mayor { display: flex; gap: 10px; align-items: flex-start; padding: 8px; background: rgba(0, 0, 0, .25); border: 1px solid var(--nb-borde-suave); border-radius: 8px; }
+.nb-jz-mayor.dominante { border-color: var(--nb-oro); background: rgba(201, 162, 39, .1); }
+.nb-jz-mayor.segundo { border-color: var(--nb-acero); }
+.nb-jz-carta { width: 56px; height: 94px; object-fit: cover; border-radius: 4px; border: 2px solid var(--nb-oro-2); box-shadow: 0 4px 12px rgba(0, 0, 0, .5); }
+.nb-jz-mayor-txt { flex: 1; min-width: 0; }
+.nb-jz-mayor-txt b { font-family: var(--nb-titulo); font-size: calc(14.5px * var(--nb-escala, 1)); letter-spacing: .04em; text-transform: uppercase; color: var(--nb-hueso); }
+.nb-jz-concepto { margin: 4px 0 0; font-family: var(--nb-mano); font-size: calc(19px * var(--nb-escala, 1)); line-height: 1.35; color: var(--nb-papel); }
+.nb-jz-concepto i { color: var(--nb-oro); font-size: 13px; margin-right: 4px; }
+.nb-jz-concepto.invertida { color: var(--nb-vino-2); }
+.nb-jz-mayor-botones { display: flex; flex-direction: column; gap: 4px; }
+.nb-jz-totales { list-style: none; margin: 10px 0 0; padding: 8px 0 0; border-top: 1px dashed var(--nb-borde); display: flex; flex-direction: column; gap: 4px; }
+.nb-jz-totales li { display: flex; align-items: center; gap: 6px; font-size: calc(13.5px * var(--nb-escala, 1)); color: var(--nb-hueso-2); }
+.nb-jz-totales li b { color: var(--nb-oro); font-family: var(--nb-titulo); font-size: calc(15px * var(--nb-escala, 1)); }
+.nb-jz-totales li .nb-mini { width: 24px; height: 40px; }
+.nb-jz-acusadas { margin: 6px 0 0; font-size: calc(14px * var(--nb-escala, 1)); }
+.nb-jz-acusadas b { color: var(--nb-vino-2); font-family: var(--nb-titulo); letter-spacing: .04em; text-transform: uppercase; }
+.nb-jz-pie { margin-top: 2px; font-size: calc(11.5px * var(--nb-escala, 1)); color: var(--nb-hueso-3); font-style: italic; text-align: center; }
+
+/* Botón en el directorio */
+.nb-boton-jueza {
+  display: inline-flex; align-items: center; gap: 6px; height: 26px;
+  background: var(--nb-noche-3); border: 1px solid var(--nb-oro-2); border-radius: 4px;
+  color: var(--nb-oro); font-family: var(--nb-titulo); font-size: 12px; letter-spacing: .06em;
+  text-transform: uppercase; padding: 0 10px; cursor: pointer;
+}
+.nb-boton-jueza:hover { background: var(--nb-borde-suave); color: var(--nb-hueso); }
+
+/* Diálogos del sistema */
+.mr-nosotras-las-brujas .nb-dialogo-cuerpo { display: flex; flex-direction: column; gap: 4px; color: var(--nb-hueso); }
+.mr-nosotras-las-brujas .nb-casilla-texto { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: calc(13px * var(--nb-escala, 1)); color: var(--nb-hueso-2); cursor: pointer; }
+.mr-nosotras-las-brujas .nb-casilla-texto span { display: flex; flex-direction: column; }
+.mr-nosotras-las-brujas .nb-casilla-texto small { font-size: calc(11.5px * var(--nb-escala, 1)); }
+.mr-nosotras-las-brujas .nb-a11y-acciones { display: flex; justify-content: flex-end; margin-top: 4px; }
+
+/* Encuadre del retrato */
+.mr-nosotras-las-brujas .nb-ret { display: flex; flex-direction: column; gap: 8px; }
+.mr-nosotras-las-brujas .nb-ret-cuerpo { display: flex; gap: 12px; align-items: stretch; }
+.mr-nosotras-las-brujas .nb-ret-escenario {
+  position: relative; flex: 1 1 auto; min-width: 0; min-height: 340px; overflow: hidden;
+  background: #0d0816; border: 1px solid var(--nb-borde); border-radius: 6px; cursor: crosshair;
+}
+.mr-nosotras-las-brujas .nb-ret-escenario img.base { position: absolute; user-select: none; }
+.mr-nosotras-las-brujas .nb-ret-escenario .marco {
+  position: absolute; pointer-events: none;
+  border: 2px solid var(--nb-oro);
+  box-shadow: 0 0 0 200vmax rgba(13, 8, 22, .55);
+}
+.mr-nosotras-las-brujas .nb-ret-lado { flex: 0 0 168px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.mr-nosotras-las-brujas .nb-ret-lado .vistas { display: flex; align-items: center; gap: 8px; min-height: 66px; }
+.mr-nosotras-las-brujas .nb-ret-lado .vistas img {
+  border-radius: 4px; border: 1px solid var(--nb-borde); background: var(--nb-papel);
+  object-fit: cover; box-shadow: 0 2px 6px rgba(0, 0, 0, .5);
+}
+.mr-nosotras-las-brujas .nb-ret-lado .v-ficha { width: 64px; height: 64px; }
+.mr-nosotras-las-brujas .nb-ret-lado .v-media { width: 44px; height: 44px; }
+.mr-nosotras-las-brujas .nb-ret-lado .v-chica { width: 30px; height: 30px; }
+.mr-nosotras-las-brujas .nb-ret-lado input[type="range"] { width: 100%; accent-color: var(--nb-oro); }
+.mr-nosotras-las-brujas .nb-ret-lado .zoom-valor { color: var(--nb-oro); font-family: var(--nb-titulo); }
+.mr-nosotras-las-brujas .nb-ret-acciones { display: flex; gap: 6px; }
+.mr-nosotras-las-brujas .nb-pie-formulario { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 2px; }
+
+/* ═══ Compendio de ayudas (diarios) ═════════════════════════════════ */
+.nb-manual { color: var(--nb-hueso); font-family: var(--nb-texto); }
+.nb-manual p { font-size: calc(14.5px * var(--nb-escala, 1)); line-height: 1.5; color: var(--nb-hueso-2); }
+.nb-manual ol, .nb-manual ul { margin: 0.4em 0; padding-left: 1.4em; }
+.nb-manual li { font-size: calc(14px * var(--nb-escala, 1)); line-height: 1.5; color: var(--nb-hueso-2); margin-bottom: .35em; }
+.nb-manual strong { color: var(--nb-oro); }
+.nb-manual table { width: 100%; border-collapse: collapse; margin: 0.6em 0 1em; font-size: calc(13.5px * var(--nb-escala, 1)); }
+.nb-manual th {
+  text-align: left; font-family: var(--nb-titulo); font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  font-size: calc(12px * var(--nb-escala, 1)); color: var(--nb-oro);
+  background: rgba(201, 162, 39, .1); border-bottom: 1px solid var(--nb-oro-2); padding: 5px 8px;
+}
+.nb-manual td { border-bottom: 1px dashed var(--nb-borde-suave); padding: 5px 8px; vertical-align: top; color: var(--nb-hueso-2); line-height: 1.4; }
+.nb-manual td:first-child { color: var(--nb-hueso); font-weight: 600; white-space: nowrap; }
+.nb-manual em { color: var(--nb-luna); }
+
+/* ═══ Accesibilidad ═════════════════════════════════════════════════ */
+body.nb-contraste { --nb-hueso: #fff; --nb-hueso-2: #f0f0f0; --nb-hueso-3: #ddd; --nb-borde: #888; --nb-oro: #ffd84d; }
+body.nb-contraste .nb-manual { --nb-hueso: #000; --nb-hueso-2: #111; --nb-hueso-3: #333; --nb-oro: #6a4c00; --nb-oro-2: #6a4c00; background: #fff; }
+body.nb-contraste .nb-manual :is(h1, h2, h3, h4, p, li, td, strong) { color: #000; }
+body.nb-contraste .mr-nosotras-las-brujas .nb-cuerpo { --nb-tinta: #000; --nb-tinta-2: #222; background: #fff; color: #000; }
+body.nb-contraste .mr-nosotras-las-brujas .nb-cuerpo :is(h1, h2, h3, p, li, span, b) { color: #000; }
+body.nb-contraste .mr-nosotras-las-brujas :is(.nb-boton, .nb-boton-mini, .nb-chip, .nb-jz-mayor, .nb-vinculo) { border-width: 2px; }
+body.nb-contraste :is(button, a, input, select, textarea, summary):focus-visible { outline-width: 3px; }
+body.nb-legible :is(.mr-nosotras-las-brujas, .nb-tc, .nb-manual) { font-family: var(--nb-titulo); }
+body.nb-legible :is(.mr-nosotras-las-brujas, .nb-tc) * { letter-spacing: .02em !important; text-transform: none !important; font-family: var(--nb-titulo) !important; line-height: 1.5; }
+body.nb-legible :is(.mr-nosotras-las-brujas, .nb-tc) .nb-frase, body.nb-legible :is(.mr-nosotras-las-brujas, .nb-tc) .nb-vin-frase, body.nb-legible :is(.mr-nosotras-las-brujas, .nb-tc) .nb-jz-concepto { font-size: calc(17px * var(--nb-escala, 1)) !important; }
+body.nb-sin-movimiento :is(.mr-nosotras-las-brujas, .nb-tc, .nb-manual) * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }

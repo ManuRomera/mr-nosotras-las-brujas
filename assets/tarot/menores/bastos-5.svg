@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1500" width="900" height="1500">
+  <rect width="900" height="1500" rx="40" fill="#efe3c8"/>
+  <rect x="26" y="26" width="848" height="1448" rx="26" fill="none" stroke="#4a6b3a" stroke-width="6"/>
+  <rect x="48" y="48" width="804" height="1404" rx="16" fill="none" stroke="#4a6b3a" stroke-width="2"/>
+  <text x="450" y="340" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="220" fill="#4a6b3a">5</text>
+  <path d="M 180 430 H 720" stroke="#4a6b3a" stroke-width="4"/>
+  <g transform="translate(450 790) scale(1)" fill="none" stroke="#4a6b3a" stroke-width="14"><path d="M 0 -110 V 110"/><path d="M -55 -55 l 60 40 M 55 -55 l -60 40"/><path d="M -55 55 l 60 -40 M 55 55 l -60 -40"/></g>
+  <text x="450" y="1340" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#2b2118">BASTOS</text>
+  <text x="450" y="1410" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-style="italic" fill="#2b2118" opacity="0.75">Arcano menor</text></svg>

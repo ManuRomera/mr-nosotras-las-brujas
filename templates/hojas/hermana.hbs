@@ -1,0 +1,93 @@
+<div class="nb-cuerpo nb-cuerpo-hermana">
+  <header class="nb-hoja-cabecera">
+    <div class="nb-retrato">
+      <img src="{{actor.img}}" alt="" data-retrato="{{actor.id}}" data-edit="img"
+           data-action="{{#if editando}}editImage{{else}}showPortraitArtwork{{/if}}"
+           data-tooltip="{{#if editando}}Cambiar retrato{{else}}Ver retrato{{/if}}">
+      <div class="nb-herramientas">
+        {{#if editable}}
+        <button type="button" data-action="editar" class="{{#if editando}}activo{{/if}}"
+                data-tooltip="{{#if editando}}Bloquear la ficha{{else}}Desbloquear retrato y borrados{{/if}}">
+          <i class="fa-solid {{#if editando}}fa-lock-open{{else}}fa-lock{{/if}}"></i></button>
+        <button type="button" data-action="retrato" data-tooltip="Encuadre del retrato: zona y zoom"><i class="fa-solid fa-crop-simple"></i></button>
+        {{/if}}
+        <button type="button" data-action="compacto" data-tooltip="{{#if compacto}}Ficha completa{{else}}Modo compacto{{/if}}">
+          <i class="fa-solid {{#if compacto}}fa-up-right-and-down-left-from-center{{else}}fa-down-left-and-up-right-to-center{{/if}}"></i></button>
+      </div>
+    </div>
+    <div class="nb-nombre">
+      {{#if editando}}<input type="text" name="name" value="{{actor.name}}" placeholder="Nombre de la Hermana">
+      {{else}}<h1>{{actor.name}}</h1>{{/if}}
+      <span class="nb-tenue">Hermana</span>
+    </div>
+  </header>
+
+  <main class="nb-principal">
+  <section class="nb-frases" aria-label="Hoja de Hermana">
+    <p class="nb-frase">Soy la Hermana <b>{{actor.name}}</b> y podría ser la siguiente porque
+      <input type="text" name="system.siguiente" value="{{system.siguiente}}" placeholder="el motivo" {{disabled (not editando)}} aria-label="Por qué podría ser la siguiente">
+    </p>
+    <p class="nb-frase">Nuestro lugar seguro es
+      <input type="text" class="nb-ancho" name="system.lugar.donde" value="{{system.lugar.donde}}" placeholder="dónde" {{disabled (not editando)}} aria-label="Lugar seguro">
+      porque
+      <input type="text" class="nb-ancho" name="system.lugar.porque" value="{{system.lugar.porque}}" placeholder="por qué" {{disabled (not editando)}} aria-label="Por qué es seguro">
+    </p>
+  </section>
+
+  <details data-memoria="vinculos" {{#if secciones.vinculos}}open{{/if}}>
+    <summary><h3><i class="fa-solid fa-link"></i> Vínculos <span class="nb-tenue">con arcanos mayores</span></h3></summary>
+    <div class="nb-vinculos">
+      {{#each vinculos}}
+      <div class="nb-vinculo" data-soltar="system.vinculos.{{i}}">
+        <p class="nb-vin-frase">
+          <span class="nb-vin-etiqueta">{{etiqueta}}</span>
+          <input type="text" class="nb-vin-quien" name="system.vinculos.{{i}}.quien" value="{{quien}}" placeholder="nombre" {{disabled (not ../editando)}} aria-label="Quién">
+          {{#if (eq tipo "acusador")}}<span class="nb-vin-etiqueta">, su acusador,</span>{{/if}}
+          <span class="nb-vin-etiqueta">es</span>
+          <input type="text" class="nb-vin-texto" name="system.vinculos.{{i}}.texto" value="{{texto}}" placeholder="…" {{disabled (not ../editando)}} aria-label="Cómo es ese vínculo">
+          {{#if ../editando}}<button type="button" class="nb-icono" data-action="quitarFila" data-lista="vinculos" data-indice="{{i}}" data-tooltip="Quitar vínculo"><i class="fa-solid fa-trash"></i></button>{{/if}}
+        </p>
+        <div class="nb-vin-pie">
+          <select name="system.vinculos.{{i}}.arcano" aria-label="Arcano del vínculo" {{disabled (not ../editando)}}>
+            {{#each ../arcanos}}<option value="{{romano}}" {{#if (eq romano ../arcano)}}selected{{/if}}>{{#if romano}}{{romano}} · {{/if}}{{nombre}}</option>{{/each}}
+          </select>
+          {{#if enlazado}}<button type="button" class="nb-enlace" data-action="abrir" data-uuid="{{enlazado.uuid}}" data-tooltip="Abrir su ficha"><i class="fa-solid fa-arrow-up-right-from-square"></i> {{enlazado.name}}</button>{{/if}}
+          {{#if pregunta}}<p class="nb-vin-pregunta">{{pregunta}}</p>{{/if}}
+        </div>
+      </div>
+      {{else}}
+      <p class="nb-tenue">Sin vínculos todavía.</p>
+      {{/each}}
+      {{#if editando}}
+      <button type="button" class="nb-boton nb-boton-suave" data-action="anadirFila" data-lista="vinculos" data-valores='{"tipo":"hermana"}'>
+        <i class="fa-solid fa-plus"></i> Añadir vínculo
+      </button>
+      {{/if}}
+      <p class="nb-nota"><i class="fa-solid fa-hand-pointer"></i> Arrastra una ficha sobre el vínculo para enlazarla. Las preguntas son la tabla de vínculos (R 22).</p>
+    </div>
+  </details>
+
+  <details data-memoria="sospechas" {{#if secciones.sospechas}}open{{/if}}>
+    <summary><h3><i class="fa-solid fa-hand"></i> Sospechas <span class="nb-tenue">{{robadas.length}}/{{limite}} robadas</span></h3></summary>
+    <ul class="nb-sospechas">
+      {{#each robadas}}
+      <li><i class="fa-solid fa-eye"></i> <b>{{nombre}}</b> · {{valor}} <span class="nb-tenue">— {{destino}}</span></li>
+      {{/each}}
+      {{#each recibidas}}
+      <li>{{#if oculta}}<i class="fa-solid fa-eye-slash"></i> <b>Boca abajo</b> <span class="nb-tenue">— de {{de}}, hasta Laudes</span>
+      {{else}}<i class="fa-solid fa-eye"></i> <b>{{nombre}}</b> · {{valor}} <span class="nb-tenue">— de {{de}}</span>{{/if}}</li>
+      {{/each}}
+      {{#unless robadas.length}}
+        {{#unless recibidas.length}}<li class="nb-tenue">Todavía no hay sospechas: se roban al cerrar cada escena.</li>{{/unless}}
+      {{/unless}}
+    </ul>
+    <p class="nb-nota">Los robos los hace La Jueza desde el tracker; ella conoce las cartas que roba, lo entregado llega boca abajo (R 53–54).</p>
+  </details>
+
+  <details data-memoria="notas" {{#if secciones.notas}}open{{/if}}>
+    <summary><h3><i class="fa-solid fa-feather"></i> Notas</h3></summary>
+    {{#if editable}}<prose-mirror name="system.notas" value="{{system.notas}}" toggled>{{{notas}}}</prose-mirror>
+    {{else}}<div class="nb-notas">{{{notas}}}</div>{{/if}}
+  </details>
+  </main>
+</div>
