@@ -44,6 +44,25 @@ for (const [, ruta] of css.matchAll(/url\("\.\.\/([^"]+)"\)/g)) {
 }
 for (const f of manifiesto.styles.concat(manifiesto.esmodules)) if (!(await existe(f))) errores.push(`system.json: falta ${f}`);
 
+// Las 78 cartas, los marcadores, el dorso y los retratos por defecto deben existir.
+const { ARCANOS, MARCADORES, PINTAS } = await import("../module/listas.mjs");
+const cartas = [
+  ...[...ARCANOS, ...Object.values(MARCADORES)].map(a => `assets/tarot/mayores/${a.romano}.svg`),
+  ...Object.keys(PINTAS).flatMap(p => Array.from({ length: 14 }, (_, i) => `assets/tarot/menores/${p}-${i + 1}.svg`)),
+  "assets/tarot/dorso.svg", "assets/portadas/portada.svg", "assets/retratos/pueblo.svg"
+];
+for (const r of cartas) if (!(await existe(r))) errores.push(`falta ${r}`);
+
+// Plantillas: bloques de Handlebars abiertos y cerrados por igual.
+for (const f of (await listar("templates")).filter(f => f.endsWith(".hbs"))) {
+  const t = await fs.readFile(f, "utf8");
+  for (const b of ["if", "each", "unless"]) {
+    const abre = (t.match(new RegExp(`\\{\\{#${b}[ }]`, "g")) ?? []).length;
+    const cierra = (t.match(new RegExp(`\\{\\{/${b}\\}\\}`, "g")) ?? []).length;
+    if (abre !== cierra) errores.push(`${f}: {{#${b}}} abiertos ${abre}, cerrados ${cierra}`);
+  }
+}
+
 if (errores.length) {
   console.error(errores.join("\n"));
   process.exit(1);

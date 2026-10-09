@@ -1,0 +1,21 @@
+<div class="nb-dialogo-cuerpo">
+  <p class="nb-nota">Esta partida habla de persecución, sospecha y ejecución. Si algo pesa demasiado, estas señales llegan a toda la mesa al instante y <b>no dicen quién las ha pulsado</b>.</p>
+  <div class="nb-senales">
+    {{#each senales}}
+    <button type="button" class="nb-boton nb-senal nb-senal-{{clave}}" data-action="senal" data-senal="{{clave}}">
+      <i class="fa-solid {{icono}}"></i><span>{{titulo}}</span>
+    </button>
+    {{/each}}
+  </div>
+
+  <section class="nb-acuerdos">
+    <h3><i class="fa-solid fa-ban"></i> Líneas <small>no aparecen en la partida</small></h3>
+    {{#if esGM}}<textarea name="lineas" rows="3" placeholder="Una por línea">{{lineasTexto}}</textarea>
+    {{else}}{{#if lineas.length}}<ul>{{#each lineas}}<li>{{this}}</li>{{/each}}</ul>{{else}}<p class="nb-tenue">Aún sin acordar.</p>{{/if}}{{/if}}
+    <h3><i class="fa-solid fa-eye-slash"></i> Velos <small>pasan fuera de plano, sin detalle</small></h3>
+    {{#if esGM}}<textarea name="velos" rows="3" placeholder="Una por línea">{{velosTexto}}</textarea>
+    {{else}}{{#if velos.length}}<ul>{{#each velos}}<li>{{this}}</li>{{/each}}</ul>{{else}}<p class="nb-tenue">Aún sin acordar.</p>{{/if}}{{/if}}
+  </section>
+  {{#if esGM}}<div class="nb-pie-formulario"><span class="nb-tenue">Los acuerdos los guarda quien dirige.</span>
+    <button type="button" class="nb-boton nb-boton-principal" data-action="guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button></div>{{/if}}
+</div>

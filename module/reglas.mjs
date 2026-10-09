@@ -94,4 +94,67 @@ export function quienInicia(mayores) {
   return ordenados.at(-1)?.hermana ?? ordenados[0]?.hermana ?? "";
 }
 
+/**
+ * R 55: cada Hermana roba una sospecha para conservar y otra para entregar.
+ * Con un solo robo por Hermana (ajuste) todo se conserva.
+ */
+export const modoDelRobo = (previos, limite) => (limite >= 2 && previos >= 1 ? "entregar" : "conservar");
+
+/**
+ * Destinataria que se propone para una sospecha entregada: la Hermana que menos
+ * entregas lleva recibidas y, en empate, la siguiente en el círculo (R 53–56).
+ * La acusada inicial solo cuenta si el ajuste lo admite.
+ * @returns {string} uuid, o "" si no hay a quién entregarla
+ */
+export function destinatariaSugerida({ de, hermanas, acusada = "", conAcusada = false, menores = [] }) {
+  const i = Math.max(0, hermanas.indexOf(de));
+  const circulo = [...hermanas.slice(i + 1), ...hermanas.slice(0, i)].filter(h => h !== de && (conAcusada || h !== acusada));
+  const recibidas = u => menores.filter(m => m.modo === "entregar" && m.destinataria === u).length;
+  return circulo.toSorted((a, b) => recibidas(a) - recibidas(b))[0] ?? "";
+}
+
+/** Hermanas que aún deben robar sospechas antes de Laudes (R 55). */
+export function faltanRobos(hermanas, menores, limite) {
+  return hermanas.map(uuid => ({ uuid, faltan: robosRestantes(menores, uuid, limite) })).filter(h => h.faltan > 0);
+}
+
+/**
+ * Reparte arcanos distintos a los vínculos vacíos de cada Hermana (R 22–23).
+ * @param {Array<{uuid:string, usados:string[], huecos:number[]}>} filas
+ * @param {() => number} azar  inyectable para las pruebas
+ * @returns {Array<{hermana:string, indice:number, arcano:string}>}
+ */
+export function sortearVinculos(filas, azar = Math.random) {
+  const reparto = [];
+  for (const { uuid, usados, huecos } of filas) {
+    const libres = ARCANOS.map(a => a.romano).filter(r => !usados.includes(r));
+    for (let i = libres.length - 1; i > 0; i--) {
+      const j = Math.floor(azar() * (i + 1));
+      [libres[i], libres[j]] = [libres[j], libres[i]];
+    }
+    huecos.slice(0, libres.length).forEach((indice, k) => reparto.push({ hermana: uuid, indice, arcano: libres[k] }));
+  }
+  return reparto;
+}
+
+/**
+ * Lo más útil que puede hacer ahora La Jueza, según la fase y la escena.
+ * `clave` identifica la acción; el resto son los datos para pintarla.
+ */
+export function siguientePaso({ fase, escena, hermanas = [], menores = [], limite = 2, acusadas = [] }) {
+  const enEscena = escena?.participantes ?? [];
+  if (fase === "laudes") return menores.some(m => !m.revelada) ? { clave: "revelar" } : { clave: "avanzar" };
+  if (fase === "final") return { clave: "sentencia", hay: acusadas.length > 0 };
+  if (fase === "sexta" || fase === "completas") {
+    // Sexta es la primera ronda de actuaciones y Completas la segunda: cada Hermana lleva su parte (R 45, R 55).
+    const meta = fase === "sexta" ? Math.ceil(limite / 2) : limite;
+    if (!escena) return faltanRobos(hermanas, menores, meta).length ? { clave: "nuevaEscena" } : { clave: "avanzar" };
+    if (!enEscena.length) return { clave: "participantes" };
+    const sin = enEscena.find(u => !escena.mayores.some(m => m.hermana === u));
+    if (sin) return { clave: "robarMayor", hermana: sin };
+    return { clave: "terminarEscena" };
+  }
+  return { clave: "avanzar" };
+}
+
 export { ARCANOS };

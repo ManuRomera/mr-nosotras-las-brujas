@@ -22,13 +22,18 @@
 
   <main class="nb-principal">
   <section class="nb-campos" aria-label="PNJ">
-    <label class="nb-campo">
-      <span>Arcano (arquetipo)</span>
-      <select name="system.arcano">
-        {{#each opcionesArcano}}<option value="{{romano}}" {{#if elegido}}selected{{/if}}>{{#if romano}}{{romano}} · {{/if}}{{nombre}}</option>{{/each}}
-      </select>
-    </label>
-    {{#if system.arquetipo}}<p class="nb-arquetipo"><i class="fa-solid fa-masks-theater"></i> {{system.arquetipo}}</p>{{/if}}
+    <div class="nb-pnj-arcano">
+      <img class="nb-vin-img{{#unless system.arcano}} vacia{{/unless}}" src="{{imgArcano}}" alt="{{#if system.arcano}}Arcano {{system.arcano}}{{else}}Sin arcano{{/if}}">
+      <div>
+        <label class="nb-campo">
+          <span>Arcano (arquetipo)</span>
+          <select name="system.arcano">
+            {{#each opcionesArcano}}<option value="{{romano}}" {{#if elegido}}selected{{/if}}>{{#if romano}}{{romano}} · {{/if}}{{nombre}}</option>{{/each}}
+          </select>
+        </label>
+        {{#if system.arquetipo}}<p class="nb-arquetipo"><i class="fa-solid fa-masks-theater"></i> {{system.arquetipo}}</p>{{/if}}
+      </div>
+    </div>
     <label class="nb-campo"><span>Papel en la comunidad</span>
       <input type="text" name="system.papel" value="{{system.papel}}" placeholder="sacristán, labrador, comadre…" {{disabled (not editable)}}></label>
     <label class="nb-campo"><span>Descriptor</span>

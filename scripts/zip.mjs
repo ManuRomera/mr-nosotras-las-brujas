@@ -15,7 +15,7 @@ await comprobarCerrados(manifiesto.packs);
 const raiz = process.cwd();
 const CARPETA = `${raiz}/dist/${manifiesto.id}`;
 const ZIP = `${CARPETA}.zip`;
-const FUERA = ["node_modules", "tests", "scripts", "_data", "dist", "assets/capturas", "package.json", "package-lock.json", ".DS_Store", "*.log", ".git", ".github"];
+const FUERA = ["node_modules", "tests", "scripts", "_data", "dist", "package.json", "package-lock.json", ".DS_Store", "*.log", ".git", ".github"];
 
 await fs.rm(CARPETA, { recursive: true, force: true });
 await fs.rm(ZIP, { force: true });

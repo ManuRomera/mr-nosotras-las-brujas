@@ -18,7 +18,14 @@
     <div class="nb-nombre">
       {{#if editando}}<input type="text" name="name" value="{{actor.name}}" placeholder="Nombre de la Hermana">
       {{else}}<h1>{{actor.name}}</h1>{{/if}}
-      <span class="nb-tenue">Hermana</span>
+      <span class="nb-rol">Hermana
+        {{#if estado.acusada}}<span class="nb-sello acusada"><i class="fa-solid fa-gavel"></i> Acusada</span>{{/if}}
+        {{#if estado.cautiva}}<span class="nb-sello cautiva"><i class="fa-solid fa-lock"></i> La cautiva</span>{{/if}}
+      </span>
+      <span class="nb-resumen" data-tooltip="Sospechas robadas de las que le tocan">
+        <i class="fa-solid fa-hand"></i> {{robadas.length}}/{{limite}}
+        {{#if recibidas.length}}· <i class="fa-solid fa-inbox"></i> {{recibidas.length}} {{#if (eq recibidas.length 1)}}recibida{{else}}recibidas{{/if}}{{/if}}
+      </span>
     </div>
   </header>
 
@@ -39,46 +46,52 @@
     <div class="nb-vinculos">
       {{#each vinculos}}
       <div class="nb-vinculo" data-soltar="system.vinculos.{{i}}">
-        <p class="nb-vin-frase">
-          <span class="nb-vin-etiqueta">{{etiqueta}}</span>
-          <input type="text" class="nb-vin-quien" name="system.vinculos.{{i}}.quien" value="{{quien}}" placeholder="nombre" {{disabled (not ../editando)}} aria-label="Quién">
-          {{#if (eq tipo "acusador")}}<span class="nb-vin-etiqueta">, su acusador,</span>{{/if}}
-          <span class="nb-vin-etiqueta">es</span>
-          <input type="text" class="nb-vin-texto" name="system.vinculos.{{i}}.texto" value="{{texto}}" placeholder="…" {{disabled (not ../editando)}} aria-label="Cómo es ese vínculo">
-          {{#if ../editando}}<button type="button" class="nb-icono" data-action="quitarFila" data-lista="vinculos" data-indice="{{i}}" data-tooltip="Quitar vínculo"><i class="fa-solid fa-trash"></i></button>{{/if}}
-        </p>
-        <div class="nb-vin-pie">
-          <select name="system.vinculos.{{i}}.arcano" aria-label="Arcano del vínculo" {{disabled (not ../editando)}}>
-            {{#each ../arcanos}}<option value="{{romano}}" {{#if (eq romano ../arcano)}}selected{{/if}}>{{#if romano}}{{romano}} · {{/if}}{{nombre}}</option>{{/each}}
-          </select>
-          {{#if enlazado}}<button type="button" class="nb-enlace" data-action="abrir" data-uuid="{{enlazado.uuid}}" data-tooltip="Abrir su ficha"><i class="fa-solid fa-arrow-up-right-from-square"></i> {{enlazado.name}}</button>{{/if}}
+        <div class="nb-vin-carta">
+          <img class="nb-vin-img{{#unless arcano}} vacia{{/unless}}" src="{{imgArcano}}" alt="{{#if arcano}}Arcano {{arcano}}{{else}}Sin arcano{{/if}}">
+          {{#if ../editando}}<button type="button" class="nb-icono" data-action="sortearArcano" data-indice="{{i}}" data-tooltip="Sortear un arcano que no tengas ya"><i class="fa-solid fa-dice"></i></button>{{/if}}
+        </div>
+        <div class="nb-vin-cuerpo">
+          <p class="nb-vin-frase">
+            <span class="nb-vin-etiqueta">{{etiqueta}}</span>
+            <input type="text" class="nb-vin-quien" name="system.vinculos.{{i}}.quien" value="{{quien}}" placeholder="nombre" {{disabled (not ../editando)}} aria-label="Quién">
+            {{#if (eq tipo "acusador")}}<span class="nb-vin-etiqueta">, su acusador,</span>{{/if}}
+            <span class="nb-vin-etiqueta">es</span>
+            <input type="text" class="nb-vin-texto" name="system.vinculos.{{i}}.texto" value="{{texto}}" placeholder="…" {{disabled (not ../editando)}} aria-label="Cómo es ese vínculo">
+            {{#if ../editando}}<button type="button" class="nb-icono" data-action="quitarFila" data-lista="vinculos" data-indice="{{i}}" data-tooltip="Quitar vínculo"><i class="fa-solid fa-trash"></i></button>{{/if}}
+          </p>
+          <div class="nb-vin-pie">
+            <select name="system.vinculos.{{i}}.arcano" aria-label="Arcano del vínculo" {{disabled (not ../editando)}}>
+              {{#each ../arcanos}}<option value="{{romano}}" {{#if (eq romano ../arcano)}}selected{{/if}}>{{#if romano}}{{romano}} · {{/if}}{{nombre}}</option>{{/each}}
+            </select>
+            {{#if enlazado}}<button type="button" class="nb-enlace" data-action="abrir" data-uuid="{{enlazado.uuid}}" data-tooltip="Abrir su ficha"><i class="fa-solid fa-arrow-up-right-from-square"></i> {{enlazado.name}}</button>{{/if}}
+          </div>
           {{#if pregunta}}<p class="nb-vin-pregunta">{{pregunta}}</p>{{/if}}
         </div>
       </div>
       {{else}}
       <p class="nb-tenue">Sin vínculos todavía.</p>
       {{/each}}
-      {{#if editando}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="anadirFila" data-lista="vinculos" data-valores='{"tipo":"hermana"}'>
-        <i class="fa-solid fa-plus"></i> Añadir vínculo
-      </button>
-      {{/if}}
-      <p class="nb-nota"><i class="fa-solid fa-hand-pointer"></i> Arrastra una ficha sobre el vínculo para enlazarla. Las preguntas son la tabla de vínculos (R 22).</p>
     </div>
+    {{#if editando}}
+    <button type="button" class="nb-boton nb-boton-suave" data-action="anadirFila" data-lista="vinculos" data-valores='{"tipo":"hermana"}'>
+      <i class="fa-solid fa-plus"></i> Añadir vínculo
+    </button>
+    {{/if}}
+    <p class="nb-nota"><i class="fa-solid fa-hand-pointer"></i> Arrastra una ficha sobre el vínculo para enlazarla. Las preguntas son la tabla de vínculos (R 22).</p>
   </details>
 
   <details data-memoria="sospechas" {{#if secciones.sospechas}}open{{/if}}>
     <summary><h3><i class="fa-solid fa-hand"></i> Sospechas <span class="nb-tenue">{{robadas.length}}/{{limite}} robadas</span></h3></summary>
     <ul class="nb-sospechas">
       {{#each robadas}}
-      <li><i class="fa-solid fa-eye"></i> <b>{{nombre}}</b> · {{valor}} <span class="nb-tenue">— {{destino}}</span></li>
+      <li><img class="nb-mini" src="{{img}}" alt=""><span><b>{{nombre}}</b> · {{valor}} <span class="nb-tenue">— {{destino}}</span></span></li>
       {{/each}}
       {{#each recibidas}}
-      <li>{{#if oculta}}<i class="fa-solid fa-eye-slash"></i> <b>Boca abajo</b> <span class="nb-tenue">— de {{de}}, hasta Laudes</span>
-      {{else}}<i class="fa-solid fa-eye"></i> <b>{{nombre}}</b> · {{valor}} <span class="nb-tenue">— de {{de}}</span>{{/if}}</li>
+      <li>{{#if oculta}}<img class="nb-mini" src="{{img}}" alt=""><span><b>Boca abajo</b> <span class="nb-tenue">— de {{de}}, hasta Laudes</span></span>
+      {{else}}<img class="nb-mini" src="{{img}}" alt=""><span><b>{{nombre}}</b> · {{valor}} <span class="nb-tenue">— de {{de}}</span></span>{{/if}}</li>
       {{/each}}
       {{#unless robadas.length}}
-        {{#unless recibidas.length}}<li class="nb-tenue">Todavía no hay sospechas: se roban al cerrar cada escena.</li>{{/unless}}
+        {{#unless recibidas.length}}<li class="nb-vacio">Todavía no hay sospechas: se roban al cerrar cada escena.</li>{{/unless}}
       {{/unless}}
     </ul>
     <p class="nb-nota">Los robos los hace La Jueza desde el tracker; ella conoce las cartas que roba, lo entregado llega boca abajo (R 53–54).</p>

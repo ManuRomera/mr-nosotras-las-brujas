@@ -8,8 +8,9 @@ import { ID } from "./mesa.mjs";
 import { ApplicationV2 } from "./compat.mjs";
 import { ConMemoria } from "./memoria.mjs";
 
-const CLAVES = ["a11yEscala", "a11yContraste", "a11yLegible", "a11yMovimiento", "a11yAyuda"];
+const CLAVES = ["a11yEscala", "a11yOscuro", "a11yContraste", "a11yLegible", "a11yMovimiento", "a11yAyuda"];
 const CAJAS = [
+  ["a11yOscuro", "Hojas en modo oscuro", "Las fichas y el manual pasan del papel claro a una noche de tinta dorada."],
   ["a11yContraste", "Alto contraste", "Texto y bordes más marcados, sin matices."],
   ["a11yLegible", "Fuente de alta legibilidad", "Letra más espaciada y de formas claras; sin tipografía manuscrita."],
   ["a11yMovimiento", "Reducir movimiento", "Sin transiciones ni animaciones en las ventanas del sistema."],
@@ -19,6 +20,7 @@ const CAJAS = [
 export function aplicarAccesibilidad() {
   const g = k => game.settings.get(ID, k);
   document.documentElement.style.setProperty("--nb-escala", String(g("a11yEscala") / 100));
+  document.body.classList.toggle("nb-oscuro", g("a11yOscuro"));
   document.body.classList.toggle("nb-contraste", g("a11yContraste"));
   document.body.classList.toggle("nb-legible", g("a11yLegible"));
   document.body.classList.toggle("nb-sin-movimiento", g("a11yMovimiento"));
@@ -30,10 +32,11 @@ export function aplicarAccesibilidad() {
 export function registrarAccesibilidad() {
   const reg = (clave, datos) => game.settings.register(ID, clave, { scope: "client", config: true, onChange: () => { aplicarAccesibilidad(); repintar(); }, ...datos });
   reg("a11yEscala", { name: "Accesibilidad · Tamaño del texto (%)", hint: "Escala el texto de las fichas, diálogos y tarjetas de MR- Nosotras, las brujas. Ajuste de este navegador.", type: Number, default: 100, range: { min: 85, max: 160, step: 5 } });
-  reg("a11yContraste", { name: "Accesibilidad · Alto contraste", hint: CAJAS[0][2], type: Boolean, default: false });
-  reg("a11yLegible", { name: "Accesibilidad · Fuente de alta legibilidad", hint: CAJAS[1][2], type: Boolean, default: false });
-  reg("a11yMovimiento", { name: "Accesibilidad · Reducir movimiento", hint: CAJAS[2][2], type: Boolean, default: false });
-  reg("a11yAyuda", { name: "Accesibilidad · Ayuda inmediata", hint: CAJAS[3][2], type: Boolean, default: true });
+  reg("a11yOscuro", { name: "Hojas en modo oscuro", hint: CAJAS[0][2], type: Boolean, default: false });
+  reg("a11yContraste", { name: "Accesibilidad · Alto contraste", hint: CAJAS[1][2], type: Boolean, default: false });
+  reg("a11yLegible", { name: "Accesibilidad · Fuente de alta legibilidad", hint: CAJAS[2][2], type: Boolean, default: false });
+  reg("a11yMovimiento", { name: "Accesibilidad · Reducir movimiento", hint: CAJAS[3][2], type: Boolean, default: false });
+  reg("a11yAyuda", { name: "Accesibilidad · Ayuda inmediata", hint: CAJAS[4][2], type: Boolean, default: true });
   Hooks.once("ready", aplicarAccesibilidad);
   // El icono va en la cabecera de toda ventana del sistema: fichas, panel, diálogos, diarios del manual.
   Hooks.on("renderApplicationV2", app => anadirBotonAccesibilidad(app));

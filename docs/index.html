@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MR- Nosotras, las brujas · sistema para Foundry VTT</title>
+<meta name="description" content="Tarot de 78 cartas, tracker de La Jueza y sospechas boca abajo para jugar Nosotras, las brujas en Foundry VTT.">
+<meta property="og:title" content="MR- Nosotras, las brujas para Foundry VTT">
+<meta property="og:description" content="Una acusada, siete horas y un pueblo que sospecha. Sistema gratuito para Foundry VTT 13–14.">
+<meta property="og:image" content="https://manuromera.github.io/mr-nosotras-las-brujas/img/cover.png">
+<style>
+@font-face { font-family: "Fell Display"; src: url("fonts/imfe-dprm.otf"); }
+@font-face { font-family: "Fell"; src: url("fonts/imfe-gprm.otf"); }
+@font-face { font-family: "Fell"; src: url("fonts/imfe-gpit.otf"); font-style: italic; }
+@font-face { font-family: "Fell SC"; src: url("fonts/imfe-dwpscr.ttf"); }
+:root { --noche: #170f21; --noche2: #2a1740; --oro: #d8b24a; --hueso: #f0e7d6; --hueso2: #c7b9d3; --vino: #b04a6d; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--noche); color: var(--hueso); font: 20px/1.55 "Fell", Georgia, serif; }
+a { color: var(--oro); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.hero { position: relative; overflow: hidden; padding: 70px 0 90px; background: radial-gradient(ellipse at 70% 30%, #4d2c68 0, var(--noche2) 50%, var(--noche) 100%); border-bottom: 2px solid var(--oro); }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 30px; align-items: center; }
+.kicker { font: 26px "Fell SC"; letter-spacing: .34em; color: var(--oro); margin: 0; }
+h1 { font: 400 clamp(52px, 8vw, 104px)/1 "Fell Display"; margin: 6px 0 0; color: #f6ecd0; text-shadow: 0 4px 0 rgba(0,0,0,.5), 0 0 40px rgba(216,178,74,.3); }
+.lema { font-style: italic; font-size: 30px; line-height: 1.25; color: #e6d9b6; margin: 22px 0 28px; max-width: 520px; }
+.botones { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 6px; font: 22px "Fell SC"; letter-spacing: .08em; text-decoration: none; border: 1.5px solid var(--oro); color: var(--hueso); background: rgba(0,0,0,.3); }
+.btn.principal { background: linear-gradient(180deg, #e8c969, #9d7a1e); color: #20152a; border-color: #f2dc8f; box-shadow: 0 6px 24px rgba(216,178,74,.35); }
+.btn:hover { transform: translateY(-2px); }
+.abanico { position: relative; height: 430px; }
+.abanico img { position: absolute; bottom: 0; width: 190px; border-radius: 12px; box-shadow: 0 18px 34px rgba(0,0,0,.7); transform-origin: 50% 120%; transition: transform .25s; }
+.abanico img:nth-child(1) { left: 2%; transform: rotate(-20deg) translateY(20px); }
+.abanico img:nth-child(2) { left: 20%; transform: rotate(-10deg); }
+.abanico img:nth-child(3) { left: 38%; z-index: 2; }
+.abanico img:nth-child(4) { left: 56%; transform: rotate(10deg); z-index: 3; }
+.abanico img:nth-child(5) { left: 73%; transform: rotate(20deg) translateY(20px); z-index: 4; }
+.abanico:hover img:nth-child(1) { transform: rotate(-26deg) translateY(10px); } .abanico:hover img:nth-child(5) { transform: rotate(26deg) translateY(10px); }
+section { padding: 70px 0; }
+h2 { font: 400 46px/1.1 "Fell Display"; margin: 0 0 8px; color: var(--hueso); }
+h2 + .sub { font-style: italic; color: var(--hueso2); margin: 0 0 30px; }
+.rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+.tarjeta { padding: 22px; border: 1px solid #4d3a68; border-radius: 8px; background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 3px var(--noche), inset 0 0 0 4px rgba(216,178,74,.3); }
+.tarjeta h3 { font: 400 24px "Fell SC"; letter-spacing: .08em; margin: 0 0 6px; color: var(--oro); }
+.tarjeta p { margin: 0; font-size: 18.5px; color: var(--hueso2); }
+.horas { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; margin: 10px 0 0; }
+.horas div { font: 18px "Fell SC"; letter-spacing: .06em; color: var(--hueso2); }
+.horas b { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 6px; border-radius: 50%; border: 1.5px solid var(--oro); color: var(--oro); font: 400 22px "Fell Display"; background: var(--noche2); }
+.horas div:nth-child(2) b { background: var(--oro); color: #20152a; }
+.captura { width: 100%; border-radius: 8px; border: 1px solid #4d3a68; box-shadow: 0 20px 50px rgba(0,0,0,.6); }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+.alterna { background: #1d1229; border-block: 1px solid #382a50; }
+.instalar { text-align: center; background: radial-gradient(ellipse at 50% 0, #3a2356, var(--noche)); }
+.manifiesto { display: flex; max-width: 760px; margin: 22px auto 14px; border: 1.5px solid var(--oro); border-radius: 6px; overflow: hidden; background: #0f0818; }
+.manifiesto code { flex: 1; padding: 14px 16px; font: 15px ui-monospace, Menlo, monospace; color: #e8dcb8; overflow-x: auto; white-space: nowrap; text-align: left; }
+.manifiesto button { border: 0; padding: 0 22px; font: 20px "Fell SC"; background: var(--oro); color: #20152a; cursor: pointer; }
+.aviso { max-width: 760px; margin: 22px auto 0; font-size: 17px; color: var(--hueso2); font-style: italic; }
+footer { padding: 36px 0 50px; text-align: center; font-size: 16px; color: #9a8cae; border-top: 2px solid var(--oro); }
+@media (max-width: 800px) { .hero .wrap, .dos { grid-template-columns: 1fr; } .abanico { height: 300px; } .abanico img { width: 120px; } .horas { grid-template-columns: repeat(4, 1fr); row-gap: 14px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto; } }
+</style></head>
+<body>
+<header class="hero"><div class="wrap">
+  <div>
+    <p class="kicker">MR-</p>
+    <h1>Nosotras, las brujas</h1>
+    <p class="lema">Una acusada, siete horas y un pueblo que sospecha.</p>
+    <div class="botones">
+      <a class="btn principal" href="https://github.com/ManuRomera/mr-nosotras-las-brujas/releases/latest/download/mr-nosotras-las-brujas.zip">⬇ Descargar</a>
+      <a class="btn" href="#instalar">Instalar en Foundry</a>
+    </div>
+  </div>
+  <div class="abanico" aria-hidden="true">
+    <img src="img/cards/m-XIII.svg" alt=""><img src="img/cards/m-XV.svg" alt=""><img src="img/cards/m-VIII.svg" alt=""><img src="img/cards/m-XVIII.svg" alt=""><img src="img/cards/m-XVII.svg" alt="">
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Un juego de cartas para contar una tragedia</h2>
+  <p class="sub">El juego narrativo de Hernán D'Andreis y Keith Monardes (Primigenia Austral), con todo el ritual resuelto en Foundry.</p>
+  <div class="rejilla">
+    <div class="tarjeta"><h3>78 cartas de grabado</h3><p>Arcanos mayores como conceptos de escena y menores como sospechas. Cada carta, con su número y su nombre.</p></div>
+    <div class="tarjeta"><h3>El tracker de La Jueza</h3><p>La tira de las siete horas y una barra «Ahora» que propone el siguiente paso con su botón.</p></div>
+    <div class="tarjeta"><h3>Sospechas boca abajo</h3><p>Una para conservar, otra para entregar. Nadie mira hasta Laudes, donde se suma y se acusa al máximo.</p></div>
+    <div class="tarjeta"><h3>Fichas de papel y tinta</h3><p>Hermana, PNJ y pueblo, con la carta del arcano en cada vínculo y modo oscuro.</p></div>
+    <div class="tarjeta"><h3>Seguridad en mesa</h3><p>Pausa, Velo y Tarjeta X, anónimas y al instante, más las líneas y velos acordados.</p></div>
+    <div class="tarjeta"><h3>Accesible y gratis</h3><p>Texto, contraste, fuente legible y movimiento a tu medida. Código MIT.</p></div>
+  </div>
+</div></section>
+
+<section class="alterna"><div class="wrap">
+  <h2>Siete horas, un recorrido</h2>
+  <p class="sub">De Prima a la sentencia, el sistema marca la hora, suena la campana y avisa en el chat.</p>
+  <div class="horas"><div><b>★</b>Prima</div><div><b>☀</b>Sexta</div><div><b>★</b>Vísperas</div><div><b>☾</b>Completas</div><div><b>★</b>Maitines</div><div><b>⚖</b>Laudes</div><div><b>♜</b>Final</div></div>
+</div></section>
+
+<section><div class="wrap dos">
+  <div><h2>Sabes qué toca</h2><p class="sub">Abre escena, elige quién actúa, roba los mayores, termina. El concepto dominante, el segundo y los detalles, ordenados por número; las inversiones, contadas.</p>
+  <p>Y en Laudes, el recuento hecho: lo entregado suma a quien lo recibe, y con empate máximo, todas son acusadas.</p></div>
+  <img class="captura" src="img/tracker-escena.webp" alt="Tracker de La Jueza en Sexta">
+</div></section>
+
+<section class="alterna"><div class="wrap dos">
+  <img class="captura" src="img/hojas-oscuras.webp" alt="Fichas en modo oscuro">
+  <div><h2>Fichas con tinta y noche</h2><p class="sub">La hoja impresa como frases que se rellenan, y cada vínculo con su carta y su pregunta. Papel claro o noche de oro, como prefieras.</p></div>
+</div></section>
+
+<section><div class="wrap"><img class="captura" src="img/baraja.webp" alt="Muestra de la baraja"></div></section>
+
+<section class="instalar" id="instalar"><div class="wrap">
+  <h2>Instálalo en veinte segundos</h2>
+  <p class="sub">Configuración → Sistemas de juego → Instalar sistema → pega el manifiesto.</p>
+  <div class="manifiesto"><code id="m">https://github.com/ManuRomera/mr-nosotras-las-brujas/releases/latest/download/system.json</code><button id="c" type="button">Copiar</button></div>
+  <div class="botones" style="justify-content:center">
+    <a class="btn principal" href="https://github.com/ManuRomera/mr-nosotras-las-brujas/releases/latest/download/mr-nosotras-las-brujas.zip">⬇ Descargar el .zip</a>
+    <a class="btn" href="https://github.com/ManuRomera/mr-nosotras-las-brujas">Ver en GitHub</a>
+  </div>
+  <p class="aviso">Foundry VTT 13 o 14. Es una ayuda de mesa no oficial: hace falta el manual del juego, que puedes conseguir en <a href="https://primigenia-austral.itch.io/nosotras-las-brujas">itch.io</a>.</p>
+</div></section>
+
+<footer><div class="wrap">
+  <p><i>Nosotras, las brujas</i> es de Hernán D'Andreis y Keith Monardes, con ilustraciones de Ferenike, publicado por Primigenia Austral. Esta implementación no oficial es de Manu Romera. Código y arte generado: MIT. Tipografías IM Fell y Caveat: OFL.</p>
+  <p>MR- · Manu Romera · Digital RPG Design · <a href="https://github.com/ManuRomera">Más sistemas</a></p>
+</div></footer>
+<script>
+document.getElementById("c").addEventListener("click", async e => {
+  try { await navigator.clipboard.writeText(document.getElementById("m").textContent); e.target.textContent = "¡Copiado!"; }
+  catch { const r = document.createRange(); r.selectNode(document.getElementById("m")); getSelection().removeAllRanges(); getSelection().addRange(r); }
+  setTimeout(() => e.target.textContent = "Copiar", 1800);
+});
+</script>
+</body></html>

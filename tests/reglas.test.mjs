@@ -2,7 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   valorMenor, nombreMenor, totales, acusadasPorRecuento, limiteInversiones,
-  conceptoDe, robosRestantes, ordenarMayores, quienInicia
+  conceptoDe, robosRestantes, ordenarMayores, quienInicia,
+  modoDelRobo, destinatariaSugerida, faltanRobos, sortearVinculos, siguientePaso
 } from "../module/reglas.mjs";
 import { FIGURAS, PINTAS, FASES } from "../module/listas.mjs";
 
@@ -104,4 +105,64 @@ test("quienInicia: devuelve la Hermana del arcano más bajo", () => {
 
 test("las siete fases del día están completas", () => {
   assert.deepEqual(Object.keys(FASES), ["prima", "sexta", "visperas", "completas", "maitines", "laudes", "final"]);
+});
+
+test("modoDelRobo: primera se conserva, la segunda se entrega", () => {
+  assert.equal(modoDelRobo(0, 2), "conservar");
+  assert.equal(modoDelRobo(1, 2), "entregar");
+  assert.equal(modoDelRobo(1, 1), "conservar");
+});
+
+test("destinatariaSugerida: reparte en círculo y respeta a la acusada", () => {
+  const hermanas = ["A", "B", "C"];
+  assert.equal(destinatariaSugerida({ de: "A", hermanas }), "B");
+  assert.equal(destinatariaSugerida({ de: "C", hermanas }), "A");
+  // B ya recibió una: A entrega a C
+  const menores = [{ modo: "entregar", destinataria: "B" }];
+  assert.equal(destinatariaSugerida({ de: "A", hermanas, menores }), "C");
+  // la acusada no recibe salvo ajuste
+  assert.equal(destinatariaSugerida({ de: "A", hermanas, acusada: "B" }), "C");
+  assert.equal(destinatariaSugerida({ de: "A", hermanas, acusada: "B", conAcusada: true }), "B");
+  assert.equal(destinatariaSugerida({ de: "A", hermanas: ["A"] }), "");
+});
+
+test("faltanRobos: solo quien no ha llegado al límite", () => {
+  const menores = [{ robadaPor: "A" }, { robadaPor: "A" }, { robadaPor: "B" }];
+  assert.deepEqual(faltanRobos(["A", "B", "C"], menores, 2), [{ uuid: "B", faltan: 1 }, { uuid: "C", faltan: 2 }]);
+});
+
+test("sortearVinculos: sin repetir arcanos por Hermana y respetando los usados", () => {
+  const filas = [{ uuid: "A", usados: ["0"], huecos: [0, 1, 2, 3, 4] }, { uuid: "B", usados: [], huecos: [1] }];
+  const reparto = sortearVinculos(filas, () => 0.5);
+  const deA = reparto.filter(r => r.hermana === "A").map(r => r.arcano);
+  assert.equal(deA.length, 5);
+  assert.equal(new Set(deA).size, 5);
+  assert.ok(!deA.includes("0"));
+  assert.equal(reparto.filter(r => r.hermana === "B").length, 1);
+  // sin huecos no se reparte nada
+  assert.deepEqual(sortearVinculos([{ uuid: "A", usados: [], huecos: [] }]), []);
+});
+
+test("quienInicia: El Loco (0) o el menor valor (R 27)", () => {
+  assert.equal(quienInicia([{ arcano: "IX", hermana: "A" }, { arcano: "0", hermana: "B" }, { arcano: "I", hermana: "C" }]), "B");
+  assert.equal(quienInicia([{ arcano: "IX", hermana: "A" }, { arcano: "III", hermana: "B" }]), "B");
+});
+
+test("siguientePaso: guía según fase y escena", () => {
+  const base = { hermanas: ["A", "B"], menores: [], limite: 2 };
+  assert.equal(siguientePaso({ ...base, fase: "prima" }).clave, "avanzar");
+  assert.equal(siguientePaso({ ...base, fase: "sexta", escena: null }).clave, "nuevaEscena");
+  assert.equal(siguientePaso({ ...base, fase: "sexta", escena: { participantes: [], mayores: [] } }).clave, "participantes");
+  const robar = siguientePaso({ ...base, fase: "sexta", escena: { participantes: ["A", "B"], mayores: [{ hermana: "A" }] } });
+  assert.deepEqual(robar, { clave: "robarMayor", hermana: "B" });
+  assert.equal(siguientePaso({ ...base, fase: "completas", escena: { participantes: ["A"], mayores: [{ hermana: "A" }] } }).clave, "terminarEscena");
+  // en Sexta basta una sospecha por Hermana; en Completas, las dos
+  const una = [{ robadaPor: "A" }, { robadaPor: "B" }];
+  assert.equal(siguientePaso({ ...base, menores: una, fase: "sexta", escena: null }).clave, "avanzar");
+  assert.equal(siguientePaso({ ...base, menores: una, fase: "completas", escena: null }).clave, "nuevaEscena");
+  const todos = [...una, { robadaPor: "A" }, { robadaPor: "B" }];
+  assert.equal(siguientePaso({ ...base, menores: todos, fase: "completas", escena: null }).clave, "avanzar");
+  assert.equal(siguientePaso({ ...base, fase: "laudes", menores: [{ revelada: false }] }).clave, "revelar");
+  assert.equal(siguientePaso({ ...base, fase: "laudes", menores: [{ revelada: true }] }).clave, "avanzar");
+  assert.equal(siguientePaso({ ...base, fase: "final", acusadas: ["A"] }).hay, true);
 });

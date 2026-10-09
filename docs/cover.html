@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>MR- Nosotras, las brujas · carátula</title>
+<style>
+@font-face { font-family: "Fell Display"; src: url("fonts/imfe-dprm.otf"); }
+@font-face { font-family: "Fell"; src: url("fonts/imfe-gprm.otf"); }
+@font-face { font-family: "Fell"; src: url("fonts/imfe-gpit.otf"); font-style: italic; }
+@font-face { font-family: "Fell SC"; src: url("fonts/imfe-dwpscr.ttf"); }
+html, body { margin: 0; width: 1280px; height: 640px; overflow: hidden; background: #150b21; }
+.cover { position: relative; width: 1280px; height: 640px; overflow: hidden; color: #f0e7d6; font-family: "Fell", Georgia, serif;
+  background: radial-gradient(ellipse at 70% 40%, #4d2c68 0, #2a1740 48%, #140a20 100%); }
+.stars { position: absolute; inset: 0; }
+.stars i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #f3e8cc; }
+.frame { position: absolute; inset: 16px; border: 2px solid #c9a227; border-radius: 6px; box-shadow: inset 0 0 0 6px #150b21, inset 0 0 0 7px rgba(201, 162, 39, .45); pointer-events: none; z-index: 6; }
+.text { position: absolute; left: 76px; top: 70px; width: 600px; z-index: 4; }
+.kicker { font-family: "Fell SC"; font-size: 30px; letter-spacing: .34em; color: #d8b24a; margin: 0 0 6px 4px; }
+h1 { font-family: "Fell Display"; font-weight: 400; font-size: 112px; line-height: .98; margin: 0; color: #f6ecd0; text-shadow: 0 4px 0 rgba(0, 0, 0, .55), 0 0 40px rgba(216, 178, 74, .3); }
+.rule { width: 440px; height: 3px; background: linear-gradient(90deg, #d8b24a, transparent); margin: 22px 0 0 4px; position: relative; }
+.sub { font-style: italic; font-size: 32px; line-height: 1.25; margin: 18px 0 0 4px; color: #e6d9b6; max-width: 440px; text-shadow: 0 2px 6px #000; }
+.chips { display: flex; gap: 10px; margin: 26px 0 0 4px; flex-wrap: wrap; width: 470px; }
+.chips span { font-family: "Fell SC"; font-size: 18px; letter-spacing: .12em; padding: 6px 14px; border: 1.5px solid #d8b24a; border-radius: 999px; color: #f0e7d6; background: rgba(0, 0, 0, .3); white-space: nowrap; }
+.fan { position: absolute; right: 56px; top: 36px; width: 600px; height: 580px; z-index: 3; }
+.fan img { position: absolute; bottom: 70px; width: 176px; height: 293px; border-radius: 12px; box-shadow: 0 18px 34px rgba(0, 0, 0, .7); transform-origin: 50% 120%; }
+</style></head><body>
+<div class="cover">
+  <div class="stars" id="s"></div>
+  <div class="frame"></div>
+  <div class="text">
+    <p class="kicker">MR-</p>
+    <h1>Nosotras,<br>las brujas</h1>
+    <div class="rule"></div>
+    <p class="sub">Una acusada, siete horas y un pueblo que sospecha.</p>
+    <div class="chips"><span>Foundry VTT 13–14</span><span>Tarot de 78 cartas</span><span>Tracker de La Jueza</span><span>Gratis</span></div>
+  </div>
+  <div class="fan">
+    <img src="img/cards/m-XIII.svg" style="left: 0;    transform: rotate(-16deg) translateY(22px)">
+    <img src="img/cards/m-XV.svg"   style="left: 106px; transform: rotate(-8deg) translateY(6px)">
+    <img src="img/cards/m-VIII.svg" style="left: 212px; transform: rotate(0deg); z-index: 2">
+    <img src="img/cards/m-XVIII.svg" style="left: 318px; transform: rotate(8deg) translateY(6px); z-index: 3">
+    <img src="img/cards/m-XVII.svg" style="left: 424px; transform: rotate(16deg) translateY(22px); z-index: 4">
+  </div>
+</div>
+<script>
+const s = document.getElementById("s");
+for (let i = 0; i < 70; i++) { const e = document.createElement("i"); e.style.left = (i * 271 % 1280) + "px"; e.style.top = (i * 137 % 640) + "px"; e.style.opacity = .25 + (i % 5) * .13; e.style.transform = `scale(${1 + (i % 3) * .5})`; s.append(e); }
+</script>
+</body></html>

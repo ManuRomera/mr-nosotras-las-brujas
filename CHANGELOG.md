@@ -1,5 +1,18 @@
 # Cambios
 
+## 1.1.0
+
+**Rediseño completo y auditoría** (ver `docs/AUDITORIA.md`)
+
+- **Tarot rehecho**: las 78 cartas, el dorso y la portada, en grabado marsellés. Antes las 22 cartas de mayores eran idénticas.
+- **Tracker de La Jueza**: tira de las siete horas con salto directo, barra **«Ahora»** con el siguiente paso, escena y mesa en dos columnas, puntos de inversión y diseño según la hora (sin panel de escena en Laudes o el Final).
+- **Automatismos**: sorteo de vínculos y quién empieza (R 22–23, R 27), cuenta atrás de Prima (R 43), primera sospecha para conservar y segunda para entregar con destinataria propuesta (R 55), aviso si falta alguien por robar antes de Laudes, sentencia del Final (R 49, R 60).
+- **Fichas**: papel y tinta con tipografía IM Fell, carta del arcano en cada vínculo, la pregunta con el nombre ya puesto, sello de acusada o cautiva, retratos en arco y **modo oscuro**.
+- **Seguridad en mesa**: Pausa, Velo y Tarjeta X anónimas y líneas y velos acordados.
+- **Diagnóstico** copiable, **créditos**, **sonido ambiente** sintetizado (campanas, cartas) y **retratos por defecto**.
+- Correcciones: la guía de las ayudas, el modo de alta legibilidad rompía los iconos, el manual ilegible con el tema claro, retratos sin encuadre en el tracker y Laudes revelable dos veces.
+- Se retiran las tipografías Oswald y Barlow.
+
 ## 1.0.0
 
 **Primera versión**

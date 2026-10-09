@@ -4,7 +4,7 @@
  */
 import { ID, RUTA } from "./mesa.mjs";
 import { aplicarModo, alRenderizarMensaje, renderTemplate } from "./compat.mjs";
-import { D6, FASES, MARCADORES } from "./listas.mjs";
+import { D6, FASES, MARCADORES, ORDEN_FASES, MAYOR_POR_ROMANO } from "./listas.mjs";
 import { alAzar } from "./reglas.mjs";
 import { pintarRetratos } from "./retrato.mjs";
 
@@ -26,7 +26,7 @@ export async function publicar(tarjeta, { actor, tirada, susurro } = {}) {
   const datos = {
     content,
     speaker: actor ? ChatMessage.getSpeaker({ actor }) : ChatMessage.getSpeaker({ alias: tarjeta.alias ?? "Nosotras, las brujas" }),
-    flags: { [ID]: { tipo: tarjeta.tipo ?? "aviso" } }
+    flags: { [ID]: { tipo: tarjeta.tipo ?? "aviso", sonido: tarjeta.sonido } }
   };
   if (tirada) {
     datos.rolls = [tirada];
@@ -54,7 +54,7 @@ export function atributosData(datos = {}) {
 export async function chatMayor(carta, { concepto, invertida } = {}) {
   return publicar({
     tipo: "mayor", tono: "fase", icono: "fa-solid fa-eye",
-    etiqueta: "Arcano mayor robado",
+    etiqueta: "Arcano mayor",
     carta: { img: carta.faces?.[0]?.img ?? carta.img, nombre: carta.name },
     titulo: concepto || carta.name,
     texto: invertida ? "Invertida por La Jueza: manda el concepto de dirección." : undefined
@@ -81,7 +81,30 @@ export async function chatFase(clave) {
     tipo: "fase", tono: "fase", icono: "fa-solid fa-hourglass-half",
     etiqueta: marcador ? `${marcador.nombre} · ${marcador.romano}` : "Fase",
     titulo: fase.nombre,
-    texto: fase.desc
+    texto: fase.desc,
+    sonido: { indice: ORDEN_FASES.indexOf(clave) }
+  });
+}
+
+/** El Final: las acusadas del recuento y lo que el libro deja a la mesa (R 49, R 60–61). */
+export async function chatFinal({ acusadas, cautiva }) {
+  return publicar({
+    tipo: "final", tono: "sospecha", icono: "fa-solid fa-gavel",
+    etiqueta: "Final del juego", titulo: acusadas.length ? "El pueblo ha hablado" : "Nadie más ha sido señalada",
+    texto: acusadas.length
+      ? `Acusadas por el recuento: ${acusadas.join(", ")}. Narrad el juicio y la condena; podéis usar una elipsis para no mostrar la violencia (R 49).`
+      : "Narrad el juicio y el epílogo (R 49).",
+    pie: `${cautiva ? `La cautiva inicial, ${cautiva}, ` : "La cautiva inicial "}se resuelve según lo que haya pasado en la historia: salvarla no cancela la nueva acusación (R 60).`
+  });
+}
+
+/** Reparto de arcanos de vínculo y quién abre la narración (R 22–23, R 27). */
+export async function chatVinculos({ filas, inicia }) {
+  return publicar({
+    tipo: "vinculos", tono: "voz", icono: "fa-solid fa-link",
+    etiqueta: "Vínculos sorteados", titulo: inicia ? `Empieza ${inicia}` : "Vínculos sorteados",
+    texto: filas.map(f => `${f.nombre}: ${f.arcanos.map(r => MAYOR_POR_ROMANO[r]?.nombre ?? r).join(", ")}`).join(" · "),
+    pie: "Empieza quien sacó El Loco; si nadie lo sacó, quien tenga el arcano de menor valor (R 27, a verificar)."
   });
 }
 
@@ -122,6 +145,9 @@ const ACCIONES = {
     const pack = game.packs.get(`${ID}.ayudas`);
     if (pack) return pack.render(true);
     return ui.notifications.warn("Compendio de ayudas no disponible.");
+  },
+  seguridad() {
+    return game.mrNosotras?.abrirSeguridad?.();
   },
   dado() {
     if (!game.settings.get(ID, "dadoJueza")) return ui.notifications.info("El dado opcional está desactivado en Ajustes.");

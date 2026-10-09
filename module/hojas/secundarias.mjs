@@ -5,6 +5,7 @@
 import { HojaNB } from "./base.mjs";
 import { RUTA } from "../mesa.mjs";
 import { ARCANOS } from "../listas.mjs";
+import { DORSO, imgMayor } from "../tarot.mjs";
 
 export class HojaPnj extends HojaNB {
   static DEFAULT_OPTIONS = {
@@ -21,6 +22,7 @@ export class HojaPnj extends HojaNB {
     const ctx = await super._prepareContext(options);
     ctx.opcionesArcano = [{ romano: "", nombre: "Sin arcano" }, ...ARCANOS]
       .map(a => ({ ...a, elegido: a.romano === this.document.system.arcano }));
+    ctx.imgArcano = this.document.system.arcano ? imgMayor(this.document.system.arcano) : DORSO;
     return ctx;
   }
 }

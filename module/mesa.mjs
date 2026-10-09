@@ -21,7 +21,8 @@ export const SESION_INICIAL = {
   inversionesUsadas: 0,
   escenas: 0,
   escena: null,
-  menores: []
+  menores: [],
+  reloj: 0
 };
 
 /** Abrir el ajuste desde el menú borra la memoria de ventanas sin abrir nada. */
