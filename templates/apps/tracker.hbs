@@ -6,7 +6,7 @@
         {{#if marcador}}
         <img class="nb-jz-marcador" src="{{marcador.img}}" alt="{{marcador.nombre}}" data-tooltip="{{marcador.nombre}} · {{marcador.romano}} — señala {{fase.nombre}}">
         {{else}}
-        <span class="nb-jz-marcador vacio" aria-hidden="true"><i class="fa-solid fa-scale-unbalanced"></i></span>
+        <img class="nb-jz-marcador sprite" src="systems/mr-nosotras-las-brujas/assets/sprites/horas/{{fase.clave}}.webp" alt="" aria-hidden="true">
         {{/if}}
         <div class="nb-jz-fase-txt">
           <span class="nb-cinta">Hora {{fase.indice}} de {{fase.total}} · {{totalEscenas}} {{#if (eq totalEscenas 1)}}escena{{else}}escenas{{/if}}</span>
@@ -19,7 +19,7 @@
         <button type="button" class="nb-hora{{#if actual}} actual{{/if}}{{#if pasada}} pasada{{/if}}" data-action="irFase" data-fase="{{clave}}"
                 {{disabled (not ../esGM)}} {{#if actual}}aria-current="step"{{/if}}
                 data-tooltip="{{nombre}}{{#if marcador}} · {{marcador}}{{/if}}">
-          <i class="fa-solid {{simbolo}}"></i><span>{{nombre}}</span>
+          <i><img src="systems/mr-nosotras-las-brujas/assets/sprites/horas/{{clave}}.webp" alt=""></i><span>{{nombre}}</span>
         </button>
         {{/each}}
       </nav>

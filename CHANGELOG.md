@@ -1,5 +1,15 @@
 # Cambios
 
+## 1.2.0
+
+**Arte propio de verdad**
+
+- **Cartas**: ilustraciones de xilografía a color para los 22 mayores, los 16 cortes y los 4 ases; los menores del 2 al 10 usan glifos de palo ilustrados y siguen siendo exactos. Dorso nuevo. El marco, el numeral y el nombre los sigue componiendo `npm run tarot`.
+- **Retratos** por defecto ilustrados (6 Hermanas, 3 PNJ y el pueblo) y **estampas de tinta** de «Acusada» y «La cautiva» en la hoja.
+- **Compendio «Escenarios»** con 8 escenas ilustradas listas para usar.
+- **Papel y terciopelo** reales como fondo de hojas, tracker y chat; emblemas ilustrados de las siete horas en la tira del tracker; portada nueva del sistema.
+- `npm run arte` importa un zip de arte nuevo (recorta, reduce y pasa a WebP).
+
 ## 1.1.0
 
 **Rediseño completo y auditoría** (ver `docs/AUDITORIA.md`)

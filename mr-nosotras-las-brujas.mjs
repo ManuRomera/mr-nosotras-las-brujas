@@ -84,7 +84,7 @@ const RETRATOS = { hermana: ["hermana-1", "hermana-2", "hermana-3", "hermana-4",
 Hooks.on("preCreateActor", (actor, datos) => {
   const lista = RETRATOS[actor.type];
   if (!lista || (datos.img && datos.img !== Actor.DEFAULT_ICON)) return;
-  const img = `systems/${ID}/assets/retratos/${lista[Math.floor(Math.random() * lista.length)]}.svg`;
+  const img = `systems/${ID}/assets/retratos/${lista[Math.floor(Math.random() * lista.length)]}.webp`;
   actor.updateSource({ img, "prototypeToken.texture.src": img });
 });
 

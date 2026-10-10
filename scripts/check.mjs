@@ -49,7 +49,7 @@ const { ARCANOS, MARCADORES, PINTAS } = await import("../module/listas.mjs");
 const cartas = [
   ...[...ARCANOS, ...Object.values(MARCADORES)].map(a => `assets/tarot/mayores/${a.romano}.svg`),
   ...Object.keys(PINTAS).flatMap(p => Array.from({ length: 14 }, (_, i) => `assets/tarot/menores/${p}-${i + 1}.svg`)),
-  "assets/tarot/dorso.svg", "assets/portadas/portada.svg", "assets/retratos/pueblo.svg"
+  "assets/tarot/dorso.svg", "assets/portadas/portada.webp", "assets/retratos/pueblo.webp", "assets/sprites/logo.webp", "assets/texturas/papel.webp"
 ];
 for (const r of cartas) if (!(await existe(r))) errores.push(`falta ${r}`);
 

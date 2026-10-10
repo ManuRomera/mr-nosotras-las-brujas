@@ -8,8 +8,8 @@ import { createHash } from "node:crypto";
 import { ClassicLevel } from "classic-level";
 
 const manifiesto = JSON.parse(await fs.readFile("system.json"));
-const RAIZ = { JournalEntry: "journal", Actor: "actors", Item: "items", RollTable: "tables", Cards: "cards" };
-const EMBEBIDOS = { JournalEntry: ["pages"], Actor: ["items", "effects"], Item: ["effects"], RollTable: ["results"], Cards: ["cards"] };
+const RAIZ = { JournalEntry: "journal", Actor: "actors", Item: "items", RollTable: "tables", Cards: "cards", Scene: "scenes" };
+const EMBEBIDOS = { JournalEntry: ["pages"], Actor: ["items", "effects"], Item: ["effects"], RollTable: ["results"], Cards: ["cards"], Scene: [] };
 const id = texto => createHash("sha1").update(texto).digest("hex").slice(0, 16);
 
 /**

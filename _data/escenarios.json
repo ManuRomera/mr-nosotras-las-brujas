@@ -1,0 +1,242 @@
+[
+ {
+  "_id": "af5f906e27a45196",
+  "name": "La plaza del pueblo",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/plaza-pueblo.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 1000,
+  "ownership": {
+   "default": 0
+  }
+ },
+ {
+  "_id": "8ee5116a9cb6c617",
+  "name": "La iglesia",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/iglesia-nave.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 2000,
+  "ownership": {
+   "default": 0
+  }
+ },
+ {
+  "_id": "a73cc68be097b6ac",
+  "name": "La sacristía",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/sacristia.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 3000,
+  "ownership": {
+   "default": 0
+  }
+ },
+ {
+  "_id": "4588675dbd05ab47",
+  "name": "El molino viejo",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/molino-viejo.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 4000,
+  "ownership": {
+   "default": 0
+  }
+ },
+ {
+  "_id": "004e33cda53148f0",
+  "name": "La ermita de la sierra",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/ermita-sierra.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 5000,
+  "ownership": {
+   "default": 0
+  }
+ },
+ {
+  "_id": "777da9b2c3041043",
+  "name": "El bosque de noche",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/bosque-noche.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 6000,
+  "ownership": {
+   "default": 0
+  }
+ },
+ {
+  "_id": "fb89f8649267cef1",
+  "name": "El camino del cementerio",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/camino-cementerio.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 7000,
+  "ownership": {
+   "default": 0
+  }
+ },
+ {
+  "_id": "dc26fea135599949",
+  "name": "El calabozo",
+  "navigation": false,
+  "background": {
+   "src": "systems/mr-nosotras-las-brujas/assets/escenarios/calabozo.webp"
+  },
+  "width": 2560,
+  "height": 1440,
+  "padding": 0,
+  "initial": {
+   "x": 1280,
+   "y": 720,
+   "scale": 0.4
+  },
+  "grid": {
+   "type": 0,
+   "size": 100,
+   "distance": 1,
+   "units": "m"
+  },
+  "tokenVision": false,
+  "fog": {
+   "exploration": false
+  },
+  "sort": 8000,
+  "ownership": {
+   "default": 0
+  }
+ }
+]

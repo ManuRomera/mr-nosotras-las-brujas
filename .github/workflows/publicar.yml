@@ -24,7 +24,7 @@ jobs:
       - name: Empaquetar
         run: |
           mkdir -p dist
-          zip -r dist/mr-nosotras-las-brujas.zip system.json mr-nosotras-las-brujas.mjs module templates styles fonts lang assets packs LICENSE NOTICE.md README.md CHANGELOG.md 
+          zip -r dist/mr-nosotras-las-brujas.zip system.json mr-nosotras-las-brujas.mjs module templates styles fonts lang assets packs LICENSE NOTICE.md README.md CHANGELOG.md -x "assets/tarot/arte/*"
           cp system.json dist/system.json
           unzip -l dist/mr-nosotras-las-brujas.zip | tail -1
       - name: Notas de la versión

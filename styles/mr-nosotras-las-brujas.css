@@ -41,7 +41,7 @@
   --nb-mano: "NB Caveat", "Caveat", cursive;
   --nb-ruido: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .4  0 0 0 0 .28  0 0 0 0 .12  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   /* Rombos de terciopelo: damasco muy tenue para el fondo de la noche. */
-  --nb-damasco: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'><path d='M24 4 L44 24 L24 44 L4 24 Z' fill='none' stroke='%23d8b24a' stroke-width='.8' opacity='.09'/><circle cx='24' cy='24' r='1.6' fill='%23d8b24a' opacity='.1'/></svg>");
+  --nb-damasco: url("../assets/texturas/terciopelo.webp") 0 0 / 384px;
   --nb-sombra-carta: 0 6px 16px rgba(0, 0, 0, .55), 0 0 0 1px rgba(0, 0, 0, .5);
 }
 
@@ -61,6 +61,8 @@
   --hj-acento: var(--nb-vino);
   --hj-acento-2: var(--nb-vino-2);
   --hj-vineta: rgba(96, 62, 22, .34);
+  /* Papel de verdad con una pizca de luz en el centro. */
+  --hj-fondo: radial-gradient(ellipse at 50% 35%, rgba(255, 250, 232, .3), rgba(110, 70, 25, .16) 100%), url("../assets/texturas/papel.webp") 0 0 / 520px;
 }
 body.nb-oscuro .mr-nosotras-las-brujas {
   --hj-fondo-1: #271a33;
@@ -74,6 +76,7 @@ body.nb-oscuro .mr-nosotras-las-brujas {
   --hj-acento: var(--nb-oro);
   --hj-acento-2: #e8c969;
   --hj-vineta: rgba(0, 0, 0, .55);
+  --hj-fondo: var(--nb-ruido), radial-gradient(ellipse at 50% 40%, var(--hj-fondo-1) 0%, var(--hj-fondo-2) 62%, var(--hj-fondo-3) 100%);
 }
 
 /* ─── Marco de ventana ─────────────────────────────────────────────── */
@@ -103,7 +106,7 @@ body.nb-oscuro .mr-nosotras-las-brujas {
 .application.nb-tracker .window-header { border-bottom-color: var(--nb-oro); }
 .application.nb-dialogo .window-content {
   overflow: auto; padding: 14px 16px 6px;
-  background: var(--nb-damasco), linear-gradient(180deg, var(--nb-noche-2), var(--nb-noche));
+  background: linear-gradient(180deg, rgba(31,21,48,.3), rgba(23,15,33,.55)), var(--nb-damasco);
 }
 
 /* ─── Controles comunes ────────────────────────────────────────────── */
@@ -247,9 +250,7 @@ body.nb-oscuro .mr-nosotras-las-brujas {
   flex-direction: column;
   height: 100%;
   min-height: 0;
-  background:
-    var(--nb-ruido),
-    radial-gradient(ellipse at 50% 40%, var(--hj-fondo-1) 0%, var(--hj-fondo-2) 62%, var(--hj-fondo-3) 100%);
+  background: var(--hj-fondo);
   box-shadow: inset 0 0 90px var(--hj-vineta);
   color: var(--hj-tinta);
   padding: 16px 20px 18px;
@@ -414,7 +415,7 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 /* ═══ Chat: tarjetas de tarot sobre la noche ═════════════════════════ */
 .nb-tc {
   position: relative;
-  background: var(--nb-damasco), linear-gradient(165deg, var(--nb-noche-3), var(--nb-noche));
+  background: linear-gradient(165deg, rgba(43,29,63,.35), rgba(23,15,33,.6)), var(--nb-damasco);
   border: 1px solid var(--nb-oro-2); border-radius: 8px;
   box-shadow: inset 0 0 0 3px var(--nb-noche), inset 0 0 0 4px rgba(216, 178, 74, .35);
   color: var(--nb-hueso); padding: 12px 14px; margin: 0;
@@ -451,7 +452,7 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 .nb-tono-voz .nb-cinta { background: linear-gradient(180deg, rgba(255,255,255,.18), transparent 60%), var(--nb-acero); color: var(--nb-hueso); }
 
 /* ═══ Tracker de La Jueza ═══════════════════════════════════════════ */
-.mr-nosotras-las-brujas .nb-tracker .window-content { background: var(--nb-damasco), linear-gradient(180deg, var(--nb-noche-2), var(--nb-noche)); }
+.mr-nosotras-las-brujas .nb-tracker .window-content { background: linear-gradient(180deg, rgba(31,21,48,.3), rgba(23,15,33,.55)), var(--nb-damasco); }
 .nb-jz { container-type: inline-size; position: absolute; inset: 0; }
 .nb-jz-scroll { position: absolute; inset: 0; overflow: auto; padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 10px; }
 
@@ -634,7 +635,7 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 
 /* ═══ Compendio de ayudas (diarios) ═════════════════════════════════
    El manual lleva su propio fondo: se lee igual con el tema claro u oscuro de Foundry. */
-.nb-manual { color: var(--nb-hueso); font-family: var(--nb-texto); background: var(--nb-damasco), linear-gradient(180deg, var(--nb-noche-2), var(--nb-noche)); border: 1px solid var(--nb-borde); border-radius: 8px; padding: 14px 18px; }
+.nb-manual { color: var(--nb-hueso); font-family: var(--nb-texto); background: linear-gradient(180deg, rgba(31,21,48,.3), rgba(23,15,33,.55)), var(--nb-damasco); border: 1px solid var(--nb-borde); border-radius: 8px; padding: 14px 18px; }
 .nb-manual p { font-size: calc(16.5px * var(--nb-escala, 1)); line-height: 1.5; color: var(--nb-hueso-2); }
 .nb-manual ol, .nb-manual ul { margin: 0.4em 0; padding-left: 1.4em; }
 .nb-manual li { font-size: calc(16px * var(--nb-escala, 1)); line-height: 1.5; color: var(--nb-hueso-2); margin-bottom: .35em; }
@@ -665,3 +666,13 @@ body.nb-sin-movimiento .nb-jz-marcador, body.nb-sin-movimiento .nb-tc-carta img 
 
 /* Con la ficha bloqueada los campos ocupan lo que escribes, como tinta sobre el papel. */
 .mr-nosotras-las-brujas .nb-frase input:disabled, .mr-nosotras-las-brujas .nb-vin-frase input:disabled { flex: 0 1 auto; min-width: 0; padding-right: 10px; }
+
+/* Estampa de tinta sobre la cabecera de la hoja: «Acusada» o «La cautiva». */
+.mr-nosotras-las-brujas .nb-estampa { position: absolute; right: 6px; top: -4px; width: 92px; height: 92px; object-fit: contain; transform: rotate(-9deg); pointer-events: none; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .35)); opacity: .94; z-index: 2; }
+.application.compacto .nb-estampa { width: 56px; height: 56px; }
+/* Sprites de las horas */
+.nb-hora i { overflow: hidden; }
+.nb-hora i img { width: 22px; height: 22px; object-fit: contain; }
+.nb-hora.actual i img { width: 26px; height: 26px; }
+.nb-hora:not(.actual):not(.pasada) i img { opacity: .6; filter: grayscale(.4); }
+.nb-jz-marcador.sprite { object-fit: contain; padding: 4px; background: rgba(0, 0, 0, .25); border: 1px solid var(--nb-oro-2); transform: none; box-shadow: none; }

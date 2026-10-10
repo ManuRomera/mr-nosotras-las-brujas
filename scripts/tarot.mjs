@@ -7,12 +7,21 @@
  *   npm run tarot
  */
 import fs from "node:fs/promises";
+import { readFileSync, existsSync } from "node:fs";
 import path from "node:path";
 import { ARCANOS, MARCADORES, PINTAS, FIGURAS } from "../module/listas.mjs";
 import { ANCHO, ALTO, DEFS, INK, MARFIL, MARFIL2, ROJO, AZUL, AMAR, VERDE, CARNE, VIOLETA, NOCHE, ORO, P, C, E, R, L, G, t, titulo, svg, estrella, rayos, cabeza, corona } from "./tarot-base.mjs";
 import { MAYORES } from "./tarot-mayores.mjs";
 
 const RAIZ = path.resolve("assets/tarot");
+
+/** Imagen incrustada (data URI): un SVG usado como <img> no puede cargar archivos externos. */
+const incrustar = ruta => `data:image/webp;base64,${readFileSync(ruta).toString("base64")}`;
+const hayArte = ruta => existsSync(ruta);
+/** La ilustración ocupa toda la ventana (728×884, centrada en 0,0 del grupo). */
+const ZOOM = 1.16;
+const arteVentana = ruta => `<image href="${incrustar(ruta)}" x="${(-364 * ZOOM).toFixed(0)}" y="${(-442 * ZOOM + 6).toFixed(0)}" width="${(728 * ZOOM).toFixed(0)}" height="${(884 * ZOOM).toFixed(0)}" preserveAspectRatio="xMidYMid slice"/>`;
+const GLIFOS = existsSync("assets/tarot/glifos/dimensiones.json") ? JSON.parse(readFileSync("assets/tarot/glifos/dimensiones.json", "utf8")) : null;
 const COLOR_PINTA = { oros: AMAR, copas: ROJO, espadas: AZUL, bastos: VERDE };
 const ACENTO_PINTA = { oros: "#9a7413", copas: "#8c2a1f", espadas: "#244a74", bastos: "#3b6130" };
 
@@ -50,7 +59,7 @@ function mayor(a, marcador) {
   return svg(`${DEFS}${marco(acento)}
   ${romano}
   ${filete(214, acento)}
-  ${ventana(def.campo, def.dib())}
+  ${ventana(def.campo, hayArte(`assets/tarot/arte/mayores/${a.romano}.webp`) ? arteVentana(`assets/tarot/arte/mayores/${a.romano}.webp`) : def.dib())}
   ${filete(1178, acento)}
   ${titulo(a.nombre.toUpperCase(), ANCHO / 2, 1326, 96, 730)}
   ${pie(acento)}`);
@@ -106,7 +115,11 @@ function corte(rango, pinta) {
 function menor(orden, pinta) {
   const acento = ACENTO_PINTA[pinta];
   let contenido;
-  if (orden <= 10) {
+  const rutaArte = `assets/tarot/arte/menores/${pinta}-${orden}.webp`;
+  const defGlifo = GLIFOS?.[pinta] ? (([w, h]) => { const k = 228 / Math.max(w, h); return `<image id="g" href="${incrustar(`assets/tarot/glifos/${pinta}.webp`)}" x="${(-w * k) / 2}" y="${(-h * k) / 2}" width="${w * k}" height="${h * k}"/>`; })(GLIFOS[pinta]) : `<g id="g">${glifo(pinta)}</g>`;
+  if (hayArte(rutaArte) && (orden === 1 || orden > 10)) {
+    contenido = arteVentana(rutaArte);
+  } else if (orden <= 10) {
     const escala = orden === 1 ? 2.3 : orden <= 3 ? 1.2 : orden <= 6 ? 1.1 : orden <= 8 ? 1.0 : 0.92;
     contenido = POS[orden].map(([x, y]) => `<use href="#g" transform="translate(${x} ${y}) scale(${escala})${y > 0 && orden > 1 && pinta !== "oros" ? " rotate(180)" : ""}"/>`).join("");
     if (orden === 1) contenido += t(PINTAS[pinta].toUpperCase(), 0, 380, 56, { f: "sc", fill: acento, ls: 0.12 });
@@ -115,7 +128,7 @@ function menor(orden, pinta) {
   }
   const marca = orden <= 10 ? ROMANOS[orden] : FIGURAS[orden].slice(0, 1).toUpperCase();
   const nombre = `${orden === 1 ? "AS" : orden <= 10 ? NUMEROS[orden] : FIGURAS[orden].toUpperCase()} DE ${PINTAS[pinta].toUpperCase()}`;
-  return svg(`${DEFS}<defs><g id="g">${glifo(pinta)}</g></defs>${marco(acento)}
+  return svg(`${DEFS}<defs>${defGlifo}</defs>${marco(acento)}
   ${t(marca, ANCHO / 2, 188, marca.length > 3 ? 100 : 124, { f: "display", fill: acento, ls: 0.06 })}
   ${filete(214, acento)}
   ${ventana(MARFIL2, contenido)}
@@ -128,6 +141,11 @@ const NUMEROS = ["", "AS", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "O
 
 /** Dorso: noche violeta con malla dorada y la triple luna. */
 function dorso() {
+  if (hayArte("assets/tarot/dorso-arte.webp")) {
+    return svg(`<defs><clipPath id="r"><rect width="${ANCHO}" height="${ALTO}" rx="44"/></clipPath></defs>
+  <image href="${incrustar("assets/tarot/dorso-arte.webp")}" width="${ANCHO}" height="${ALTO}" clip-path="url(#r)" preserveAspectRatio="xMidYMid slice"/>
+  <rect x="3" y="3" width="${ANCHO - 6}" height="${ALTO - 6}" rx="42" fill="none" stroke="${INK}" stroke-width="6"/>`);
+  }
   return svg(`<defs>
     <pattern id="malla" width="90" height="90" patternUnits="userSpaceOnUse">
       <path d="M45 8 L82 45 L45 82 L8 45 Z" fill="none" stroke="${ORO}" stroke-width="3" opacity=".55"/>
@@ -155,37 +173,8 @@ function tripleLuna(x, y, r) {
   </g>`;
 }
 
-/** Portada del sistema (1600×900): noche, abanico de tres arcanos y título. */
-function portada() {
-  const carta = (romano, rot, dx, dy) => {
-    const a = ARCANOS.find(m => m.romano === romano) ?? Object.values(MARCADORES).find(m => m.romano === romano);
-    const def = MAYORES[romano];
-    const cuerpo = `${marco(VIOLETA)}${t(romano, ANCHO / 2, 188, romano.length > 4 ? 100 : 124, { f: "display", fill: VIOLETA, ls: 0.06 })}${filete(214, VIOLETA)}${ventana(def.campo, def.dib())}${filete(1178, VIOLETA)}${titulo(a.nombre.toUpperCase(), ANCHO / 2, 1302, 96, 730)}`;
-    return `<g transform="translate(${dx} ${dy}) rotate(${rot}) scale(.32) translate(-450 -750)" filter="url(#sombra)">${cuerpo}</g>`;
-  };
-  const estrellas = Array.from({ length: 90 }, (_, i) => {
-    const x = (i * 271) % 1600, y = (i * 137) % 900, r = 1 + (i % 3) * 0.7;
-    return `<circle cx="${x}" cy="${y}" r="${r}" fill="${MARFIL}" opacity="${0.35 + (i % 5) * 0.12}"/>`;
-  }).join("");
-  return svg(`${DEFS}<defs>
-    <radialGradient id="cielo" cx="62%" cy="40%" r="85%"><stop offset="0" stop-color="#4a2a63"/><stop offset=".55" stop-color="#2a1740"/><stop offset="1" stop-color="#150b21"/></radialGradient>
-    <filter id="sombra" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000" flood-opacity=".7"/></filter>
-  </defs>
-  <rect width="1600" height="900" fill="url(#cielo)"/>${estrellas}
-  ${carta("XIII", -12, 1140, 500)}${carta("VIII", 0, 1290, 460)}${carta("XVIII", 12, 1440, 500)}
-  <g transform="translate(70 40)">
-    ${t("MR-", 120, 200, 70, { f: "sc", a: "start", fill: ORO, ls: 0.3 })}
-    ${t("NOSOTRAS,", 106, 340, 118, { f: "display", a: "start", fill: MARFIL, ls: 0.02 })}
-    ${t("LAS BRUJAS", 106, 460, 118, { f: "display", a: "start", fill: MARFIL, ls: 0.02 })}
-    <path d="M110 510 H690" stroke="${ORO}" stroke-width="3"/><path d="M400 496 L414 510 L400 524 L386 510 Z" fill="${ORO}"/>
-    ${t("Una acusada, siete horas y un pueblo que sospecha.", 110, 580, 36, { f: "cursiva", a: "start", fill: "#e6d9b6", ls: 0.01 })}
-    ${t("SISTEMA PARA FOUNDRY VTT", 110, 660, 34, { f: "sc", a: "start", fill: ORO, ls: 0.2 })}
-  </g>`, 1600, 900);
-}
-
 await fs.mkdir(path.join(RAIZ, "mayores"), { recursive: true });
 await fs.mkdir(path.join(RAIZ, "menores"), { recursive: true });
-await fs.mkdir("assets/portadas", { recursive: true });
 
 let n = 0;
 for (const a of ARCANOS) { await fs.writeFile(path.join(RAIZ, "mayores", `${a.romano}.svg`), mayor(a, false)); n++; }
@@ -194,5 +183,4 @@ for (const pinta of Object.keys(PINTAS)) {
   for (let orden = 1; orden <= 14; orden++) { await fs.writeFile(path.join(RAIZ, "menores", `${pinta}-${orden}.svg`), menor(orden, pinta)); n++; }
 }
 await fs.writeFile(path.join(RAIZ, "dorso.svg"), dorso());
-await fs.writeFile("assets/portadas/portada.svg", portada());
-console.log(`tarot: ${n} caras + dorso + portada`);
+console.log(`tarot: ${n} caras + dorso`);

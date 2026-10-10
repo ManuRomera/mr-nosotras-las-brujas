@@ -19,7 +19,7 @@ const recursos = () => [
   ...ARCANOS.map(a => `${RUTA}/assets/tarot/mayores/${a.romano}.svg`),
   ...Object.values(MARCADORES).map(m => `${RUTA}/assets/tarot/mayores/${m.romano}.svg`),
   ...Object.keys(PINTAS).flatMap(p => Array.from({ length: 14 }, (_, i) => `${RUTA}/assets/tarot/menores/${p}-${i + 1}.svg`)),
-  `${RUTA}/assets/tarot/dorso.svg`, `${RUTA}/assets/portadas/portada.svg`
+  `${RUTA}/assets/tarot/dorso.svg`, `${RUTA}/assets/portadas/portada.webp`
 ];
 
 export async function informe() {

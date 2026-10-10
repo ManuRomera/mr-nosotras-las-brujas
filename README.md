@@ -35,7 +35,7 @@ https://github.com/ManuRomera/mr-nosotras-las-brujas/releases/latest/download/sy
 
 ## El tarot, hecho a mano
 
-Las **78 cartas** son de grabado marsellés, con el arcano, el número y el nombre en la propia carta. Los 19 mayores y los 56 menores son mazos de Foundry; La Estrella, El Sol y La Luna son los marcadores de las horas.
+Las **78 cartas** son de xilografía a color, con el arcano, el número y el nombre en la propia carta: ilustraciones propias para los 22 mayores, los 16 cortes y los 4 ases; los demás menores llevan sus glifos de palo, con el número exacto. Los 19 mayores y los 56 menores son mazos de Foundry; La Estrella, El Sol y La Luna son los marcadores de las horas.
 
 <p align="center"><img src="docs/img/baraja.webp" alt="Una muestra de la baraja" width="100%"></p>
 
@@ -54,13 +54,19 @@ Las **78 cartas** son de grabado marsellés, con el arcano, el número y el nomb
 
 ## Fichas con papel y tinta
 
-**Hermana**, **PNJ** y **Pueblo**: las frases de la hoja, los vínculos con la carta del arcano a la vista (y su pregunta con el nombre ya puesto), las sospechas robadas y recibidas, sello de *Acusada* o *La cautiva*, retrato en arco con encuadre, modo compacto y memoria de posición. Con **modo oscuro** si lo prefieres.
+**Hermana**, **PNJ** y **Pueblo**: las frases de la hoja, los vínculos con la carta del arcano a la vista (y su pregunta con el nombre ya puesto), las sospechas robadas y recibidas, sello de *Acusada* o *La cautiva*, retrato en arco con encuadre (diez retratos propios para empezar), estampa de tinta de «Acusada» y «La cautiva", modo compacto y memoria de posición. Con **modo oscuro** si lo prefieres.
 
 <p align="center">
   <img src="docs/img/hoja-clara.webp" alt="Ficha de Hermana en papel" width="46%">
   &nbsp;
   <img src="docs/img/hojas-oscuras.webp" alt="Fichas de PNJ y de pueblo en modo oscuro" width="50%">
 </p>
+
+## Escenarios listos
+
+Un compendio con **8 escenas** ilustradas (la plaza, la iglesia, la sacristía, el molino viejo, la ermita, el bosque, el camino del cementerio y el calabozo) para mostrar a la mesa.
+
+<p align="center"><img src="docs/img/escenarios/plaza-pueblo.webp" alt="La plaza del pueblo" width="32%"> <img src="docs/img/escenarios/molino-viejo.webp" alt="El molino viejo" width="32%"> <img src="docs/img/escenarios/iglesia-nave.webp" alt="La iglesia" width="32%"></p>
 
 ## Pensado para jugar con cuidado
 
@@ -87,8 +93,8 @@ El dossier de reglas marca varios puntos «a verificar con el original»; el sis
 npm run check    # sintaxis, JSON, rutas, 78 cartas y plantillas
 npm test         # reglas puras (node:test)
 npm run build    # compila las ayudas a packs/ (con Foundry cerrado)
-npm run tarot    # regenera las 78 cartas, el dorso y la portada
-npm run retratos # regenera los retratos por defecto
+npm run tarot    # recompone las 78 cartas (marco, numeral, nombre e ilustración)
+npm run arte     # importa un zip de arte nuevo (ver scripts/importar-arte.py)
 ```
 
 Foundry 13 y 14 con `ApplicationV2`, `TypeDataModel` y un único `module/compat.mjs` para lo que cambia entre versiones. La auditoría de reglas y automatismos está en [`docs/AUDITORIA.md`](docs/AUDITORIA.md); los cambios, en [`CHANGELOG.md`](CHANGELOG.md).
@@ -97,6 +103,6 @@ Foundry 13 y 14 con `ApplicationV2`, `TypeDataModel` y un único `module/compat.
 
 *Nosotras, las brujas* es de **Hernán D'Andreis** y **Keith Monardes**, con ilustraciones de Ferenike, publicado por **Primigenia Austral**. Este sistema es una implementación no oficial de **Manu Romera** y no tiene relación con la editorial: si lo piden, se retira. Ver [`NOTICE.md`](NOTICE.md).
 
-El código y el arte generado por código son [MIT](LICENSE); las tipografías IM Fell y Caveat, [OFL](fonts/OFL.txt).
+El código y el arte son [MIT](LICENSE); el arte se generó con IA a partir de una dirección de arte propia, sin material de terceros; las tipografías IM Fell y Caveat, [OFL](fonts/OFL.txt).
 
 <p align="center"><sub>MR- · Manu Romera · Digital RPG Design</sub></p>
