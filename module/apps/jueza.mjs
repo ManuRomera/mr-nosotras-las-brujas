@@ -51,7 +51,7 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
       crearHermana: TrackerJueza.#crearHermana,
       fondo: () => game.mrNosotras.elegirFondo(),
       seguridad: () => game.mrNosotras.abrirSeguridad(),
-      diagnostico: () => game.mrNosotras.abrirDiagnostico()
+      tutorial: () => game.mrNosotras.tutorial()
     }
   };
 
@@ -240,7 +240,7 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
     await publicar({
       tipo: "aviso", tono: "fase", icono: "fa-solid fa-hourglass-end", alias: "La Jueza",
       etiqueta: "Prima", titulo: "Se acaba el recuerdo",
-      texto: `Han pasado unos ${MINUTOS_PRIMA} minutos: volved al presente, contad cómo supisteis del arresto y acordad un plan (R 43–44).`
+      texto: `Han pasado unos ${MINUTOS_PRIMA} minutos: volved al presente, contad cómo supisteis del arresto y acordad un plan.`
     });
   }
 
@@ -528,7 +528,8 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
       buttons: [
         {
           action: "si",
-          label: "<i class='fa-solid fa-rotate-left'></i> Reiniciar",
+          label: "Reiniciar",
+          icon: "fa-solid fa-rotate-left",
           callback: async () => {
             await recogerTodo();
             await barajar();
@@ -561,11 +562,11 @@ function relojRestante(fin) {
 }
 
 const AVANCE = {
-  prima: "Recordad a la cautiva en libertad (unos diez minutos) y acordad un plan (R 43–44). Después, a Sexta.",
+  prima: "Recordad a la cautiva en libertad (unos diez minutos) y acordad un plan. Después, a Sexta.",
   sexta: "Primera ronda de actuaciones cumplida: pasad a Vísperas.",
-  visperas: "Compartid lo averiguado y revisad el plan (R 46). Después, a Completas.",
+  visperas: "Compartid lo averiguado y revisad el plan. Después, a Completas.",
   completas: "La noche ha pasado: pasad a Maitines.",
-  maitines: "El refugio ya no es seguro (R 47). Cuando lo narréis, a Laudes.",
+  maitines: "El refugio ya no es seguro. Cuando lo narréis, a Laudes.",
   laudes: "Recuento hecho: pasad al Final."
 };
 
@@ -582,12 +583,12 @@ function pasoParaPintar(estado, todas, limite, esGM) {
   const nombre = uuid => todas.find(h => h.uuid === uuid)?.name ?? "";
   const textos = {
     avanzar: { icono: "fa-solid fa-forward", texto: AVANCE[estado.fase] ?? `Pasad a ${siguiente}.`, boton: `Pasar a ${siguiente}` },
-    nuevaEscena: { icono: "fa-solid fa-theater-masks", texto: "Una Hermana anuncia su objetivo, el lugar y los PNJ (R 28–29).", boton: "Abrir escena" },
+    nuevaEscena: { icono: "fa-solid fa-theater-masks", texto: "Una Hermana anuncia su objetivo, el lugar y los PNJ.", boton: "Abrir escena" },
     participantes: { icono: "fa-solid fa-users", texto: "Elige quién actúa en la escena.", boton: "Todas las Hermanas" },
-    robarMayor: { icono: "fa-solid fa-hand-sparkles", texto: `Roba el arcano mayor de ${nombre(paso.hermana)} y elegid el concepto (R 30–31).`, boton: `Robar para ${nombre(paso.hermana)}` },
-    terminarEscena: { icono: "fa-solid fa-hourglass-end", texto: "Narrad y arbitrad. Al terminar se devuelven los mayores y se roban las sospechas (R 35–36).", boton: "Terminar escena" },
-    revelar: { icono: "fa-solid fa-eye", texto: "Laudes: revelad las sospechas, sumad y que el máximo sea acusada (R 57–59).", boton: "Revelar sospechas" },
-    sentencia: { icono: "fa-solid fa-gavel", texto: paso.hay ? "Narrad el juicio y la condena; vale una elipsis (R 49)." : "Narrad el juicio y el epílogo (R 49).", boton: "Publicar sentencia" }
+    robarMayor: { icono: "fa-solid fa-hand-sparkles", texto: `Roba el arcano mayor de ${nombre(paso.hermana)} y elegid el concepto.`, boton: `Robar para ${nombre(paso.hermana)}` },
+    terminarEscena: { icono: "fa-solid fa-hourglass-end", texto: "Narrad y arbitrad. Al terminar se devuelven los mayores y se roban las sospechas.", boton: "Terminar escena" },
+    revelar: { icono: "fa-solid fa-eye", texto: "Laudes: revelad las sospechas, sumad y que el máximo sea acusada.", boton: "Revelar sospechas" },
+    sentencia: { icono: "fa-solid fa-gavel", texto: paso.hay ? "Narrad el juicio y la condena; vale una elipsis." : "Narrad el juicio y el epílogo.", boton: "Publicar sentencia" }
   };
   return { clave: paso.clave, ...textos[paso.clave], datos: JSON.stringify(paso), esGM };
 }

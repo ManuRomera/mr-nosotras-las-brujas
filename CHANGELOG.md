@@ -1,5 +1,12 @@
 # Cambios
 
+## 1.4.0
+
+- **Tutorial guiado** con los tours de Foundry: uno para quien dirige (tracker, fichas, cartas, seguridad) y otro para las Hermanas. Se ofrece la primera vez, está en el botón «Tutorial» del tracker, en la bienvenida del chat y en Configuración → Tours.
+- Fuera de la interfaz las referencias a reglas numeradas («R 22», «R 55»…): quedan solo en la auditoría.
+- El diagnóstico sale del tracker: vive en Configuración → Ajustes del sistema.
+- El botón «Reiniciar» del diálogo de confirmación ya no enseña código.
+
 ## 1.3.0
 
 **Las cartas, con más peso**
@@ -26,7 +33,7 @@
 
 - **Tarot rehecho**: las 78 cartas, el dorso y la portada, en grabado marsellés. Antes las 22 cartas de mayores eran idénticas.
 - **Tracker de La Jueza**: tira de las siete horas con salto directo, barra **«Ahora»** con el siguiente paso, escena y mesa en dos columnas, puntos de inversión y diseño según la hora (sin panel de escena en Laudes o el Final).
-- **Automatismos**: sorteo de vínculos y quién empieza (R 22–23, R 27), cuenta atrás de Prima (R 43), primera sospecha para conservar y segunda para entregar con destinataria propuesta (R 55), aviso si falta alguien por robar antes de Laudes, sentencia del Final (R 49, R 60).
+- **Automatismos**: sorteo de vínculos y quién empieza, cuenta atrás de Prima, primera sospecha para conservar y segunda para entregar con destinataria propuesta, aviso si falta alguien por robar antes de Laudes, sentencia del Final.
 - **Fichas**: papel y tinta con tipografía IM Fell, carta del arcano en cada vínculo, la pregunta con el nombre ya puesto, sello de acusada o cautiva, retratos en arco y **modo oscuro**.
 - **Seguridad en mesa**: Pausa, Velo y Tarjeta X anónimas y líneas y velos acordados.
 - **Diagnóstico** copiable, **créditos**, **sonido ambiente** sintetizado (campanas, cartas) y **retratos por defecto**.
@@ -47,7 +54,7 @@
   Menores por Hermana con límite configurable; escena compartida con concepto
   dominante por número (empate de máximo = todas).
 - **Sospechas**: robadas boca abajo al montón del mundo, reveladas y sumadas en
-  **Laudes** —las entregadas a una destinataria suman para ella (R 53–54)—, con
+  **Laudes** —las entregadas a una destinataria suman para ella—, con
   acusación al máximo (en empate, a todas).
 - **Tracker de La Jueza**: fases del día con marcador y anuncio, inversiones
   (una por carta, límite = nº de Hermanas), dado opcional de 1 a 6, recuento y

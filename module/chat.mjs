@@ -68,7 +68,7 @@ export async function chatMenor(dato, { suya, susurro } = {}) {
     etiqueta: suya ? "Has robado una sospecha" : "Sospecha robada",
     carta: { img: `${RUTA}/assets/tarot/menores/${dato.pinta}-${dato.orden}.svg`, nombre: dato.nombre },
     titulo: dato.nombre,
-    pie: dato.modo === "entregar" ? "Entregada boca abajo: la destinataria no la mira hasta Laudes (R 53–54)." : undefined
+    pie: dato.modo === "entregar" ? "Entregada boca abajo: la destinataria no la mira hasta Laudes." : undefined
   }, { susurro });
 }
 
@@ -94,9 +94,9 @@ export async function chatFinal({ acusadas, cautiva }) {
     tipo: "final", tono: "sospecha", icono: "fa-solid fa-gavel",
     etiqueta: "Final del juego", emblema: `${RUTA}/assets/sprites/horas/final.webp`, titulo: acusadas.length ? "El pueblo ha hablado" : "Nadie más ha sido señalada",
     texto: acusadas.length
-      ? `Acusadas por el recuento: ${acusadas.join(", ")}. Narrad el juicio y la condena; podéis usar una elipsis para no mostrar la violencia (R 49).`
-      : "Narrad el juicio y el epílogo (R 49).",
-    pie: `${cautiva ? `La cautiva inicial, ${cautiva}, ` : "La cautiva inicial "}se resuelve según lo que haya pasado en la historia: salvarla no cancela la nueva acusación (R 60).`
+      ? `Acusadas por el recuento: ${acusadas.join(", ")}. Narrad el juicio y la condena; podéis usar una elipsis para no mostrar la violencia.`
+      : "Narrad el juicio y el epílogo.",
+    pie: `${cautiva ? `La cautiva inicial, ${cautiva}, ` : "La cautiva inicial "}se resuelve según lo que haya pasado en la historia: salvarla no cancela la nueva acusación.`
   });
 }
 
@@ -106,7 +106,7 @@ export async function chatVinculos({ filas, inicia }) {
     tipo: "vinculos", tono: "voz", icono: "fa-solid fa-link",
     etiqueta: "Vínculos sorteados", titulo: inicia ? `Empieza ${inicia}` : "Vínculos sorteados",
     texto: filas.map(f => `${f.nombre}: ${f.arcanos.map(r => MAYOR_POR_ROMANO[r]?.nombre ?? r).join(", ")}`).join(" · "),
-    pie: "Empieza quien sacó El Loco; si nadie lo sacó, quien tenga el arcano de menor valor (R 27, a verificar)."
+    pie: "Empieza quien sacó El Loco; si nadie lo sacó, quien tenga el arcano de menor valor."
   });
 }
 
@@ -147,6 +147,9 @@ const ACCIONES = {
     const pack = game.packs.get(`${ID}.ayudas`);
     if (pack) return pack.render(true);
     return ui.notifications.warn("Compendio de ayudas no disponible.");
+  },
+  tutorial() {
+    return game.mrNosotras?.tutorial?.();
   },
   fondo() {
     return game.mrNosotras?.elegirFondo?.();

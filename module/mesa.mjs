@@ -42,17 +42,17 @@ export function registrarAjustes() {
   game.settings.register(ID, "bienvenida", { scope: "world", config: false, type: String, default: "" });
   game.settings.register(ID, "valoresFiguras", {
     name: "Valores de las figuras",
-    hint: "Sota, Caballero, Dama y Rey. En la baraja de Marsella los números son 11, 12, 13 y 14; ajústalos a la tabla exacta de tu baraja (R 62).",
+    hint: "Sota, Caballero, Dama y Rey. En la baraja de Marsella los números son 11, 12, 13 y 14; ajústalos a la tabla exacta de tu baraja.",
     scope: "world", config: true, type: Array, default: [11, 12, 13, 14]
   });
   game.settings.register(ID, "robosPorHermana", {
     name: "Robos de menores por Hermana",
-    hint: "Cada Hermana debe terminar con este número de cartas menores robadas (R 55). El texto completo puede requerir otra lectura (R 50).",
+    hint: "Cada Hermana debe terminar con este número de cartas menores robadas. Dos es lo habitual: una para conservar y otra para entregar.",
     scope: "world", config: true, type: Number, default: 2, range: { min: 1, max: 6, step: 1 }
   });
   game.settings.register(ID, "destinatarias", {
     name: "Destinatarias de las cartas entregadas",
-    hint: "A quién se puede entregar boca abajo un arcano menor (R 56: hay una discrepancia interna en el manual).",
+    hint: "A quién se puede entregar boca abajo un arcano menor (según la edición, también puede ser la acusada inicial).",
     scope: "world", config: true, type: String, default: "hermanas",
     choices: {
       hermanas: "Otras Hermanas",
@@ -66,7 +66,7 @@ export function registrarAjustes() {
   });
   game.settings.register(ID, "dadoJueza", {
     name: "Dado opcional de 1d6",
-    hint: "Ofrece la tabla de consecuencias (Sí, pero… / No, y además…) como tarjeta de chat (R 72–73).",
+    hint: "Ofrece la tabla de consecuencias (Sí, pero… / No, y además…) como tarjeta de chat.",
     scope: "world", config: true, type: Boolean, default: true
   });
   game.settings.registerMenu(ID, "ventanas", {

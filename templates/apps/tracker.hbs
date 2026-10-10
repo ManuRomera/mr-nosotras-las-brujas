@@ -34,19 +34,19 @@
     <div class="nb-jz-barra">
       {{#if esGM}}
       {{#if esPrima}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="vinculos" data-tooltip="Reparte arcanos distintos a los vínculos vacíos y dice quién empieza (R 22–23, R 27)"><i class="fa-solid fa-link"></i> Sortear vínculos</button>
-      <button type="button" class="nb-boton nb-boton-suave{{#if reloj.activo}} activo{{/if}}" data-action="reloj" data-tooltip="El recuerdo de Prima no debería pasar de unos diez minutos (R 43)"><i class="fa-solid fa-hourglass-half"></i> {{#if reloj.activo}}<span data-reloj>{{reloj.texto}}</span>{{else}}Recuerdo · {{reloj.minutos}} min{{/if}}</button>
+      <button type="button" class="nb-boton nb-boton-suave" data-action="vinculos" data-tooltip="Reparte arcanos distintos a los vínculos vacíos y dice quién empieza"><i class="fa-solid fa-link"></i> Sortear vínculos</button>
+      <button type="button" class="nb-boton nb-boton-suave{{#if reloj.activo}} activo{{/if}}" data-action="reloj" data-tooltip="El recuerdo de Prima no debería pasar de unos diez minutos"><i class="fa-solid fa-hourglass-half"></i> {{#if reloj.activo}}<span data-reloj>{{reloj.texto}}</span>{{else}}Recuerdo · {{reloj.minutos}} min{{/if}}</button>
       {{/if}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="dado" data-tooltip="Tabla opcional de 1d6 (R 72–73)"><i class="fa-solid fa-dice-six"></i> Dado</button>
-      <button type="button" class="nb-boton nb-boton-suave" data-action="barajar" data-tooltip="Mezclar los dos mazos (R 13)"><i class="fa-solid fa-shuffle"></i> Barajar</button>
+      <button type="button" class="nb-boton nb-boton-suave" data-action="dado" data-tooltip="Tabla opcional de 1d6"><i class="fa-solid fa-dice-six"></i> Dado</button>
+      <button type="button" class="nb-boton nb-boton-suave" data-action="barajar" data-tooltip="Mezclar los dos mazos"><i class="fa-solid fa-shuffle"></i> Barajar</button>
       {{/if}}
       {{#if esGM}}<button type="button" class="nb-boton nb-boton-suave" data-action="fondo" data-tooltip="Cambiar la escena de fondo de la mesa"><i class="fa-solid fa-image"></i> Fondo</button>{{/if}}
       <button type="button" class="nb-boton nb-boton-suave" data-action="seguridad" data-tooltip="Pausa, Velo, Tarjeta X y líneas acordadas"><i class="fa-solid fa-shield-heart"></i> Seguridad</button>
+      <button type="button" class="nb-boton nb-boton-suave" data-action="tutorial" data-tooltip="Tutorial guiado del juego"><i class="fa-solid fa-graduation-cap"></i> Tutorial</button>
       {{#if esGM}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="diagnostico" data-tooltip="Comprobar mazos, imágenes y partida"><i class="fa-solid fa-stethoscope"></i></button>
       <button type="button" class="nb-boton nb-boton-suave" data-action="reiniciar" data-tooltip="Volver a Prima con los mazos completos"><i class="fa-solid fa-rotate-left"></i> Reiniciar</button>
       {{/if}}
-      <span class="nb-jz-inversiones" data-tooltip="Inversiones de La Jueza: una por Hermana, sin recuperarlas (R 66–69)">
+      <span class="nb-jz-inversiones" data-tooltip="Inversiones de La Jueza: una por Hermana, sin recuperarlas">
         <i class="fa-solid fa-rotate"></i>
         {{#each inversiones.pips}}<span class="nb-pip{{#if usada}} usada{{/if}}"></span>{{/each}}
       </span>
@@ -93,7 +93,7 @@
             <select id="nb-pnj-select" aria-label="Añadir PNJ">
               {{#each pnjsDisponibles}}<option value="{{uuid}}">{{name}}</option>{{/each}}
             </select>
-            <button type="button" class="nb-boton-mini" data-action="pnjAnadir" aria-label="Añadir PNJ" data-tooltip="Añadir PNJ a la escena (R 64)"><i class="fa-solid fa-plus"></i></button>
+            <button type="button" class="nb-boton-mini" data-action="pnjAnadir" aria-label="Añadir PNJ" data-tooltip="Añadir PNJ a la escena"><i class="fa-solid fa-plus"></i></button>
           </div>
           {{else}}<p class="nb-nota">Sin fichas de PNJ todavía: créalas desde el directorio de Actores.</p>{{/if}}{{/if}}
         </div>
@@ -136,7 +136,7 @@
           {{/unless}}{{/if}}
           {{/each}}
           <button type="button" class="nb-boton nb-boton-principal" data-action="terminarEscena"
-                  data-tooltip="Devuelve los mayores al mazo y roba un menor a cada participante (R 35–36)">
+                  data-tooltip="Devuelve los mayores al mazo y roba un menor a cada participante">
             <i class="fa-solid fa-hourglass-end"></i> Terminar escena
           </button>
         </div>
@@ -145,7 +145,7 @@
         {{/if}}
 
         {{else}}
-        <p class="nb-vacio">{{#if esGM}}Sin escena abierta. Pulsa <i class="fa-solid fa-plus"></i> o usa «Ahora» para declarar objetivo, lugar y PNJ (R 28–29).{{else}}Sin escena abierta.{{/if}}</p>
+        <p class="nb-vacio">{{#if esGM}}Sin escena abierta. Pulsa <i class="fa-solid fa-plus"></i> o usa «Ahora» para declarar objetivo, lugar y PNJ.{{else}}Sin escena abierta.{{/if}}</p>
         {{/if}}
       </section>
       {{/if}}
@@ -183,7 +183,7 @@
             <p class="nb-jz-acusadas"><i class="fa-solid fa-gavel"></i> <b>{{#each acusadas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</b>
               <span class="nb-tenue">nuevas acusadas del recuento</span></p>
             {{else}}
-            <p class="nb-nota">Las nuevas acusadas las decide el recuento de Laudes; con empate máximo, todas (R 58–59).</p>
+            <p class="nb-nota">Las nuevas acusadas las decide el recuento de Laudes; con empate máximo, todas.</p>
             {{/if}}
           </div>
         </section>
@@ -195,7 +195,7 @@
         <header>
           <h3><i class="fa-solid fa-hand"></i> Sospechas <span class="nb-tenue">{{robados}} robadas{{#if revelado}} · reveladas{{/if}}</span></h3>
           {{#if esGM}}{{#unless revelado}}<button type="button" class="nb-boton nb-boton-principal" data-action="revelar"
-                  data-tooltip="Descubre las cartas, suma y acusa al máximo (R 57–59)">
+                  data-tooltip="Descubre las cartas, suma y acusa al máximo">
             <i class="fa-solid fa-eye"></i> Revelar · Laudes</button>{{/unless}}{{/if}}
         </header>
         {{#if esGM}}
@@ -222,19 +222,19 @@
             {{/each}}
           </tbody>
         </table>
-        <p class="nb-nota">La primera sospecha de cada Hermana se conserva y la segunda se entrega, con destinataria propuesta; cámbialo aquí si la mesa lo decide (R 55).</p>
+        <p class="nb-nota">La primera sospecha de cada Hermana se conserva y la segunda se entrega, con destinataria propuesta; cámbialo aquí si la mesa lo decide.</p>
         {{else}}
-        <p class="nb-vacio">Al terminar cada escena, cada participante roba una sospecha. Ella la conoce; la entregada va boca abajo (R 53–54).</p>
+        <p class="nb-vacio">Al terminar cada escena, cada participante roba una sospecha. Ella la conoce; la entregada va boca abajo.</p>
         {{/if}}
         {{else}}
-        <p class="nb-vacio">Cada participante conoce sus propias sospechas; las entregadas van boca abajo hasta Laudes (R 53–54).</p>
+        <p class="nb-vacio">Cada participante conoce sus propias sospechas; las entregadas van boca abajo hasta Laudes.</p>
         {{/if}}
       </section>
       {{/if}}
     </div>
 
     <footer class="nb-jz-pie">
-      R = regla del dossier de consulta. Los puntos a verificar (R 50, 56, 62) se ajustan en Configuración → Ajustes del sistema.
+      Lo que el manual deja a la mesa (valor de las figuras, robos, destinatarias) se ajusta en Configuración → Ajustes del sistema.
     </footer>
   </div>
 </div>

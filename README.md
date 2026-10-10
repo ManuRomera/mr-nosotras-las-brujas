@@ -72,6 +72,10 @@ Un compendio con **8 escenas** ilustradas (la plaza, la iglesia, la sacristía, 
 
 <p align="center"><img src="docs/img/escenarios/plaza-pueblo.webp" alt="La plaza del pueblo" width="32%"> <img src="docs/img/escenarios/molino-viejo.webp" alt="El molino viejo" width="32%"> <img src="docs/img/escenarios/iglesia-nave.webp" alt="La iglesia" width="32%"></p>
 
+## Tutorial guiado
+
+La primera vez, el sistema te ofrece un **tutorial guiado** (como el de Foundry): un paseo por el tracker, las fichas y las cartas para quien dirige, y otro para las Hermanas. Está en el botón *Tutorial* del tracker y en Configuración → Tours.
+
 ## Pensado para jugar con cuidado
 
 La partida trata de persecución, misoginia y ejecución. El botón **Seguridad** abre **Pausa**, **Velo** y **Tarjeta X** —anónimas, a toda la mesa al instante— y las **líneas y velos** acordados.
@@ -86,10 +90,10 @@ El dossier de reglas marca varios puntos «a verificar con el original»; el sis
 
 | Ajuste | Para qué |
 |---|---|
-| Valores de las figuras | Sota, Caballero, Dama y Rey (11–14 por defecto, R 62) |
-| Robos por Hermana | Dos por defecto: una para conservar y otra para entregar (R 50, R 55) |
-| Destinatarias | Solo otras Hermanas, o también la acusada inicial (R 56) |
-| Dado opcional de 1d6 | Las seis respuestas de La Jueza (R 72–73) |
+| Valores de las figuras | Sota, Caballero, Dama y Rey (11–14 por defecto) |
+| Robos por Hermana | Dos por defecto: una para conservar y otra para entregar |
+| Destinatarias | Solo otras Hermanas, o también la acusada inicial |
+| Dado opcional de 1d6 | Las seis respuestas de La Jueza |
 
 ## Para quien quiera mirar dentro
 

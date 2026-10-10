@@ -16,6 +16,7 @@ import { registrarSonido } from "./module/sonido.mjs";
 import { PanelSeguridad, registrarSeguridad } from "./module/apps/seguridad.mjs";
 import { PanelDiagnostico } from "./module/apps/diagnostico.mjs";
 import { registrarLupa } from "./module/lupa.mjs";
+import { registrarTutorial, empezarTutorial, ofrecerTutorial } from "./module/tutorial.mjs";
 import { activarFondo, elegirFondo } from "./module/escenario.mjs";
 import "./module/mr-credits.mjs";
 
@@ -31,6 +32,7 @@ Hooks.once("init", () => {
   registrarAccesibilidad();
   registrarSonido();
   registrarLupa();
+  game.settings.register(ID, "tutorialOfrecido", { scope: "client", config: false, type: Boolean, default: false });
   registrarSeguridad();
   game.settings.registerMenu(ID, "diagnosticoMenu", {
     name: "Diagnóstico",
@@ -45,6 +47,7 @@ Hooks.once("init", () => {
     abrirJueza: () => TrackerJueza.abrir(),
     abrirSeguridad: () => PanelSeguridad.abrir(),
     elegirFondo,
+    tutorial: empezarTutorial,
     activarFondo,
     abrirDiagnostico: () => PanelDiagnostico.abrir(),
     asegurarMazo,
@@ -59,11 +62,14 @@ Hooks.once("ready", async () => {
   escucharSocket();
   escucharChat();
   PanelSeguridad.iniciar();
+  await registrarTutorial();
   console.info(`MR- Nosotras, las brujas ${game.system.version} · Foundry ${game.version} (generación ${generacion()})`);
   if (game.user.isGM) {
     await asegurarMazo();
     await bienvenida();
   }
+  // La primera vez, el propio sistema ofrece el tutorial guiado (como hace Foundry con el suyo).
+  setTimeout(() => ofrecerTutorial(), 2500);
 });
 
 /** Una tarjeta de bienvenida por versión, solo para quien administra el mundo. */
@@ -81,6 +87,7 @@ async function bienvenida() {
     botones: [
       { etiqueta: "Tracker de La Jueza", icono: "fa-solid fa-scale-unbalanced", accion: "jueza" },
       { etiqueta: "Ayudas de juego", icono: "fa-solid fa-book-open", accion: "ayudas" },
+      { etiqueta: "Tutorial guiado", icono: "fa-solid fa-graduation-cap", accion: "tutorial" },
       { etiqueta: "Seguridad", icono: "fa-solid fa-shield-heart", accion: "seguridad" },
       { etiqueta: "Fondo de la mesa", icono: "fa-solid fa-image", accion: "fondo" },
       { etiqueta: "Dado de 1d6", icono: "fa-solid fa-dice-six", accion: "dado" }

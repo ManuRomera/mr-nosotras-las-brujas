@@ -1,0 +1,108 @@
+{
+  "title": "Nosotras, las brujas · Cómo dirigir",
+  "description": "Un paseo de unos tres minutos por el tracker de La Jueza, las fichas y las cartas.",
+  "display": true,
+  "canBeResumed": true,
+  "restricted": true,
+  "suggestedNextTours": ["mr-nosotras-las-brujas.hermana"],
+  "steps": [
+    {
+      "id": "bienvenida",
+      "title": "Un pueblo, una acusada, siete horas",
+      "content": "Bienvenida a <b>Nosotras, las brujas</b>. Una Hermana ha sido acusada y las demás tenéis hasta el final del día para salvarla, mientras las sospechas se reparten entre vosotras.\nLa Jueza dirige, las Hermanas actúan y las cartas del tarot cuentan lo que pasa. Este sistema lleva las cartas, el recuento y el reloj; el manual del juego sigue siendo imprescindible.\nPuedes avanzar y retroceder con los botones de abajo, y salir cuando quieras."
+    },
+    {
+      "id": "fichas",
+      "title": "Una ficha por persona",
+      "selector": "#actors",
+      "tooltipDirection": "LEFT",
+      "content": "En los Actores crea una ficha de <b>Hermana</b> para cada jugadora, un <b>Pueblo</b> con lo que une al grupo y quién acusa a la cautiva, y los <b>PNJ</b> que hagan falta.\nLas fichas nuevas estrenan un retrato; cámbialo cuando quieras."
+    },
+    {
+      "id": "boton-jueza",
+      "title": "El tracker de La Jueza",
+      "selector": "#actors .nb-boton-jueza",
+      "tooltipDirection": "LEFT",
+      "restricted": true,
+      "content": "Este botón abre el <b>tracker de La Jueza</b>. También lo tienes en la barra de herramientas de la escena, con el escudo de seguridad al lado."
+    },
+    {
+      "id": "tracker",
+      "title": "Las siete horas",
+      "selector": "#nb-tracker .nb-jz-cabecera",
+      "tooltipDirection": "DOWN",
+      "restricted": true,
+      "content": "La partida va de <b>Prima</b> a <b>Final</b>: Prima (el recuerdo), Sexta y Completas (las escenas), Vísperas y Maitines (para conversar), Laudes (el recuento) y el Final (el juicio).\nLas tres horas con carta tienen su marcador: La Estrella, El Sol y La Luna. Pulsa una hora para saltar a ella; el chat anuncia cada cambio y suenan las campanas."
+    },
+    {
+      "id": "ahora",
+      "title": "«Ahora»: lo que toca",
+      "selector": "#nb-tracker .nb-jz-ahora",
+      "tooltipDirection": "DOWN",
+      "restricted": true,
+      "content": "Esta barra te dice <b>el siguiente paso</b> y lo hace con un botón: abrir la escena, elegir quién actúa, robar los arcanos, terminarla, pasar de hora, revelar en Laudes. Si dudas, pulsa «Ahora»."
+    },
+    {
+      "id": "barra",
+      "title": "Herramientas",
+      "selector": "#nb-tracker .nb-jz-barra",
+      "tooltipDirection": "DOWN",
+      "restricted": true,
+      "content": "En Prima, <b>Sortear vínculos</b> reparte un arcano a cada vínculo vacío y dice quién empieza, y <b>Recuerdo</b> pone diez minutos de cuenta atrás.\n<b>Dado</b> lanza el 1d6 opcional de La Jueza; <b>Fondo</b> cambia la escena de fondo de la mesa; <b>Seguridad</b> abre la pausa y las líneas y velos. Los puntos de la derecha son tus <b>inversiones</b>: una por Hermana, y no se recuperan."
+    },
+    {
+      "id": "mesa",
+      "title": "La mesa",
+      "selector": "#nb-tracker .nb-jz-lateral",
+      "tooltipDirection": "LEFT",
+      "restricted": true,
+      "content": "Aquí ves a cada Hermana con sus sospechas robadas y, solo tú, lo que suma. Elige también <b>la cautiva</b>. Tras el recuento aparecen las <b>nuevas acusadas</b>: la que más suma; con empate, todas."
+    },
+    {
+      "id": "escena",
+      "title": "Una escena, paso a paso",
+      "restricted": true,
+      "content": "En Sexta y Completas aparece el panel de <b>Escena</b>. Una Hermana anuncia su objetivo y el lugar; tú eliges quién actúa y robas un <b>arcano mayor</b> para cada una.\nEl de número más alto marca el <b>concepto dominante</b>, el segundo da un PNJ o una actitud y los demás, detalles. Puedes <b>invertir</b> una carta para usar su concepto de dirección. Narrad, y al terminar la escena se roban las sospechas.\nPasa el cursor por una carta para verla en grande."
+    },
+    {
+      "id": "sospechas",
+      "title": "Sospechas boca abajo",
+      "restricted": true,
+      "content": "Al cerrar cada escena, cada participante roba un <b>arcano menor</b>: la primera sospecha se conserva y la segunda se entrega a otra Hermana, que no la mira hasta Laudes. El tracker propone la destinataria y tú puedes cambiarla.\nEn <b>Laudes</b> se revelan, se suma y se acusa al máximo."
+    },
+    {
+      "id": "hoja",
+      "title": "La hoja de la Hermana",
+      "selector": ".application.nb-hermana .nb-frases",
+      "tooltipDirection": "LEFT",
+      "content": "La hoja se lee como frases que se rellenan: por qué podría ser la siguiente y cuál es su lugar seguro. Con el candado se desbloquea para editar. Si hace falta, el icono de la derecha cambia a modo compacto."
+    },
+    {
+      "id": "vinculos",
+      "title": "Vínculos con arcanos",
+      "selector": ".application.nb-hermana .nb-vinculos",
+      "tooltipDirection": "LEFT",
+      "content": "Cada vínculo lleva la carta de su arcano y su pregunta, con el nombre ya puesto. Con la ficha desbloqueada, el dado sortea un arcano que no tengas. Arrastra otra ficha sobre un vínculo para enlazarla."
+    },
+    {
+      "id": "seguridad",
+      "title": "Seguridad en mesa",
+      "selector": "#nb-tracker [data-action=seguridad]",
+      "tooltipDirection": "DOWN",
+      "restricted": true,
+      "content": "La historia trata de persecución y ejecución. <b>Pausa</b>, <b>Velo</b> y <b>Tarjeta X</b> llegan a toda la mesa al instante y <b>no dicen quién las ha pulsado</b>. Acordad antes las líneas y los velos: aquí quedan a la vista de todas."
+    },
+    {
+      "id": "ajustes",
+      "title": "A tu medida",
+      "selector": "button[data-action=openApp][data-app=configure]",
+      "tooltipDirection": "LEFT",
+      "content": "En Configuración → Ajustes del sistema: el valor de las figuras, los robos por Hermana, la destinataria, el sonido, la lupa, el fondo por horas y el <b>diagnóstico</b>. El icono de accesibilidad de cada ventana cambia el tamaño del texto, el contraste y el modo oscuro."
+    },
+    {
+      "id": "fin",
+      "title": "Listo",
+      "content": "Eso es todo. El compendio <b>Ayudas de juego</b> resume el procedimiento, y el de <b>Escenarios</b> trae ocho fondos para ambientar.\nPuedes repetir este tutorial desde el botón del tracker o desde Configuración → Tours, y mandar a las jugadoras el tutorial de Hermana."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Nosotras, las brujas · Cómo jugar como Hermana",
+  "description": "Un paseo corto por tu ficha, tus vínculos y las cartas que se reparten en el chat.",
+  "display": true,
+  "canBeResumed": true,
+  "steps": [
+    {
+      "id": "bienvenida",
+      "title": "Eres una Hermana",
+      "content": "Un pueblo pequeño, una Hermana acusada y un día para salvarla. Tú decides qué hace tu personaje; <b>La Jueza</b> arbitra, interpreta al resto del pueblo y lleva las cartas.\nNo hay tiradas de acción: lo que pasa se decide hablando. Las cartas dan el tono de cada escena y reparten las sospechas."
+    },
+    {
+      "id": "fichas",
+      "title": "Tu ficha",
+      "selector": "#actors",
+      "tooltipDirection": "LEFT",
+      "content": "Tu ficha de Hermana está en los Actores. Ábrela con doble clic."
+    },
+    {
+      "id": "hoja",
+      "title": "La hoja",
+      "selector": ".application.nb-hermana .nb-frases",
+      "tooltipDirection": "LEFT",
+      "content": "La hoja se lee como frases: por qué podrías ser la siguiente y cuál es vuestro lugar seguro. Pulsa el candado para escribir; se guarda sola."
+    },
+    {
+      "id": "vinculos",
+      "title": "Tus vínculos",
+      "selector": ".application.nb-hermana .nb-vinculos",
+      "tooltipDirection": "LEFT",
+      "content": "Cada vínculo —con la acusada, con quien la acusa y con las demás Hermanas— tiene una carta de arcano y una pregunta para responder. <b>Pasa el cursor por la carta</b> y se ve en grande."
+    },
+    {
+      "id": "sospechas",
+      "title": "Tus sospechas",
+      "selector": ".application.nb-hermana details[data-memoria=sospechas]",
+      "tooltipDirection": "LEFT",
+      "content": "Al cerrar cada escena robas una sospecha. La primera la conservas y la segunda se la das a otra Hermana <b>boca abajo</b>: ella no la mira hasta Laudes. Aquí verás las tuyas y las que recibas."
+    },
+    {
+      "id": "chat",
+      "title": "El chat reparte las cartas",
+      "selector": "#chat",
+      "tooltipDirection": "LEFT",
+      "content": "Las cartas que La Jueza roba aparecen aquí, grandes y con su concepto. Al terminar la hora, el chat lo anuncia y suena una campana."
+    },
+    {
+      "id": "accesibilidad",
+      "title": "A tu medida",
+      "selector": ".application.nb-hermana .nb-a11y-boton",
+      "tooltipDirection": "DOWN",
+      "content": "Este icono, en la cabecera de cada ventana, cambia el tamaño del texto, el contraste, el modo oscuro y el movimiento. Y si algo te incomoda en la partida, el botón de seguridad del tracker y de la barra de herramientas manda una pausa a toda la mesa sin decir quién."
+    },
+    {
+      "id": "fin",
+      "title": "A jugar",
+      "content": "Responde a tus vínculos con tus compañeras, piensa por qué podrías ser tú la siguiente y, cuando La Jueza abra la primera escena, di qué quiere tu Hermana. Suerte."
+    }
+  ]
+}
