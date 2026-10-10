@@ -80,6 +80,8 @@ export async function chatFase(clave) {
   return publicar({
     tipo: "fase", tono: "fase", icono: "fa-solid fa-hourglass-half",
     etiqueta: marcador ? `${marcador.nombre} · ${marcador.romano}` : "Fase",
+    carta: marcador ? { img: `${RUTA}/assets/tarot/mayores/${marcador.romano}.svg`, nombre: marcador.nombre } : undefined,
+    emblema: marcador ? undefined : `${RUTA}/assets/sprites/horas/${clave}.webp`,
     titulo: fase.nombre,
     texto: fase.desc,
     sonido: { indice: ORDEN_FASES.indexOf(clave) }
@@ -90,7 +92,7 @@ export async function chatFase(clave) {
 export async function chatFinal({ acusadas, cautiva }) {
   return publicar({
     tipo: "final", tono: "sospecha", icono: "fa-solid fa-gavel",
-    etiqueta: "Final del juego", titulo: acusadas.length ? "El pueblo ha hablado" : "Nadie más ha sido señalada",
+    etiqueta: "Final del juego", emblema: `${RUTA}/assets/sprites/horas/final.webp`, titulo: acusadas.length ? "El pueblo ha hablado" : "Nadie más ha sido señalada",
     texto: acusadas.length
       ? `Acusadas por el recuento: ${acusadas.join(", ")}. Narrad el juicio y la condena; podéis usar una elipsis para no mostrar la violencia (R 49).`
       : "Narrad el juicio y el epílogo (R 49).",
@@ -116,7 +118,7 @@ export async function chatLaudes({ filas, acusadas }) {
   };
   return publicar({
     tipo: "laudes", tono: "sospecha", icono: "fa-solid fa-scale-unbalanced",
-    etiqueta: "Laudes", titulo: "El recuento de las sospechas",
+    etiqueta: "Laudes", emblema: `${RUTA}/assets/sprites/horas/laudes.webp`, titulo: "El recuento de las sospechas",
     lista,
     texto: acusadas.length
       ? `Nueva(s) acusada(s): ${acusadas.join(", ")}.`
@@ -145,6 +147,9 @@ const ACCIONES = {
     const pack = game.packs.get(`${ID}.ayudas`);
     if (pack) return pack.render(true);
     return ui.notifications.warn("Compendio de ayudas no disponible.");
+  },
+  fondo() {
+    return game.mrNosotras?.elegirFondo?.();
   },
   seguridad() {
     return game.mrNosotras?.abrirSeguridad?.();

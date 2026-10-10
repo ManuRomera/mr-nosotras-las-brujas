@@ -59,6 +59,11 @@ export function registrarAjustes() {
       conAcusada: "Otras Hermanas o la acusada inicial"
     }
   });
+  game.settings.register(ID, "fondoPorHoras", {
+    name: "Cambiar el fondo con cada hora",
+    hint: "Al cambiar de hora en el tracker se activa una escena de fondo distinta del compendio «Escenarios».",
+    scope: "world", config: true, type: Boolean, default: false
+  });
   game.settings.register(ID, "dadoJueza", {
     name: "Dado opcional de 1d6",
     hint: "Ofrece la tabla de consecuencias (Sí, pero… / No, y además…) como tarjeta de chat (R 72–73).",

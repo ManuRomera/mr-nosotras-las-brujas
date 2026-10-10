@@ -1,5 +1,15 @@
 # Cambios
 
+## 1.3.0
+
+**Las cartas, con más peso**
+
+- **Lupa**: al dejar el cursor sobre una carta (chat, tracker, hojas o mazos) o un retrato se muestra grande, en toda su magnitud, junto a ella. Se puede desactivar en Ajustes.
+- **Chat**: las cartas robadas salen centradas y grandes, con su reparto animado; las horas llevan su marcador o su emblema ilustrado; la bienvenida lleva portada.
+- **Tracker**: cartas más grandes, cabecera sobre la noche del pueblo y botón **Fondo**.
+- **Tapiz**: elige la escena de fondo de la mesa entre las ocho del compendio «Escenarios»; opcionalmente cambia sola con cada hora. Un mundo sin escena activa estrena la plaza del pueblo.
+- Los glifos de palo de los menores 2–10 se ven más llenos.
+
 ## 1.2.0
 
 **Arte propio de verdad**

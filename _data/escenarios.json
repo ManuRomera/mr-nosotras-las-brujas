@@ -9,11 +9,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -23,6 +19,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "plaza-pueblo"
+   }
   },
   "sort": 1000,
   "ownership": {
@@ -39,11 +40,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -53,6 +50,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "iglesia-nave"
+   }
   },
   "sort": 2000,
   "ownership": {
@@ -69,11 +71,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -83,6 +81,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "sacristia"
+   }
   },
   "sort": 3000,
   "ownership": {
@@ -99,11 +102,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -113,6 +112,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "molino-viejo"
+   }
   },
   "sort": 4000,
   "ownership": {
@@ -129,11 +133,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -143,6 +143,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "ermita-sierra"
+   }
   },
   "sort": 5000,
   "ownership": {
@@ -159,11 +164,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -173,6 +174,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "bosque-noche"
+   }
   },
   "sort": 6000,
   "ownership": {
@@ -189,11 +195,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -203,6 +205,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "camino-cementerio"
+   }
   },
   "sort": 7000,
   "ownership": {
@@ -219,11 +226,7 @@
   "width": 2560,
   "height": 1440,
   "padding": 0,
-  "initial": {
-   "x": 1280,
-   "y": 720,
-   "scale": 0.4
-  },
+  "backgroundColor": "#170f21",
   "grid": {
    "type": 0,
    "size": 100,
@@ -233,6 +236,11 @@
   "tokenVision": false,
   "fog": {
    "exploration": false
+  },
+  "flags": {
+   "mr-nosotras-las-brujas": {
+    "escenario": "calabozo"
+   }
   },
   "sort": 8000,
   "ownership": {

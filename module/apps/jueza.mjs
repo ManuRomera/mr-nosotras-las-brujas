@@ -15,6 +15,7 @@ import {
 } from "../reglas.mjs";
 import { asegurarMazo, barajar, robarMayor, robarMenor, devolverEscena, recogerTodo, revelarMenores, datoMayor, datoMenor, pila, imgMayor, imgMenor } from "../tarot.mjs";
 import { pintarRetratos } from "../retrato.mjs";
+import { activarFondo, FONDOS_POR_HORA } from "../escenario.mjs";
 import { chatMayor, chatMenor, chatFase, chatLaudes, chatFinal, chatVinculos, publicar, dado } from "../chat.mjs";
 
 const MINUTOS_PRIMA = 10;
@@ -48,6 +49,7 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
       reloj: TrackerJueza.#reloj,
       sentencia: TrackerJueza.#sentencia,
       crearHermana: TrackerJueza.#crearHermana,
+      fondo: () => game.mrNosotras.elegirFondo(),
       seguridad: () => game.mrNosotras.abrirSeguridad(),
       diagnostico: () => game.mrNosotras.abrirDiagnostico()
     }
@@ -283,6 +285,7 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
   static async #poner(app, clave) {
     await cambiarSesion({ fase: clave, reloj: clave === "prima" ? sesion().reloj : 0 });
     await chatFase(clave);
+    if (game.settings.get(ID, "fondoPorHoras")) await activarFondo(FONDOS_POR_HORA[clave]);
     app.render();
   }
 

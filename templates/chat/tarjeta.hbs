@@ -1,9 +1,11 @@
 <div class="nb-tc nb-tono-{{tono}} nb-tipo-{{tipo}}">
+  {{#if banner}}<img class="nb-tc-banner" src="{{banner}}" alt="">{{/if}}
   <header class="nb-tc-cabecera">
     <div class="nb-tc-rotulo">
       <span class="nb-cinta">{{#if icono}}<i class="{{icono}}"></i> {{/if}}{{etiqueta}}</span>
       {{#if subtitulo}}<span class="nb-tc-sub">{{subtitulo}}</span>{{/if}}
     </div>
+    {{#if emblema}}<figure class="nb-tc-emblema"><img src="{{emblema}}" alt=""></figure>{{/if}}
     {{#if carta}}
     <figure class="nb-tc-carta">
       <img src="{{carta.img}}" alt="{{carta.nombre}}">

@@ -39,9 +39,13 @@ Las **78 cartas** son de xilografía a color, con el arcano, el número y el nom
 
 <p align="center"><img src="docs/img/baraja.webp" alt="Una muestra de la baraja" width="100%"></p>
 
+> **Pasa el cursor por cualquier carta** (chat, tracker, fichas, mazos) y se amplía en toda su magnitud.
+
 ## El tracker de La Jueza: siempre sabes qué toca
 
-<p align="center"><img src="docs/img/tracker-escena.webp" alt="Tracker de La Jueza durante la hora de Sexta" width="62%"></p>
+<p align="center"><img src="docs/img/tracker-escena.webp" alt="Tracker de La Jueza en Sexta, con la escena de fondo y las cartas robadas en el chat" width="100%"></p>
+
+<p align="center"><img src="docs/img/lupa-escena.webp" alt="Una carta ampliada con la lupa" width="100%"><br><sub>Pasa el cursor por una carta y se amplía en toda su magnitud.</sub></p>
 
 - **Tira de las siete horas** (Prima, Sexta, Vísperas, Completas, Maitines, Laudes y Final) con su marcador; campanadas al cambiar.
 - **«Ahora»**: una barra que propone el siguiente paso con su botón. Abre escena, elige quién actúa, roba los mayores, termina, pasa de hora, revela en Laudes y publica la sentencia.
@@ -64,7 +68,7 @@ Las **78 cartas** son de xilografía a color, con el arcano, el número y el nom
 
 ## Escenarios listos
 
-Un compendio con **8 escenas** ilustradas (la plaza, la iglesia, la sacristía, el molino viejo, la ermita, el bosque, el camino del cementerio y el calabozo) para mostrar a la mesa.
+Un compendio con **8 escenas** ilustradas (la plaza, la iglesia, la sacristía, el molino viejo, la ermita, el bosque, el camino del cementerio y el calabozo) para mostrar a la mesa. El botón **Fondo** del tracker activa la que quieras para toda la mesa, y un ajuste la cambia sola con cada hora.
 
 <p align="center"><img src="docs/img/escenarios/plaza-pueblo.webp" alt="La plaza del pueblo" width="32%"> <img src="docs/img/escenarios/molino-viejo.webp" alt="El molino viejo" width="32%"> <img src="docs/img/escenarios/iglesia-nave.webp" alt="La iglesia" width="32%"></p>
 

@@ -229,7 +229,7 @@ body.nb-oscuro .mr-nosotras-las-brujas {
 .mr-nosotras-las-brujas .nb-tabla td b { color: var(--nb-hueso); font-weight: 400; }
 .mr-nosotras-las-brujas .nb-tabla td select { max-width: 100%; }
 .mr-nosotras-las-brujas .nb-valor { font-family: var(--nb-display); font-size: calc(20px * var(--nb-escala, 1)); color: var(--nb-oro); }
-.mr-nosotras-las-brujas .nb-mini { width: 28px; height: 47px; object-fit: cover; border-radius: 3px; border: 1px solid #000; vertical-align: middle; margin-right: 8px; background: var(--nb-noche-2); box-shadow: 0 2px 5px rgba(0, 0, 0, .5); }
+.mr-nosotras-las-brujas .nb-mini { width: 38px; height: 63px; cursor: zoom-in; object-fit: cover; border-radius: 3px; border: 1px solid #000; vertical-align: middle; margin-right: 8px; background: var(--nb-noche-2); box-shadow: 0 2px 5px rgba(0, 0, 0, .5); }
 
 /* Lista de opciones del chat */
 .mr-nosotras-las-brujas .nb-lista-opciones, .nb-tc .nb-lista-opciones { margin: 6px 0; border: 1px dashed var(--nb-borde); border-radius: 6px; padding: 4px 8px; }
@@ -363,12 +363,12 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 .mr-nosotras-las-brujas .nb-vinculos { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
 @container (min-width: 700px) { .mr-nosotras-las-brujas .nb-vinculos { grid-template-columns: 1fr 1fr; } }
 .mr-nosotras-las-brujas .nb-vinculo {
-  display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: start;
+  display: grid; grid-template-columns: 68px 1fr; gap: 10px; align-items: start;
   padding: 8px 10px 8px 8px; background: var(--hj-campo); border: 1px solid var(--hj-linea); border-radius: 6px;
 }
 .mr-nosotras-las-brujas .nb-vinculo:hover { border-color: var(--hj-acento); }
 .mr-nosotras-las-brujas .nb-vin-carta { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.mr-nosotras-las-brujas .nb-vin-img { display: block; width: 56px; height: 93px; object-fit: cover; border-radius: 4px; border: 1px solid #000; box-shadow: 0 3px 8px rgba(0, 0, 0, .4); background: var(--hj-fondo-3); }
+.mr-nosotras-las-brujas .nb-vin-img { display: block; width: 68px; height: 113px; cursor: zoom-in; object-fit: cover; border-radius: 4px; border: 1px solid #000; box-shadow: 0 3px 8px rgba(0, 0, 0, .4); background: var(--hj-fondo-3); }
 .mr-nosotras-las-brujas .nb-vin-img.vacia { opacity: .45; filter: grayscale(.5); }
 .mr-nosotras-las-brujas .nb-vin-cuerpo { min-width: 0; }
 .mr-nosotras-las-brujas .nb-vin-frase {
@@ -391,7 +391,7 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 
 /* Campos de PNJ y pueblo */
 .mr-nosotras-las-brujas .nb-campos { display: flex; flex-direction: column; gap: 4px; margin: 0 4px; }
-.mr-nosotras-las-brujas .nb-pnj-arcano { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: start; margin-bottom: 6px; }
+.mr-nosotras-las-brujas .nb-pnj-arcano { display: grid; grid-template-columns: 68px 1fr; gap: 12px; align-items: start; margin-bottom: 6px; }
 .mr-nosotras-las-brujas .nb-arquetipo { margin: 2px 0 0; font-family: var(--nb-mano); font-size: calc(23px * var(--nb-escala, 1)); color: var(--hj-acento); }
 .mr-nosotras-las-brujas .nb-lista-rasgos { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .mr-nosotras-las-brujas .nb-lista-rasgos li { display: flex; gap: 6px; align-items: center; }
@@ -424,8 +424,9 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 .nb-tc .nb-tc-cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .nb-tc .nb-tc-rotulo { display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; min-width: 0; align-items: flex-start; padding-right: 6px; }
 .nb-tc .nb-tc-sub { font-size: calc(14px * var(--nb-escala, 1)); color: var(--nb-hueso-3); font-style: italic; }
-.nb-tc .nb-tc-carta { margin: 0; text-align: center; flex: 0 0 96px; width: 96px; }
-.nb-tc .nb-tc-carta img { width: 90px; height: 150px; object-fit: cover; border-radius: 6px; border: 1px solid #000; box-shadow: var(--nb-sombra-carta); transform: rotate(2deg); }
+.nb-tc .nb-tc-carta { margin: 0; text-align: center; flex: 0 0 132px; width: 132px; }
+.nb-tc .nb-tc-carta img { width: 126px; height: 210px; object-fit: cover; border-radius: 8px; border: 1px solid #000; box-shadow: var(--nb-sombra-carta); transform: rotate(2deg); cursor: zoom-in; transition: transform .2s; }
+.nb-tc .nb-tc-carta img:hover { transform: rotate(0) scale(1.03); }
 .nb-tc .nb-tc-carta figcaption { margin-top: 6px; font-family: var(--nb-titulo); letter-spacing: .06em; font-size: calc(14px * var(--nb-escala, 1)); color: var(--nb-oro); line-height: 1.2; }
 .nb-tc .nb-tc-titulo { margin: 8px 0 4px; font-family: var(--nb-display); font-weight: 400; font-size: calc(24px * var(--nb-escala, 1)); color: var(--nb-hueso); line-height: 1.15; border: none; }
 .nb-tc .nb-tc-texto { margin: 0 0 6px; font-size: calc(16px * var(--nb-escala, 1)); line-height: 1.4; color: var(--nb-hueso-2); }
@@ -459,7 +460,7 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 /* Cabecera: la hora, su marcador y la tira de las siete horas */
 .nb-jz-cabecera { padding: 10px 14px 10px; background: linear-gradient(180deg, rgba(216, 178, 74, .1), rgba(216, 178, 74, .03)); border: 1px solid var(--nb-oro-2); border-radius: 8px; box-shadow: inset 0 0 0 3px var(--nb-noche), inset 0 0 0 4px rgba(216, 178, 74, .25); }
 .nb-jz-titular { display: flex; gap: 14px; align-items: center; }
-.nb-jz-marcador { flex: none; width: 56px; height: 94px; object-fit: cover; border-radius: 5px; border: 1px solid #000; box-shadow: var(--nb-sombra-carta); transform: rotate(-3deg); }
+.nb-jz-marcador { flex: none; width: 68px; height: 113px; cursor: zoom-in; object-fit: cover; border-radius: 5px; border: 1px solid #000; box-shadow: var(--nb-sombra-carta); transform: rotate(-3deg); }
 .nb-jz-marcador.vacio { display: grid; place-items: center; background: var(--nb-noche-3); border: 1px dashed var(--nb-oro-2); color: var(--nb-oro); font-size: 26px; transform: none; box-shadow: none; }
 .nb-jz-fase-txt { flex: 1; min-width: 0; }
 .nb-jz-fase-txt h2 { margin: 2px 0 0; font-family: var(--nb-display); font-weight: 400; font-size: calc(38px * var(--nb-escala, 1)); letter-spacing: .02em; color: var(--nb-oro); line-height: 1.05; text-shadow: 0 2px 0 rgba(0, 0, 0, .55); }
@@ -521,11 +522,11 @@ body.nb-oscuro .mr-nosotras-las-brujas.nb-pnj .nb-cuerpo, body.nb-oscuro .mr-nos
 .nb-jz-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
 .nb-jz-add-pnj { display: flex; gap: 6px; align-items: center; }
 .nb-jz-add-pnj select { flex: 1; }
-.nb-jz-mayores { list-style: none; margin: 8px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.nb-jz-mayores { list-style: none; margin: 8px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 8px; }
 .nb-jz-mayor { display: flex; gap: 10px; align-items: flex-start; padding: 8px; background: rgba(0, 0, 0, .28); border: 1px solid var(--nb-borde-suave); border-radius: 8px; }
 .nb-jz-mayor.dominante { border-color: var(--nb-oro); background: rgba(216, 178, 74, .1); box-shadow: 0 0 0 1px rgba(216, 178, 74, .25); }
 .nb-jz-mayor.segundo { border-color: var(--nb-acero); }
-.nb-jz-carta { flex: none; width: 60px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #000; box-shadow: var(--nb-sombra-carta); }
+.nb-jz-carta { flex: none; width: 84px; height: 140px; cursor: zoom-in; object-fit: cover; border-radius: 4px; border: 1px solid #000; box-shadow: var(--nb-sombra-carta); }
 .nb-jz-mayor.invertida .nb-jz-carta { filter: hue-rotate(-20deg) saturate(1.2); }
 .nb-jz-mayor-txt { flex: 1; min-width: 0; }
 .nb-jz-mayor-txt b { font-family: var(--nb-titulo); font-weight: 400; font-size: calc(16px * var(--nb-escala, 1)); letter-spacing: .05em; text-transform: uppercase; color: var(--nb-hueso); }
@@ -676,3 +677,34 @@ body.nb-sin-movimiento .nb-jz-marcador, body.nb-sin-movimiento .nb-tc-carta img 
 .nb-hora.actual i img { width: 26px; height: 26px; }
 .nb-hora:not(.actual):not(.pasada) i img { opacity: .6; filter: grayscale(.4); }
 .nb-jz-marcador.sprite { object-fit: contain; padding: 4px; background: rgba(0, 0, 0, .25); border: 1px solid var(--nb-oro-2); transform: none; box-shadow: none; }
+
+/* ═══ Más peso para las cartas ══════════════════════════════════════ */
+/* Lupa: la carta, grande, junto a su miniatura. */
+.nb-lupa { position: fixed; z-index: 99999; pointer-events: none; animation: nb-lupa-entra .16s ease-out; }
+.nb-lupa img { width: 100%; height: 100%; object-fit: contain; border-radius: 16px; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .8)) drop-shadow(0 0 2px rgba(0, 0, 0, .9)); }
+@keyframes nb-lupa-entra { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+
+/* Tarjetas de chat de una carta: la carta manda, centrada y grande, con su reparto. */
+.nb-tc.nb-tipo-mayor .nb-tc-cabecera, .nb-tc.nb-tipo-menor .nb-tc-cabecera, .nb-tc.nb-tipo-fase .nb-tc-cabecera { flex-direction: column; align-items: center; gap: 10px; }
+.nb-tc.nb-tipo-mayor .nb-tc-rotulo, .nb-tc.nb-tipo-menor .nb-tc-rotulo, .nb-tc.nb-tipo-fase .nb-tc-rotulo { align-items: center; padding: 0; }
+.nb-tc.nb-tipo-mayor .nb-tc-carta, .nb-tc.nb-tipo-menor .nb-tc-carta, .nb-tc.nb-tipo-fase .nb-tc-carta { flex: none; width: 100%; }
+.nb-tc.nb-tipo-mayor .nb-tc-carta img, .nb-tc.nb-tipo-menor .nb-tc-carta img { width: min(100%, 210px); height: auto; aspect-ratio: 3 / 5; transform: rotate(-1.5deg); animation: nb-reparto .45s cubic-bezier(.2, .8, .3, 1) both; }
+.nb-tc.nb-tipo-fase .nb-tc-carta img { width: 120px; height: 200px; transform: rotate(-2deg); }
+.nb-tc.nb-tipo-mayor .nb-tc-carta figcaption, .nb-tc.nb-tipo-menor .nb-tc-carta figcaption { margin-top: 8px; font-size: calc(16px * var(--nb-escala, 1)); }
+.nb-tc.nb-tipo-mayor .nb-tc-titulo, .nb-tc.nb-tipo-menor .nb-tc-titulo { text-align: center; font-size: calc(28px * var(--nb-escala, 1)); }
+.nb-tc.nb-tipo-mayor .nb-tc-texto, .nb-tc.nb-tipo-menor .nb-tc-texto, .nb-tc.nb-tipo-mayor .nb-tc-pie, .nb-tc.nb-tipo-menor .nb-tc-pie { text-align: center; }
+@keyframes nb-reparto { from { opacity: 0; transform: translateY(-18px) rotate(-8deg) scale(.9); } }
+/* Emblema ilustrado de la hora (Prima sí lleva carta; Laudes y el Final, sprite). */
+.nb-tc .nb-tc-emblema { margin: 0; flex: 0 0 84px; }
+.nb-tc .nb-tc-emblema img { width: 84px; height: 84px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .6)); }
+/* Cabecera con imagen (la bienvenida). */
+.nb-tc .nb-tc-banner { display: block; width: calc(100% + 28px); max-width: none; margin: -12px -14px 10px; height: 120px; object-fit: cover; object-position: center 70%; border-radius: 7px 7px 0 0; border-bottom: 2px solid var(--nb-oro-2); }
+
+/* El tapiz: la cabecera del tracker y de los diálogos, sobre la noche del pueblo. */
+.nb-jz-cabecera { background: linear-gradient(180deg, rgba(23, 15, 33, .55), rgba(23, 15, 33, .86)), url("../assets/portadas/portada.webp") center 78% / cover; }
+.application.nb-seguridad .window-content, .application.nb-diagnostico .window-content { background: linear-gradient(180deg, rgba(31,21,48,.3), rgba(23,15,33,.55)), var(--nb-damasco); }
+/* La carta dominante respira. */
+.nb-jz-mayor.dominante .nb-jz-carta { box-shadow: 0 0 0 1px rgba(216, 178, 74, .5), 0 8px 22px rgba(0, 0, 0, .7), 0 0 22px rgba(216, 178, 74, .28); }
+.nb-jz-carta, .nb-vin-img, .nb-mini { transition: transform .15s; }
+.nb-jz-carta:hover, .nb-vin-img:hover { transform: translateY(-3px) scale(1.04); }
+body.nb-sin-movimiento .nb-tc-carta img, body.nb-sin-movimiento .nb-lupa, body.nb-sin-movimiento .nb-lupa img { animation: none !important; transition: none !important; }

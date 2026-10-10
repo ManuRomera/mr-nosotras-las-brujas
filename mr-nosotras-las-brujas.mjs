@@ -15,6 +15,8 @@ import { pintarRetratos, repintarRetratos } from "./module/retrato.mjs";
 import { registrarSonido } from "./module/sonido.mjs";
 import { PanelSeguridad, registrarSeguridad } from "./module/apps/seguridad.mjs";
 import { PanelDiagnostico } from "./module/apps/diagnostico.mjs";
+import { registrarLupa } from "./module/lupa.mjs";
+import { activarFondo, elegirFondo } from "./module/escenario.mjs";
 import "./module/mr-credits.mjs";
 
 Hooks.once("init", () => {
@@ -28,6 +30,7 @@ Hooks.once("init", () => {
   registrarAjustes();
   registrarAccesibilidad();
   registrarSonido();
+  registrarLupa();
   registrarSeguridad();
   game.settings.registerMenu(ID, "diagnosticoMenu", {
     name: "Diagnóstico",
@@ -41,6 +44,8 @@ Hooks.once("init", () => {
   game.mrNosotras = {
     abrirJueza: () => TrackerJueza.abrir(),
     abrirSeguridad: () => PanelSeguridad.abrir(),
+    elegirFondo,
+    activarFondo,
     abrirDiagnostico: () => PanelDiagnostico.abrir(),
     asegurarMazo,
     cambiarSesion,
@@ -65,7 +70,10 @@ Hooks.once("ready", async () => {
 async function bienvenida() {
   if (game.settings.get(ID, "bienvenida") === game.system.version) return;
   await game.settings.set(ID, "bienvenida", game.system.version);
+  // Un mundo sin escena activa se queda en gris: ponemos la plaza del pueblo para ambientar.
+  if (!game.scenes.active) await activarFondo("plaza-pueblo");
   await publicar({
+    banner: `systems/${ID}/assets/portadas/portada.webp`,
     tipo: "bienvenida", tono: "fase", icono: "fa-solid fa-hat-wizard", alias: "La Jueza",
     etiqueta: `MR- Nosotras, las brujas ${game.system.version}`,
     titulo: "El pueblo ya habla: hay una acusada",
@@ -74,6 +82,7 @@ async function bienvenida() {
       { etiqueta: "Tracker de La Jueza", icono: "fa-solid fa-scale-unbalanced", accion: "jueza" },
       { etiqueta: "Ayudas de juego", icono: "fa-solid fa-book-open", accion: "ayudas" },
       { etiqueta: "Seguridad", icono: "fa-solid fa-shield-heart", accion: "seguridad" },
+      { etiqueta: "Fondo de la mesa", icono: "fa-solid fa-image", accion: "fondo" },
       { etiqueta: "Dado de 1d6", icono: "fa-solid fa-dice-six", accion: "dado" }
     ]
   });

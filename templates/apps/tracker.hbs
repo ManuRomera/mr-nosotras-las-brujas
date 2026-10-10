@@ -40,6 +40,7 @@
       <button type="button" class="nb-boton nb-boton-suave" data-action="dado" data-tooltip="Tabla opcional de 1d6 (R 72–73)"><i class="fa-solid fa-dice-six"></i> Dado</button>
       <button type="button" class="nb-boton nb-boton-suave" data-action="barajar" data-tooltip="Mezclar los dos mazos (R 13)"><i class="fa-solid fa-shuffle"></i> Barajar</button>
       {{/if}}
+      {{#if esGM}}<button type="button" class="nb-boton nb-boton-suave" data-action="fondo" data-tooltip="Cambiar la escena de fondo de la mesa"><i class="fa-solid fa-image"></i> Fondo</button>{{/if}}
       <button type="button" class="nb-boton nb-boton-suave" data-action="seguridad" data-tooltip="Pausa, Velo, Tarjeta X y líneas acordadas"><i class="fa-solid fa-shield-heart"></i> Seguridad</button>
       {{#if esGM}}
       <button type="button" class="nb-boton nb-boton-suave" data-action="diagnostico" data-tooltip="Comprobar mazos, imágenes y partida"><i class="fa-solid fa-stethoscope"></i></button>

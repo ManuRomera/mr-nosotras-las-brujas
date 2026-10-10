@@ -2,7 +2,7 @@
   "id": "mr-nosotras-las-brujas",
   "title": "MR- Nosotras, las brujas",
   "description": "Sistema para Foundry VTT de Nosotras, las brujas, el juego de rol narrativo de Hernán D'Andreis y Keith Monardes (Primigenia Austral) sobre persecución, sospechas y acusaciones de brujería. Trae el tarot completo de 78 cartas con sus mazos, el tracker de La Jueza con las siete fases, las sospechas y el recuento de Laudes, más las ayudas de juego.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13.351"

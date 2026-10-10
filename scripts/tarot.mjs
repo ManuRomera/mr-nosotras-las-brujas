@@ -116,7 +116,7 @@ function menor(orden, pinta) {
   const acento = ACENTO_PINTA[pinta];
   let contenido;
   const rutaArte = `assets/tarot/arte/menores/${pinta}-${orden}.webp`;
-  const defGlifo = GLIFOS?.[pinta] ? (([w, h]) => { const k = 228 / Math.max(w, h); return `<image id="g" href="${incrustar(`assets/tarot/glifos/${pinta}.webp`)}" x="${(-w * k) / 2}" y="${(-h * k) / 2}" width="${w * k}" height="${h * k}"/>`; })(GLIFOS[pinta]) : `<g id="g">${glifo(pinta)}</g>`;
+  const defGlifo = GLIFOS?.[pinta] ? (([w, h]) => { const k = 228 / Math.max(w, h); const ex = { oros: 1, copas: 1.25, espadas: 1.55, bastos: 1.7 }[pinta]; return `<image id="g" href="${incrustar(`assets/tarot/glifos/${pinta}.webp`)}" x="${(-w * k * ex) / 2}" y="${(-h * k) / 2}" width="${w * k * ex}" height="${h * k}" preserveAspectRatio="none"/>`; })(GLIFOS[pinta]) : `<g id="g">${glifo(pinta)}</g>`;
   if (hayArte(rutaArte) && (orden === 1 || orden > 10)) {
     contenido = arteVentana(rutaArte);
   } else if (orden <= 10) {

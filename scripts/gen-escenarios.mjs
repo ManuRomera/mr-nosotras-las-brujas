@@ -20,10 +20,10 @@ const documentos = ESCENAS.map(([archivo, nombre], i) => ({
   name: nombre,
   navigation: false,
   background: { src: `systems/${ID}/assets/escenarios/${archivo}.webp` },
-  width: 2560, height: 1440, padding: 0,
-  initial: { x: 1280, y: 720, scale: 0.4 },
+  width: 2560, height: 1440, padding: 0, backgroundColor: "#170f21",
   grid: { type: 0, size: 100, distance: 1, units: "m" },
   tokenVision: false, fog: { exploration: false },
+  flags: { [ID]: { escenario: archivo } },
   sort: (i + 1) * 1000,
   ownership: { default: 0 }
 }));
