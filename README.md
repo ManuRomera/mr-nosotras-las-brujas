@@ -43,9 +43,11 @@ Las **78 cartas** son de xilografía a color, con el arcano, el número y el nom
 
 ## La mesa de La Jueza: toda la pantalla, siempre sabes qué toca
 
-<p align="center"><img src="docs/img/tracker-escena.webp" alt="La mesa de La Jueza en Sexta, sobre la escena de fondo, con las cartas robadas en el chat" width="100%"></p>
+No hay ventana: **la mesa ocupa toda la pantalla** sobre la escena de fondo. Arriba la hora y las siete horas, en el centro las cartas de la escena, a los lados las Hermanas y las sospechas, y una columna de botones junto a los controles de Foundry. El ojo de la cabecera la oculta y deja solo la escena.
 
-<p align="center"><img src="docs/img/lupa-escena.webp" alt="Una carta ampliada con la lupa" width="100%"><br><sub>Pasa el cursor por una carta y se amplía en toda su magnitud.</sub></p>
+<p align="center"><img src="docs/img/mesa-escena.webp" alt="La mesa de La Jueza en Sexta, sobre la escena de fondo, con las cartas robadas en el chat" width="100%"></p>
+
+<p align="center"><img src="docs/img/mesa-lupa.webp" alt="Una carta ampliada con la lupa" width="100%"><br><sub>Pasa el cursor por una carta y se amplía en toda su magnitud.</sub></p>
 
 - **Tira de las siete horas** (Prima, Sexta, Vísperas, Completas, Maitines, Laudes y Final) con su marcador; campanadas al cambiar.
 - **«Ahora»**: una barra que propone el siguiente paso con su botón. Abre escena, elige quién actúa, roba los mayores, termina, pasa de hora, revela en Laudes y publica la sentencia.
@@ -54,7 +56,7 @@ Las **78 cartas** son de xilografía a color, con el arcano, el número y el nom
 - **Laudes**: revela, suma —lo entregado suma a quien lo recibe— y acusa al máximo; con empate, a todas. Avisa si falta alguien por robar.
 - **Prima**: sorteo de vínculos (y quién empieza) y cuenta atrás de diez minutos para el recuerdo.
 
-<p align="center"><img src="docs/img/tracker-laudes.webp" alt="Recuento de Laudes con las acusadas" width="100%"></p>
+<p align="center"><img src="docs/img/mesa-laudes.webp" alt="Recuento de Laudes con las acusadas" width="100%"></p>
 
 ## Fichas con papel y tinta
 
@@ -73,6 +75,8 @@ Un compendio con **8 escenas** ilustradas (la plaza, la iglesia, la sacristía, 
 <p align="center"><img src="docs/img/escenarios/plaza-pueblo.webp" alt="La plaza del pueblo" width="32%"> <img src="docs/img/escenarios/molino-viejo.webp" alt="El molino viejo" width="32%"> <img src="docs/img/escenarios/iglesia-nave.webp" alt="La iglesia" width="32%"></p>
 
 ## Tutorial guiado
+
+<p align="center"><img src="docs/img/tutorial.webp" alt="El tutorial guiado señalando la columna de herramientas de la mesa" width="100%"></p>
 
 La primera vez, el sistema te ofrece un **tutorial guiado** (como el de Foundry): un paseo por la mesa, las fichas y las cartas para quien dirige, y otro para las Hermanas. Lo encuentras en Configuración → Tutorial guiado y en Configuración → Tours.
 
