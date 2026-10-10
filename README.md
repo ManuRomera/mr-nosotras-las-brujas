@@ -12,7 +12,7 @@
 <h3 align="center">Un pueblo pequeño, una Hermana acusada y siete horas para descubrir quién la está envenenando con sospechas.</h3>
 
 <p align="center">
-  El juego de rol narrativo de <b>Hernán D'Andreis</b> y <b>Keith Monardes</b> (<a href="https://primigenia-austral.itch.io/nosotras-las-brujas">Primigenia Austral</a>), listo para jugar en Foundry VTT: <b>tarot completo de 78 cartas</b>, el <b>tracker de La Jueza</b> que te dice qué toca hacer, sospechas boca abajo, Laudes y seguridad en mesa.
+  El juego de rol narrativo de <b>Hernán D'Andreis</b> y <b>Keith Monardes</b> (<a href="https://primigenia-austral.itch.io/nosotras-las-brujas">Primigenia Austral</a>), listo para jugar en Foundry VTT: <b>tarot completo de 78 cartas</b>, el <b>mesa de La Jueza</b> que te dice qué toca hacer, sospechas boca abajo, Laudes y seguridad en mesa.
 </p>
 
 <p align="center">
@@ -39,11 +39,11 @@ Las **78 cartas** son de xilografía a color, con el arcano, el número y el nom
 
 <p align="center"><img src="docs/img/baraja.webp" alt="Una muestra de la baraja" width="100%"></p>
 
-> **Pasa el cursor por cualquier carta** (chat, tracker, fichas, mazos) y se amplía en toda su magnitud.
+> **Pasa el cursor por cualquier carta** (chat, mesa, fichas, mazos) y se amplía en toda su magnitud.
 
-## El tracker de La Jueza: siempre sabes qué toca
+## La mesa de La Jueza: toda la pantalla, siempre sabes qué toca
 
-<p align="center"><img src="docs/img/tracker-escena.webp" alt="Tracker de La Jueza en Sexta, con la escena de fondo y las cartas robadas en el chat" width="100%"></p>
+<p align="center"><img src="docs/img/tracker-escena.webp" alt="La mesa de La Jueza en Sexta, sobre la escena de fondo, con las cartas robadas en el chat" width="100%"></p>
 
 <p align="center"><img src="docs/img/lupa-escena.webp" alt="Una carta ampliada con la lupa" width="100%"><br><sub>Pasa el cursor por una carta y se amplía en toda su magnitud.</sub></p>
 
@@ -68,13 +68,13 @@ Las **78 cartas** son de xilografía a color, con el arcano, el número y el nom
 
 ## Escenarios listos
 
-Un compendio con **8 escenas** ilustradas (la plaza, la iglesia, la sacristía, el molino viejo, la ermita, el bosque, el camino del cementerio y el calabozo) para mostrar a la mesa. El botón **Fondo** del tracker activa la que quieras para toda la mesa, y un ajuste la cambia sola con cada hora.
+Un compendio con **8 escenas** ilustradas (la plaza, la iglesia, la sacristía, el molino viejo, la ermita, el bosque, el camino del cementerio y el calabozo) para mostrar a la mesa. El botón de la imagen de la mesa activa la que quieras para toda la mesa, y un ajuste la cambia sola con cada hora.
 
 <p align="center"><img src="docs/img/escenarios/plaza-pueblo.webp" alt="La plaza del pueblo" width="32%"> <img src="docs/img/escenarios/molino-viejo.webp" alt="El molino viejo" width="32%"> <img src="docs/img/escenarios/iglesia-nave.webp" alt="La iglesia" width="32%"></p>
 
 ## Tutorial guiado
 
-La primera vez, el sistema te ofrece un **tutorial guiado** (como el de Foundry): un paseo por el tracker, las fichas y las cartas para quien dirige, y otro para las Hermanas. Está en el botón *Tutorial* del tracker y en Configuración → Tours.
+La primera vez, el sistema te ofrece un **tutorial guiado** (como el de Foundry): un paseo por la mesa, las fichas y las cartas para quien dirige, y otro para las Hermanas. Lo encuentras en Configuración → Tutorial guiado y en Configuración → Tours.
 
 ## Pensado para jugar con cuidado
 

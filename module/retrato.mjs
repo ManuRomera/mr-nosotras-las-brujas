@@ -2,7 +2,7 @@
  * Encuadre del retrato. Cada actor guarda qué zona de su imagen se ve y con cuánto zoom
  * (`flags.mr-nosotras-las-brujas.retrato = {x, y, z}`: centro del recorte como fracción 0-1 de la imagen y zoom 1-6).
  * El recorte es siempre cuadrado y se aplica con `object-view-box`, así que vale para cualquier
- * <img> sin envoltorios: la ficha, el tracker de La Jueza, los vínculos, las tarjetas de chat y el directorio.
+ * <img> sin envoltorios: la ficha, la mesa de La Jueza, los vínculos, las tarjetas de chat y el directorio.
  */
 import { ID } from "./mesa.mjs";
 import { ApplicationV2 } from "./compat.mjs";

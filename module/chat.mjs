@@ -123,7 +123,7 @@ export async function chatLaudes({ filas, acusadas }) {
     texto: acusadas.length
       ? `Nueva(s) acusada(s): ${acusadas.join(", ")}.`
       : "Nadie supera el recuento: no hay nueva acusación.",
-    botones: [{ etiqueta: "Ver en el tracker", icono: "fa-solid fa-scroll", accion: "jueza" }]
+    botones: [{ etiqueta: "Ver la mesa", icono: "fa-solid fa-scroll", accion: "jueza" }]
   });
 }
 

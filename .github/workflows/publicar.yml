@@ -23,9 +23,11 @@ jobs:
         run: npm run build
       - name: Empaquetar
         run: |
-          mkdir -p dist
-          zip -r dist/mr-nosotras-las-brujas.zip system.json mr-nosotras-las-brujas.mjs module templates styles fonts lang assets packs LICENSE NOTICE.md README.md CHANGELOG.md -x "assets/tarot/arte/*"
+          node scripts/zip.mjs
           cp system.json dist/system.json
+          # El tutorial vive en tours/: si el zip no lo lleva, el sistema se instala sin tutorial.
+          unzip -l dist/mr-nosotras-las-brujas.zip | grep -q "tours/intro.json"
+          unzip -l dist/mr-nosotras-las-brujas.zip | grep -q "packs/escenarios"
           unzip -l dist/mr-nosotras-las-brujas.zip | tail -1
       - name: Notas de la versión
         run: |

@@ -32,6 +32,15 @@ Hooks.once("init", () => {
   registrarAccesibilidad();
   registrarSonido();
   registrarLupa();
+  game.settings.register(ID, "mesaOculta", { scope: "client", config: false, type: Boolean, default: false });
+  game.settings.registerMenu(ID, "tutorialMenu", {
+    name: "Tutorial guiado",
+    label: "Empezar el tutorial",
+    hint: "Un paseo guiado por la mesa, las fichas y las cartas. También está en Configuración → Tours.",
+    icon: "fa-solid fa-graduation-cap",
+    type: class extends ApplicationV2 { async render() { empezarTutorial(); return this; } },
+    restricted: false
+  });
   game.settings.register(ID, "tutorialOfrecido", { scope: "client", config: false, type: Boolean, default: false });
   registrarSeguridad();
   game.settings.registerMenu(ID, "diagnosticoMenu", {
@@ -63,6 +72,9 @@ Hooks.once("ready", async () => {
   escucharChat();
   PanelSeguridad.iniciar();
   await registrarTutorial();
+  // Toda la pantalla es la mesa: se muestra al entrar, salvo que esa persona la haya ocultado.
+  if (game.settings.get(ID, "mesaOculta")) TrackerJueza.pastilla();
+  else TrackerJueza.abrir();
   console.info(`MR- Nosotras, las brujas ${game.system.version} · Foundry ${game.version} (generación ${generacion()})`);
   if (game.user.isGM) {
     await asegurarMazo();
@@ -83,9 +95,9 @@ async function bienvenida() {
     tipo: "bienvenida", tono: "fase", icono: "fa-solid fa-hat-wizard", alias: "La Jueza",
     etiqueta: `MR- Nosotras, las brujas ${game.system.version}`,
     titulo: "El pueblo ya habla: hay una acusada",
-    texto: "Los mazos están listos. Abre el tracker para dirigir las fases y las escenas, crea las Hermanas con sus hojas y separad los roles: una Jueza, las demás Hermanas.",
+    texto: "Los mazos están listos. La mesa de La Jueza ocupa la pantalla: desde ahí diriges las fases y las escenas, crea las Hermanas con sus hojas y separad los roles: una Jueza, las demás Hermanas.",
     botones: [
-      { etiqueta: "Tracker de La Jueza", icono: "fa-solid fa-scale-unbalanced", accion: "jueza" },
+      { etiqueta: "La mesa de La Jueza", icono: "fa-solid fa-scale-unbalanced", accion: "jueza" },
       { etiqueta: "Ayudas de juego", icono: "fa-solid fa-book-open", accion: "ayudas" },
       { etiqueta: "Tutorial guiado", icono: "fa-solid fa-graduation-cap", accion: "tutorial" },
       { etiqueta: "Seguridad", icono: "fa-solid fa-shield-heart", accion: "seguridad" },
@@ -104,7 +116,7 @@ Hooks.on("preCreateActor", (actor, datos) => {
   actor.updateSource({ img, "prototypeToken.texture.src": img });
 });
 
-/** El estado de la partida cambia: se repinta el tracker y las hojas de Hermana. */
+/** El estado de la partida cambia: se repinta la mesa y las hojas de Hermana. */
 Hooks.on("nlb.sesion", () => {
   for (const app of foundry.applications.instances.values()) {
     if (app instanceof TrackerJueza || app instanceof HojaHermana) app.render();
@@ -126,12 +138,12 @@ Hooks.on("renderActorDirectory", (app, html) => {
   const boton = document.createElement("button");
   boton.type = "button";
   boton.className = "nb-boton-jueza";
-  boton.innerHTML = `<i class="fa-solid fa-scale-unbalanced" inert></i><span>Tracker de La Jueza</span>`;
+  boton.innerHTML = `<i class="fa-solid fa-scale-unbalanced" inert></i><span>La mesa de La Jueza</span>`;
   boton.addEventListener("click", () => TrackerJueza.abrir());
   acciones.append(boton);
 });
 
-/** Herramientas en la barra de tokens: el tracker de La Jueza y la seguridad en mesa, a un clic. */
+/** Herramientas en la barra de tokens: la mesa de La Jueza y la seguridad en mesa, a un clic. */
 Hooks.on("getSceneControlButtons", controles => {
   anadirHerramienta(controles, "tokens", {
     name: "nbSeguridad",
@@ -141,8 +153,8 @@ Hooks.on("getSceneControlButtons", controles => {
   });
   anadirHerramienta(controles, "tokens", {
     name: "nbJueza",
-    title: "Tracker de La Jueza",
+    title: "La mesa de La Jueza",
     icon: "fa-solid fa-scale-unbalanced",
-    onChange: () => TrackerJueza.abrir()
+    onChange: () => (foundry.applications.instances.get("nb-tracker")?.rendered ? TrackerJueza.ocultar() : TrackerJueza.abrir())
   });
 });

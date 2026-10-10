@@ -61,7 +61,7 @@ export function registrarAjustes() {
   });
   game.settings.register(ID, "fondoPorHoras", {
     name: "Cambiar el fondo con cada hora",
-    hint: "Al cambiar de hora en el tracker se activa una escena de fondo distinta del compendio «Escenarios».",
+    hint: "Al cambiar de hora en la mesa se activa una escena de fondo distinta del compendio «Escenarios».",
     scope: "world", config: true, type: Boolean, default: false
   });
   game.settings.register(ID, "dadoJueza", {

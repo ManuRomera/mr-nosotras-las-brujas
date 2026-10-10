@@ -1,240 +1,197 @@
-<div class="nb-jz">
-  <div class="nb-jz-scroll">
+<div class="nb-mesa" data-fase="{{fase.clave}}">
 
-    <header class="nb-jz-cabecera">
-      <div class="nb-jz-titular">
-        {{#if marcador}}
-        <img class="nb-jz-marcador" src="{{marcador.img}}" alt="{{marcador.nombre}}" data-tooltip="{{marcador.nombre}} · {{marcador.romano}} — señala {{fase.nombre}}">
-        {{else}}
-        <img class="nb-jz-marcador sprite" src="systems/mr-nosotras-las-brujas/assets/sprites/horas/{{fase.clave}}.webp" alt="" aria-hidden="true">
-        {{/if}}
-        <div class="nb-jz-fase-txt">
-          <span class="nb-cinta">Hora {{fase.indice}} de {{fase.total}} · {{totalEscenas}} {{#if (eq totalEscenas 1)}}escena{{else}}escenas{{/if}}</span>
-          <h2>{{fase.nombre}}</h2>
-          <p>{{fase.desc}}</p>
-        </div>
+  <header class="nb-m-cab">
+    <div class="nb-m-titulo">
+      {{#if marcador}}
+      <img class="nb-m-marcador" src="{{marcador.img}}" alt="{{marcador.nombre}}" data-tooltip="{{marcador.nombre}} · {{marcador.romano}} — señala {{fase.nombre}}">
+      {{else}}
+      <img class="nb-m-marcador sprite" src="systems/mr-nosotras-las-brujas/assets/sprites/horas/{{fase.clave}}.webp" alt="" aria-hidden="true">
+      {{/if}}
+      <div class="nb-m-fase-txt">
+        <span class="nb-cinta">Hora {{fase.indice}} de {{fase.total}} · {{totalEscenas}} {{#if (eq totalEscenas 1)}}escena{{else}}escenas{{/if}}</span>
+        <h2>{{fase.nombre}}</h2>
+        <p>{{fase.desc}}</p>
       </div>
-      <nav class="nb-jz-horas" aria-label="Las siete horas">
-        {{#each horas}}
-        <button type="button" class="nb-hora{{#if actual}} actual{{/if}}{{#if pasada}} pasada{{/if}}" data-action="irFase" data-fase="{{clave}}"
-                {{disabled (not ../esGM)}} {{#if actual}}aria-current="step"{{/if}}
-                data-tooltip="{{nombre}}{{#if marcador}} · {{marcador}}{{/if}}">
-          <i><img src="systems/mr-nosotras-las-brujas/assets/sprites/horas/{{clave}}.webp" alt=""></i><span>{{nombre}}</span>
-        </button>
-        {{/each}}
-      </nav>
-    </header>
-
-    <section class="nb-jz-ahora" aria-live="polite">
-      <i class="{{paso.icono}}" aria-hidden="true"></i>
-      <p><b>Ahora</b> {{paso.texto}}</p>
-      {{#if esGM}}<button type="button" class="nb-boton nb-boton-principal" data-action="paso" data-datos="{{paso.datos}}">{{paso.boton}}</button>{{/if}}
-    </section>
-
-    <div class="nb-jz-barra">
-      {{#if esGM}}
-      {{#if esPrima}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="vinculos" data-tooltip="Reparte arcanos distintos a los vínculos vacíos y dice quién empieza"><i class="fa-solid fa-link"></i> Sortear vínculos</button>
-      <button type="button" class="nb-boton nb-boton-suave{{#if reloj.activo}} activo{{/if}}" data-action="reloj" data-tooltip="El recuerdo de Prima no debería pasar de unos diez minutos"><i class="fa-solid fa-hourglass-half"></i> {{#if reloj.activo}}<span data-reloj>{{reloj.texto}}</span>{{else}}Recuerdo · {{reloj.minutos}} min{{/if}}</button>
-      {{/if}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="dado" data-tooltip="Tabla opcional de 1d6"><i class="fa-solid fa-dice-six"></i> Dado</button>
-      <button type="button" class="nb-boton nb-boton-suave" data-action="barajar" data-tooltip="Mezclar los dos mazos"><i class="fa-solid fa-shuffle"></i> Barajar</button>
-      {{/if}}
-      {{#if esGM}}<button type="button" class="nb-boton nb-boton-suave" data-action="fondo" data-tooltip="Cambiar la escena de fondo de la mesa"><i class="fa-solid fa-image"></i> Fondo</button>{{/if}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="seguridad" data-tooltip="Pausa, Velo, Tarjeta X y líneas acordadas"><i class="fa-solid fa-shield-heart"></i> Seguridad</button>
-      <button type="button" class="nb-boton nb-boton-suave" data-action="tutorial" data-tooltip="Tutorial guiado del juego"><i class="fa-solid fa-graduation-cap"></i> Tutorial</button>
-      {{#if esGM}}
-      <button type="button" class="nb-boton nb-boton-suave" data-action="reiniciar" data-tooltip="Volver a Prima con los mazos completos"><i class="fa-solid fa-rotate-left"></i> Reiniciar</button>
-      {{/if}}
+    </div>
+    <nav class="nb-m-horas" aria-label="Las siete horas">
+      {{#each horas}}
+      <button type="button" class="nb-hora{{#if actual}} actual{{/if}}{{#if pasada}} pasada{{/if}}" data-action="irFase" data-fase="{{clave}}"
+              {{disabled (not ../esGM)}} {{#if actual}}aria-current="step"{{/if}}
+              data-tooltip="{{nombre}}{{#if marcador}} · {{marcador}}{{/if}}">
+        <i><img src="systems/mr-nosotras-las-brujas/assets/sprites/horas/{{clave}}.webp" alt=""></i><span>{{nombre}}</span>
+      </button>
+      {{/each}}
+    </nav>
+    <div class="nb-m-extra">
       <span class="nb-jz-inversiones" data-tooltip="Inversiones de La Jueza: una por Hermana, sin recuperarlas">
         <i class="fa-solid fa-rotate"></i>
         {{#each inversiones.pips}}<span class="nb-pip{{#if usada}} usada{{/if}}"></span>{{/each}}
       </span>
+      <button type="button" class="nb-redondo" data-action="ocultar" data-tooltip="Ocultar la mesa y dejar solo la escena" aria-label="Ocultar la mesa"><i class="fa-solid fa-eye-slash"></i></button>
     </div>
+  </header>
 
-    <div class="nb-jz-cuerpo {{#if mostrarEscena}}con-escena{{else}}sin-escena{{/if}}">
+  <section class="nb-m-ahora" aria-live="polite">
+    <i class="{{paso.icono}}" aria-hidden="true"></i>
+    <p><b>Ahora</b> {{paso.texto}}</p>
+    {{#if esGM}}<button type="button" class="nb-boton nb-boton-principal" data-action="paso" data-datos="{{paso.datos}}">{{paso.boton}}</button>{{/if}}
+  </section>
 
-      {{#if mostrarEscena}}
-      <section class="nb-jz-panel nb-jz-escena">
-        <header>
-          <h3><i class="fa-solid fa-theater-masks"></i> Escena</h3>
-          {{#if esGM}}<button type="button" class="nb-boton-mini" data-action="nuevaEscena" data-tooltip="Empezar una escena nueva"><i class="fa-solid fa-plus"></i></button>{{/if}}
-        </header>
+  <aside class="nb-m-mesa">
+    <header>
+      <h3><i class="fa-solid fa-hat-wizard"></i> Las Hermanas</h3>
+      {{#if esGM}}<label class="nb-jz-directora" data-tooltip="Quién hace de La Jueza"><i class="fa-solid fa-scale-unbalanced"></i>
+        <input type="text" list="nb-usuarios" data-campo="directora" value="{{directora}}" placeholder="Jueza"></label>
+        <datalist id="nb-usuarios">{{#each usuarios}}<option value="{{this}}">{{/each}}</datalist>
+      {{else if directora}}<span class="nb-tenue"><i class="fa-solid fa-scale-unbalanced"></i> {{directora}}</span>{{/if}}
+    </header>
+    <ul class="nb-jz-totales">
+      {{#each hermanas}}
+      <li class="{{#if acusada}}acusada{{/if}}{{#if maximo}} maximo{{/if}}">
+        <button type="button" class="nb-m-retrato" data-action="abrir" data-uuid="{{uuid}}" data-tooltip="Abrir la hoja de {{nombre}}"><img class="nb-chip-img grande" src="{{img}}" alt="" data-retrato="{{id}}" data-lupa></button>
+        <span class="nb-jz-nombre">{{nombre}}
+          {{#if cautiva}}<i class="fa-solid fa-lock" data-tooltip="La cautiva"></i>{{/if}}
+          {{#if acusada}}<i class="fa-solid fa-gavel" data-tooltip="Acusada por el recuento"></i>{{/if}}</span>
+        <span class="nb-jz-robos" data-tooltip="{{robos}} de {{limite}} sospechas robadas">{{robos}}/{{limite}}</span>
+        {{#if ../esGM}}<b class="nb-jz-total">{{total}}</b>{{/if}}
+      </li>
+      {{else}}
+      <li class="nb-tenue">Sin Hermanas.{{#if ../esGM}} <button type="button" class="nb-enlace" data-action="crearHermana">Crear una</button>{{/if}}</li>
+      {{/each}}
+    </ul>
+    <div class="nb-jz-acusaciones">
+      <label class="nb-campo"><span><i class="fa-solid fa-gavel"></i> La cautiva</span>
+        <select data-campo="acusadaInicial" aria-label="Acusada inicial" {{disabled (not esGM)}}>
+          {{#each opcionesAcusada}}<option value="{{uuid}}" {{#if elegido}}selected{{/if}}>{{nombre}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if acusadas.length}}
+      <p class="nb-jz-acusadas"><i class="fa-solid fa-gavel"></i> <b>{{#each acusadas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</b>
+        <span class="nb-tenue">nuevas acusadas</span></p>
+      {{/if}}
+    </div>
+  </aside>
 
-        {{#if conEscena}}
-        <div class="nb-jz-campos">
-          <label class="nb-campo"><span>Objetivo</span>
-            <input type="text" data-campo="escena.objetivo" value="{{escena.objetivo}}" placeholder="qué pretende obtener o cambiar" {{disabled (not esGM)}}></label>
-          <label class="nb-campo"><span>Lugar</span>
-            <input type="text" data-campo="escena.lugar" value="{{escena.lugar}}" placeholder="dónde sucede" {{disabled (not esGM)}}></label>
-        </div>
+  <main class="nb-m-centro">
+    {{#if mostrarEscena}}
+      {{#if conEscena}}
+      <div class="nb-m-escena-cab">
+        <label class="nb-campo"><span>Objetivo</span>
+          <input type="text" data-campo="escena.objetivo" value="{{escena.objetivo}}" placeholder="qué pretende obtener o cambiar" {{disabled (not esGM)}}></label>
+        <label class="nb-campo"><span>Lugar</span>
+          <input type="text" data-campo="escena.lugar" value="{{escena.lugar}}" placeholder="dónde sucede" {{disabled (not esGM)}}></label>
+      </div>
+      <div class="nb-m-quien">
+        {{#each hermanas}}
+        <button type="button" class="nb-chip {{#if enEscena}}activa{{/if}}" data-action="participante" data-uuid="{{uuid}}" {{disabled (not ../esGM)}} data-tooltip="{{robos}}/{{limite}} sospechas robadas">
+          <img class="nb-chip-img" src="{{img}}" alt="" data-retrato="{{id}}">{{nombre}}
+        </button>
+        {{/each}}
+        {{#if esGM}}<button type="button" class="nb-boton-mini" data-action="todas" data-tooltip="Todas / ninguna" aria-label="Todas"><i class="fa-solid fa-users"></i></button>{{/if}}
+        {{#each pnjs}}
+        <span class="nb-chip fija"><i class="fa-solid fa-masks-theater"></i> {{nombre}}
+          {{#if ../esGM}}<button type="button" class="nb-icono" data-action="pnjQuitar" data-indice="{{i}}" aria-label="Quitar"><i class="fa-solid fa-xmark"></i></button>{{/if}}
+        </span>
+        {{/each}}
+        {{#if esGM}}{{#if pnjsDisponibles.length}}
+        <span class="nb-jz-add-pnj">
+          <select id="nb-pnj-select" aria-label="Añadir PNJ">{{#each pnjsDisponibles}}<option value="{{uuid}}">{{name}}</option>{{/each}}</select>
+          <button type="button" class="nb-boton-mini" data-action="pnjAnadir" aria-label="Añadir PNJ" data-tooltip="Añadir PNJ a la escena"><i class="fa-solid fa-plus"></i></button>
+        </span>
+        {{/if}}{{/if}}
+      </div>
 
-        <div class="nb-jz-participantes" aria-label="Hermanas en escena">
-          {{#each hermanas}}
-          <button type="button" class="nb-chip {{#if enEscena}}activa{{/if}}" data-action="participante" data-uuid="{{uuid}}" {{disabled (not ../esGM)}} data-tooltip="{{robos}}/{{limite}} sospechas robadas">
-            <img class="nb-chip-img" src="{{img}}" alt="" data-retrato="{{id}}">{{nombre}}
-          </button>
-          {{/each}}
-          {{#if esGM}}<button type="button" class="nb-boton-mini" data-action="todas" data-tooltip="Todas / ninguna" aria-label="Todas"><i class="fa-solid fa-users"></i></button>{{/if}}
-        </div>
-
-        <div class="nb-jz-pnjs">
-          {{#if pnjs.length}}
-          <div class="nb-jz-chips">
-            {{#each pnjs}}
-            <span class="nb-chip fija"><i class="fa-solid fa-masks-theater"></i> {{nombre}}
-              {{#if ../esGM}}<button type="button" class="nb-icono" data-action="pnjQuitar" data-indice="{{i}}" aria-label="Quitar"><i class="fa-solid fa-xmark"></i></button>{{/if}}
-            </span>
-            {{/each}}
-          </div>
+      {{#if mayores.length}}
+      <ul class="nb-m-cartas">
+        {{#each mayores}}
+        <li class="nb-m-carta {{#if dominante}}dominante{{/if}}{{#if segundo}} segundo{{/if}}{{#if invertida}} invertida{{/if}}">
+          <img class="nb-jz-carta" src="{{img}}" alt="{{nombre}}">
+          <b>{{nombre}}</b>
+          <span class="nb-jz-rol">{{#if dominante}}<i class="fa-solid fa-star"></i> Concepto dominante{{else}}{{#if segundo}}<i class="fa-solid fa-masks-theater"></i> PNJ o actitud{{else}}<i class="fa-solid fa-circle-info"></i> Detalle{{/if}}{{/if}}{{#if invertida}} · <i class="fa-solid fa-rotate"></i> invertida{{/if}}</span>
+          <p class="nb-jz-concepto {{#if invertida}}invertida{{/if}}">{{conceptoActual}}</p>
+          <small class="nb-tenue">{{hermanaNombre}} · {{#if invertida}}jugadora: {{pos}}{{else}}dirección: {{neg}}{{/if}}</small>
+          {{#if ../esGM}}
+          <span class="nb-m-carta-botones">
+            <button type="button" class="nb-boton-mini {{#if invertida}}activo{{/if}}" data-action="invertir" data-indice="{{indice}}"
+                    data-tooltip="{{#if invertida}}Devolver el concepto de jugadora{{else}}Invertir: concepto de dirección (1 uso){{/if}}" aria-label="Invertir"><i class="fa-solid fa-rotate"></i></button>
+            <button type="button" class="nb-boton-mini" data-action="quitarMayor" data-indice="{{indice}}" data-tooltip="Devolver al mazo" aria-label="Quitar"><i class="fa-solid fa-xmark"></i></button>
+          </span>
           {{/if}}
-          {{#if esGM}}{{#if pnjsDisponibles.length}}
-          <div class="nb-jz-add-pnj">
-            <select id="nb-pnj-select" aria-label="Añadir PNJ">
-              {{#each pnjsDisponibles}}<option value="{{uuid}}">{{name}}</option>{{/each}}
-            </select>
-            <button type="button" class="nb-boton-mini" data-action="pnjAnadir" aria-label="Añadir PNJ" data-tooltip="Añadir PNJ a la escena"><i class="fa-solid fa-plus"></i></button>
-          </div>
-          {{else}}<p class="nb-nota">Sin fichas de PNJ todavía: créalas desde el directorio de Actores.</p>{{/if}}{{/if}}
-        </div>
-
-        {{#if mayores.length}}
-        <ul class="nb-jz-mayores">
-          {{#each mayores}}
-          <li class="nb-jz-mayor {{#if dominante}}dominante{{/if}}{{#if segundo}} segundo{{/if}}{{#if invertida}} invertida{{/if}}">
-            <img class="nb-jz-carta" src="{{img}}" alt="{{nombre}}" data-tooltip="{{romano}} · {{nombre}}">
-            <div class="nb-jz-mayor-txt">
-              <b>{{nombre}}</b><span class="nb-tenue"> · {{hermanaNombre}}</span>
-              <p class="nb-jz-rol">
-                {{#if dominante}}<i class="fa-solid fa-star"></i> Concepto dominante{{else}}{{#if segundo}}<i class="fa-solid fa-masks-theater"></i> PNJ o actitud{{else}}<i class="fa-solid fa-circle-info"></i> Detalle{{/if}}{{/if}}
-                {{#if invertida}}· <i class="fa-solid fa-rotate"></i> invertida{{/if}}
-              </p>
-              <p class="nb-jz-concepto {{#if invertida}}invertida{{/if}}">{{conceptoActual}}</p>
-              <p class="nb-tenue nb-jz-otro">{{#if invertida}}Jugadora: {{pos}}{{else}}Dirección: {{neg}}{{/if}} · {{arquetipo}}</p>
-            </div>
-            {{#if ../esGM}}
-            <div class="nb-jz-mayor-botones">
-              <button type="button" class="nb-boton-mini {{#if invertida}}activo{{/if}}" data-action="invertir" data-indice="{{indice}}"
-                      data-tooltip="{{#if invertida}}Devolver el concepto de jugadora{{else}}Invertir: concepto de dirección (1 uso){{/if}}" aria-label="Invertir">
-                <i class="fa-solid fa-rotate"></i></button>
-              <button type="button" class="nb-boton-mini" data-action="quitarMayor" data-indice="{{indice}}" data-tooltip="Devolver al mazo" aria-label="Quitar">
-                <i class="fa-solid fa-xmark"></i></button>
-            </div>
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-        {{/if}}
-
-        {{#if esGM}}
-        <div class="nb-jz-robar">
-          {{#each hermanas}}
-          {{#if enEscena}}{{#unless enEscenaAhora}}
-          <button type="button" class="nb-boton" data-action="robarMayor" data-uuid="{{uuid}}">
-            <i class="fa-solid fa-hand-sparkles"></i> Mayor para {{nombre}}
-          </button>
-          {{/unless}}{{/if}}
-          {{/each}}
-          <button type="button" class="nb-boton nb-boton-principal" data-action="terminarEscena"
-                  data-tooltip="Devuelve los mayores al mazo y roba un menor a cada participante">
-            <i class="fa-solid fa-hourglass-end"></i> Terminar escena
-          </button>
-        </div>
-        {{else}}
-        <p class="nb-tenue">Espera a que La Jueza robe los arcanos de la escena.</p>
-        {{/if}}
-
-        {{else}}
-        <p class="nb-vacio">{{#if esGM}}Sin escena abierta. Pulsa <i class="fa-solid fa-plus"></i> o usa «Ahora» para declarar objetivo, lugar y PNJ.{{else}}Sin escena abierta.{{/if}}</p>
-        {{/if}}
-      </section>
+        </li>
+        {{/each}}
+      </ul>
+      {{else}}
+      <p class="nb-vacio">{{#if esGM}}Aún no hay arcanos: roba el de cada Hermana que actúa.{{else}}Espera a que La Jueza robe los arcanos de la escena.{{/if}}</p>
       {{/if}}
 
-      <aside class="nb-jz-lateral">
-        <section class="nb-jz-panel">
-          <header>
-            <h3><i class="fa-solid fa-hat-wizard"></i> La mesa</h3>
-            {{#if esGM}}<label class="nb-jz-directora" data-tooltip="Quién hace de La Jueza"><i class="fa-solid fa-scale-unbalanced"></i>
-              <input type="text" list="nb-usuarios" data-campo="directora" value="{{directora}}" placeholder="Jueza"></label>
-              <datalist id="nb-usuarios">{{#each usuarios}}<option value="{{this}}">{{/each}}</datalist>
-            {{else if directora}}<span class="nb-tenue"><i class="fa-solid fa-scale-unbalanced"></i> {{directora}}</span>{{/if}}
-          </header>
-          <ul class="nb-jz-totales">
-            {{#each hermanas}}
-            <li class="{{#if acusada}}acusada{{/if}}{{#if maximo}} maximo{{/if}}">
-              <img class="nb-chip-img grande" src="{{img}}" alt="" data-retrato="{{id}}">
-              <span class="nb-jz-nombre">{{nombre}}
-                {{#if cautiva}}<i class="fa-solid fa-lock" data-tooltip="La cautiva"></i>{{/if}}
-                {{#if acusada}}<i class="fa-solid fa-gavel" data-tooltip="Acusada por el recuento"></i>{{/if}}</span>
-              <span class="nb-jz-robos" data-tooltip="{{robos}} de {{limite}} sospechas robadas">{{robos}}/{{limite}}</span>
-              {{#if ../esGM}}<b class="nb-jz-total">{{total}}</b>{{/if}}
-            </li>
-            {{else}}
-            <li class="nb-tenue">Sin Hermanas.{{#if ../esGM}} <button type="button" class="nb-enlace" data-action="crearHermana">Crear una</button>{{/if}}</li>
-            {{/each}}
-          </ul>
-          <div class="nb-jz-acusaciones">
-            <label class="nb-campo"><span><i class="fa-solid fa-gavel"></i> La cautiva</span>
-              <select data-campo="acusadaInicial" aria-label="Acusada inicial" {{disabled (not esGM)}}>
-                {{#each opcionesAcusada}}<option value="{{uuid}}" {{#if elegido}}selected{{/if}}>{{nombre}}</option>{{/each}}
-              </select>
-            </label>
-            {{#if acusadas.length}}
-            <p class="nb-jz-acusadas"><i class="fa-solid fa-gavel"></i> <b>{{#each acusadas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</b>
-              <span class="nb-tenue">nuevas acusadas del recuento</span></p>
-            {{else}}
-            <p class="nb-nota">Las nuevas acusadas las decide el recuento de Laudes; con empate máximo, todas.</p>
-            {{/if}}
-          </div>
-        </section>
-
-      </aside>
-
-      {{#if mostrarSospechas}}
-      <section class="nb-jz-panel nb-jz-sospechas">
-        <header>
-          <h3><i class="fa-solid fa-hand"></i> Sospechas <span class="nb-tenue">{{robados}} robadas{{#if revelado}} · reveladas{{/if}}</span></h3>
-          {{#if esGM}}{{#unless revelado}}<button type="button" class="nb-boton nb-boton-principal" data-action="revelar"
-                  data-tooltip="Descubre las cartas, suma y acusa al máximo">
-            <i class="fa-solid fa-eye"></i> Revelar · Laudes</button>{{/unless}}{{/if}}
-        </header>
-        {{#if esGM}}
-        {{#if menores.length}}
-        <table class="nb-tabla">
-          <thead><tr><th>Carta</th><th>Robada por</th><th class="nb-centro">Valor</th><th>Modo</th><th>Destinataria</th></tr></thead>
-          <tbody>
-            {{#each menores}}
-            <tr>
-              <td><div class="nb-celda"><img class="nb-mini" src="{{img}}" alt=""><b>{{nombre}}</b></div></td>
-              <td>{{robadaPorNombre}}</td>
-              <td class="nb-centro nb-valor">{{valor}}</td>
-              <td>
-                <select data-menor="{{i}}" data-menor-campo="modo" aria-label="Modo">
-                  {{#each modos}}<option value="{{v}}" {{#if elegido}}selected{{/if}}>{{l}}</option>{{/each}}
-                </select>
-              </td>
-              <td>
-                <select data-menor="{{i}}" data-menor-campo="destinataria" aria-label="Destinataria">
-                  {{#each destinos}}<option value="{{uuid}}" {{#if elegido}}selected{{/if}}>{{nombre}}</option>{{/each}}
-                </select>
-              </td>
-            </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <p class="nb-nota">La primera sospecha de cada Hermana se conserva y la segunda se entrega, con destinataria propuesta; cámbialo aquí si la mesa lo decide.</p>
-        {{else}}
-        <p class="nb-vacio">Al terminar cada escena, cada participante roba una sospecha. Ella la conoce; la entregada va boca abajo.</p>
-        {{/if}}
-        {{else}}
-        <p class="nb-vacio">Cada participante conoce sus propias sospechas; las entregadas van boca abajo hasta Laudes.</p>
-        {{/if}}
-      </section>
+      {{#if esGM}}
+      <div class="nb-jz-robar">
+        {{#each hermanas}}{{#if enEscena}}{{#unless enEscenaAhora}}
+        <button type="button" class="nb-boton" data-action="robarMayor" data-uuid="{{uuid}}"><i class="fa-solid fa-hand-sparkles"></i> Mayor para {{nombre}}</button>
+        {{/unless}}{{/if}}{{/each}}
+        <button type="button" class="nb-boton nb-boton-principal" data-action="terminarEscena" data-tooltip="Devuelve los mayores al mazo y roba un menor a cada participante"><i class="fa-solid fa-hourglass-end"></i> Terminar escena</button>
+      </div>
       {{/if}}
-    </div>
 
-    <footer class="nb-jz-pie">
-      Lo que el manual deja a la mesa (valor de las figuras, robos, destinatarias) se ajusta en Configuración → Ajustes del sistema.
-    </footer>
-  </div>
+      {{else}}
+      <div class="nb-m-reposo">
+        <p>{{#if esGM}}Sin escena abierta.{{else}}Sin escena abierta.{{/if}}</p>
+        {{#if esGM}}<button type="button" class="nb-boton nb-boton-principal" data-action="nuevaEscena"><i class="fa-solid fa-plus"></i> Abrir escena</button>{{/if}}
+      </div>
+      {{/if}}
+    {{else}}
+      <div class="nb-m-reposo">
+        <img src="systems/mr-nosotras-las-brujas/assets/sprites/horas/{{fase.clave}}.webp" alt="" aria-hidden="true">
+        <p>{{fase.desc}}</p>
+        {{#if acusadas.length}}<p class="nb-m-veredicto"><i class="fa-solid fa-gavel"></i> <b>{{#each acusadas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</b> {{#if (eq acusadas.length 1)}}ha sido acusada{{else}}han sido acusadas{{/if}}.</p>{{/if}}
+      </div>
+    {{/if}}
+  </main>
+
+  <aside class="nb-m-sosp">
+    {{#if mostrarSospechas}}
+    <header>
+      <h3><i class="fa-solid fa-hand"></i> Sospechas <span class="nb-tenue">{{robados}}{{#if revelado}} · reveladas{{/if}}</span></h3>
+      {{#if esGM}}{{#unless revelado}}{{#if robados}}<button type="button" class="nb-boton-mini nb-boton-principal" data-action="revelar" data-tooltip="Descubre las cartas, suma y acusa al máximo"><i class="fa-solid fa-eye"></i> Revelar</button>{{/if}}{{/unless}}{{/if}}
+    </header>
+    {{#if esGM}}
+      {{#if menores.length}}
+      <ul class="nb-m-sospechas">
+        {{#each menores}}
+        <li>
+          <img class="nb-mini" src="{{img}}" alt="">
+          <div class="nb-m-sosp-datos">
+            <span><b>{{nombre}}</b> <span class="nb-valor">{{valor}}</span></span>
+            <span class="nb-tenue">{{robadaPorNombre}}</span>
+            <span class="nb-m-sosp-sel">
+              <select data-menor="{{i}}" data-menor-campo="modo" aria-label="Modo">{{#each modos}}<option value="{{v}}" {{#if elegido}}selected{{/if}}>{{l}}</option>{{/each}}</select>
+              <select data-menor="{{i}}" data-menor-campo="destinataria" aria-label="Destinataria">{{#each destinos}}<option value="{{uuid}}" {{#if elegido}}selected{{/if}}>{{nombre}}</option>{{/each}}</select>
+            </span>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+      <p class="nb-nota">La primera de cada Hermana se conserva y la segunda se entrega; cámbialo aquí si la mesa lo decide.</p>
+      {{else}}
+      <p class="nb-vacio">Al terminar cada escena, cada participante roba una sospecha: la entregada va boca abajo.</p>
+      {{/if}}
+    {{else}}
+      <p class="nb-vacio">Cada participante conoce sus propias sospechas; las entregadas van boca abajo hasta Laudes.</p>
+    {{/if}}
+    {{/if}}
+  </aside>
+
+  <footer class="nb-m-barra">
+  {{#if esGM}}{{#if esPrima}}
+  <button type="button" data-tooltip-direction="RIGHT" class="nb-redondo" data-action="vinculos" data-tooltip="Sortear vínculos: reparte arcanos a los vínculos vacíos y dice quién empieza" aria-label="Sortear vínculos"><i class="fa-solid fa-link"></i></button>
+  <button type="button" data-tooltip-direction="RIGHT" class="nb-redondo{{#if reloj.activo}} activo{{/if}}" data-action="reloj" data-tooltip="El recuerdo de Prima no debería pasar de unos diez minutos" aria-label="Cuenta atrás del recuerdo"><i class="fa-solid fa-hourglass-half"></i>{{#if reloj.activo}}<span class="nb-reloj" data-reloj>{{reloj.texto}}</span>{{/if}}</button>
+  {{/if}}
+  <button type="button" data-tooltip-direction="RIGHT" class="nb-redondo" data-action="dado" data-tooltip="Dado opcional de 1d6" aria-label="Dado"><i class="fa-solid fa-dice-six"></i></button>
+  <button type="button" data-tooltip-direction="RIGHT" class="nb-redondo" data-action="barajar" data-tooltip="Mezclar los dos mazos" aria-label="Barajar"><i class="fa-solid fa-shuffle"></i></button>
+  <button type="button" data-tooltip-direction="RIGHT" class="nb-redondo" data-action="fondo" data-tooltip="Cambiar la escena de fondo" aria-label="Fondo"><i class="fa-solid fa-image"></i></button>
+  {{/if}}
+  <button type="button" data-tooltip-direction="RIGHT" class="nb-redondo" data-action="ayudas" data-tooltip="Ayudas de juego" aria-label="Ayudas de juego"><i class="fa-solid fa-book-open"></i></button>
+  <button type="button" data-tooltip-direction="RIGHT" class="nb-redondo seguridad" data-action="seguridad" data-tooltip="Seguridad: pausa, velo, tarjeta X y líneas acordadas" aria-label="Seguridad"><i class="fa-solid fa-shield-heart"></i></button>
+  {{#if esGM}}<button type="button" data-tooltip-direction="RIGHT" class="nb-redondo" data-action="reiniciar" data-tooltip="Volver a Prima con los mazos completos" aria-label="Reiniciar"><i class="fa-solid fa-rotate-left"></i></button>{{/if}}
+  </footer>
 </div>

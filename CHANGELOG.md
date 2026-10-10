@@ -1,5 +1,14 @@
 # Cambios
 
+## 1.5.0
+
+**Toda la pantalla es la mesa**
+
+- El tracker deja de ser una ventana: **la mesa de La Jueza** ocupa la pantalla sobre la escena de fondo. Arriba, la hora y las siete horas; debajo, «Ahora»; a la izquierda, las Hermanas; en el centro, la escena y las cartas, grandes, como sobre una mesa de tarot; a la derecha, las sospechas; y junto a los controles de Foundry, una columna de botones (sorteo de vínculos, reloj, dado, barajar, fondo, ayudas, seguridad y reiniciar). Se adapta a la barra lateral y a pantallas estrechas.
+- El ojo de la cabecera la oculta y deja solo la escena; la pastilla «La mesa» (o la herramienta de la barra de la escena) la recupera. Cada persona elige.
+- **El tutorial no arrancaba al instalar desde GitHub**: el zip de la release no incluía la carpeta `tours/`. Corregido, y la publicación ahora comprueba que el zip lleve el tutorial. Además, si Foundry tiene otro tour en marcha (el suyo de bienvenida en un mundo nuevo), el nuestro lo cierra y arranca.
+- El tutorial ya no está en el tracker: se ofrece la primera vez, está en la bienvenida del chat, en Configuración → Tutorial guiado y en Configuración → Tours.
+
 ## 1.4.0
 
 - **Tutorial guiado** con los tours de Foundry: uno para quien dirige (tracker, fichas, cartas, seguridad) y otro para las Hermanas. Se ofrece la primera vez, está en el botón «Tutorial» del tracker, en la bienvenida del chat y en Configuración → Tours.

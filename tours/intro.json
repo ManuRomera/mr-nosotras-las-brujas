@@ -1,10 +1,12 @@
 {
   "title": "Nosotras, las brujas · Cómo dirigir",
-  "description": "Un paseo de unos tres minutos por el tracker de La Jueza, las fichas y las cartas.",
+  "description": "Un paseo de unos tres minutos por la mesa de La Jueza, las fichas y las cartas.",
   "display": true,
   "canBeResumed": true,
   "restricted": true,
-  "suggestedNextTours": ["mr-nosotras-las-brujas.hermana"],
+  "suggestedNextTours": [
+    "mr-nosotras-las-brujas.hermana"
+  ],
   "steps": [
     {
       "id": "bienvenida",
@@ -19,25 +21,17 @@
       "content": "En los Actores crea una ficha de <b>Hermana</b> para cada jugadora, un <b>Pueblo</b> con lo que une al grupo y quién acusa a la cautiva, y los <b>PNJ</b> que hagan falta.\nLas fichas nuevas estrenan un retrato; cámbialo cuando quieras."
     },
     {
-      "id": "boton-jueza",
-      "title": "El tracker de La Jueza",
-      "selector": "#actors .nb-boton-jueza",
-      "tooltipDirection": "LEFT",
-      "restricted": true,
-      "content": "Este botón abre el <b>tracker de La Jueza</b>. También lo tienes en la barra de herramientas de la escena, con el escudo de seguridad al lado."
-    },
-    {
-      "id": "tracker",
-      "title": "Las siete horas",
-      "selector": "#nb-tracker .nb-jz-cabecera",
+      "id": "mesa",
+      "title": "Toda la pantalla es la mesa",
       "tooltipDirection": "DOWN",
       "restricted": true,
-      "content": "La partida va de <b>Prima</b> a <b>Final</b>: Prima (el recuerdo), Sexta y Completas (las escenas), Vísperas y Maitines (para conversar), Laudes (el recuento) y el Final (el juicio).\nLas tres horas con carta tienen su marcador: La Estrella, El Sol y La Luna. Pulsa una hora para saltar a ella; el chat anuncia cada cambio y suenan las campanas."
+      "selector": "#nb-tracker .nb-m-cab",
+      "content": "Sobre la escena de fondo está <b>la mesa de La Jueza</b>: arriba la hora, abajo las herramientas, a la izquierda las Hermanas, en el centro las cartas y a la derecha las sospechas.\nLa partida va de <b>Prima</b> a <b>Final</b>: Prima (el recuerdo), Sexta y Completas (las escenas), Vísperas y Maitines (para conversar), Laudes (el recuento) y el Final (el juicio). Las tres horas con carta tienen su marcador: La Estrella, El Sol y La Luna. Pulsa una hora para saltar a ella; suenan las campanas.\nEl ojo de la derecha oculta la mesa y deja solo la escena; vuelve con el botón «La mesa»."
     },
     {
       "id": "ahora",
       "title": "«Ahora»: lo que toca",
-      "selector": "#nb-tracker .nb-jz-ahora",
+      "selector": "#nb-tracker .nb-m-ahora",
       "tooltipDirection": "DOWN",
       "restricted": true,
       "content": "Esta barra te dice <b>el siguiente paso</b> y lo hace con un botón: abrir la escena, elegir quién actúa, robar los arcanos, terminarla, pasar de hora, revelar en Laudes. Si dudas, pulsa «Ahora»."
@@ -45,24 +39,24 @@
     {
       "id": "barra",
       "title": "Herramientas",
-      "selector": "#nb-tracker .nb-jz-barra",
-      "tooltipDirection": "DOWN",
+      "selector": "#nb-tracker .nb-m-barra",
+      "tooltipDirection": "RIGHT",
       "restricted": true,
-      "content": "En Prima, <b>Sortear vínculos</b> reparte un arcano a cada vínculo vacío y dice quién empieza, y <b>Recuerdo</b> pone diez minutos de cuenta atrás.\n<b>Dado</b> lanza el 1d6 opcional de La Jueza; <b>Fondo</b> cambia la escena de fondo de la mesa; <b>Seguridad</b> abre la pausa y las líneas y velos. Los puntos de la derecha son tus <b>inversiones</b>: una por Hermana, y no se recuperan."
+      "content": "En la columna de botones de la izquierda: en Prima, <b>Sortear vínculos</b> reparte un arcano a cada vínculo vacío y dice quién empieza, y el <b>reloj</b> pone diez minutos al recuerdo.\nEl <b>dado</b> lanza el 1d6 opcional de La Jueza, <b>barajar</b> mezcla los mazos, la <b>imagen</b> cambia la escena de fondo, el <b>libro</b> abre las ayudas y el <b>escudo</b> la seguridad en mesa. Los puntos de arriba a la derecha son tus <b>inversiones</b>: una por Hermana, y no se recuperan."
     },
     {
-      "id": "mesa",
-      "title": "La mesa",
-      "selector": "#nb-tracker .nb-jz-lateral",
-      "tooltipDirection": "LEFT",
+      "id": "hermanas",
+      "title": "Las Hermanas",
+      "selector": "#nb-tracker .nb-m-mesa",
+      "tooltipDirection": "RIGHT",
       "restricted": true,
-      "content": "Aquí ves a cada Hermana con sus sospechas robadas y, solo tú, lo que suma. Elige también <b>la cautiva</b>. Tras el recuento aparecen las <b>nuevas acusadas</b>: la que más suma; con empate, todas."
+      "content": "Aquí ves a cada Hermana con sus sospechas robadas y, solo tú, lo que suma; pulsa su retrato para abrir su hoja. Elige también <b>la cautiva</b>. Tras el recuento aparecen las <b>nuevas acusadas</b>: la que más suma; con empate, todas."
     },
     {
       "id": "escena",
       "title": "Una escena, paso a paso",
       "restricted": true,
-      "content": "En Sexta y Completas aparece el panel de <b>Escena</b>. Una Hermana anuncia su objetivo y el lugar; tú eliges quién actúa y robas un <b>arcano mayor</b> para cada una.\nEl de número más alto marca el <b>concepto dominante</b>, el segundo da un PNJ o una actitud y los demás, detalles. Puedes <b>invertir</b> una carta para usar su concepto de dirección. Narrad, y al terminar la escena se roban las sospechas.\nPasa el cursor por una carta para verla en grande."
+      "content": "En Sexta y Completas el centro de la mesa se llena con la <b>escena</b>. Una Hermana anuncia su objetivo y el lugar; tú eliges quién actúa y robas un <b>arcano mayor</b> para cada una.\nEl de número más alto marca el <b>concepto dominante</b>, el segundo da un PNJ o una actitud y los demás, detalles. Puedes <b>invertir</b> una carta para usar su concepto de dirección. Narrad, y al terminar la escena se roban las sospechas.\nPasa el cursor por una carta para verla en grande."
     },
     {
       "id": "sospechas",
@@ -88,7 +82,7 @@
       "id": "seguridad",
       "title": "Seguridad en mesa",
       "selector": "#nb-tracker [data-action=seguridad]",
-      "tooltipDirection": "DOWN",
+      "tooltipDirection": "RIGHT",
       "restricted": true,
       "content": "La historia trata de persecución y ejecución. <b>Pausa</b>, <b>Velo</b> y <b>Tarjeta X</b> llegan a toda la mesa al instante y <b>no dicen quién las ha pulsado</b>. Acordad antes las líneas y los velos: aquí quedan a la vista de todas."
     },
@@ -102,7 +96,7 @@
     {
       "id": "fin",
       "title": "Listo",
-      "content": "Eso es todo. El compendio <b>Ayudas de juego</b> resume el procedimiento, y el de <b>Escenarios</b> trae ocho fondos para ambientar.\nPuedes repetir este tutorial desde el botón del tracker o desde Configuración → Tours, y mandar a las jugadoras el tutorial de Hermana."
+      "content": "Eso es todo. El compendio <b>Ayudas de juego</b> resume el procedimiento, y el de <b>Escenarios</b> trae ocho fondos para ambientar.\nPuedes repetir este tutorial desde Configuración → Tutorial guiado o Configuración → Tours, y mandar a las jugadoras el tutorial de Hermana."
     }
   ]
 }

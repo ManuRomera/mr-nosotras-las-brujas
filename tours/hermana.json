@@ -49,7 +49,7 @@
       "title": "A tu medida",
       "selector": ".application.nb-hermana .nb-a11y-boton",
       "tooltipDirection": "DOWN",
-      "content": "Este icono, en la cabecera de cada ventana, cambia el tamaño del texto, el contraste, el modo oscuro y el movimiento. Y si algo te incomoda en la partida, el botón de seguridad del tracker y de la barra de herramientas manda una pausa a toda la mesa sin decir quién."
+      "content": "Este icono, en la cabecera de cada ventana, cambia el tamaño del texto, el contraste, el modo oscuro y el movimiento. Y si algo te incomoda en la partida, el botón del escudo de la mesa y de la barra de herramientas manda una pausa a toda la mesa sin decir quién."
     },
     {
       "id": "fin",

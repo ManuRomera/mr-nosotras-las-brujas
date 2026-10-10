@@ -1,12 +1,11 @@
 /**
- * Tracker de La Jueza: la escena en marcha, las siete horas con sus marcadores,
- * el robo de arcanos, las inversiones, las sospechas y el recuento de Laudes.
- * Arriba, siempre, lo siguiente que conviene hacer.
+ * La mesa de La Jueza: toda la pantalla es el tracker. Sin ventana, sobre la escena de fondo:
+ * arriba la hora y las siete horas, debajo «Ahora» (lo siguiente que conviene hacer), a la izquierda
+ * las Hermanas, en el centro las cartas de la escena, a la derecha las sospechas y abajo las herramientas.
  *
- * Solo el cliente GM escribe; el resto de la mesa puede abrirlo para mirar.
+ * Solo el cliente GM escribe; el resto de la mesa lo ve para mirar. Cada persona puede ocultarla.
  */
 import { ApplicationV2, HandlebarsApplicationMixin, DialogV2 } from "../compat.mjs";
-import { ConMemoria } from "../memoria.mjs";
 import { ID, RUTA, sesion, cambiarSesion, hermanas, SESION_INICIAL } from "../mesa.mjs";
 import { FASES, ORDEN_FASES, MARCADORES, MAYOR_POR_ROMANO, PINTAS } from "../listas.mjs";
 import {
@@ -21,12 +20,12 @@ import { chatMayor, chatMenor, chatFase, chatLaudes, chatFinal, chatVinculos, pu
 const MINUTOS_PRIMA = 10;
 const ESCENA_VACIA = () => ({ objetivo: "", lugar: "", participantes: [], pnjs: [], mayores: [] });
 
-export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(ApplicationV2)) {
+export class TrackerJueza extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: "nb-tracker",
+    tag: "div",
     classes: ["mr-nosotras-las-brujas", "nb-tracker"],
-    position: { width: 860, height: 760 },
-    window: { icon: "fa-solid fa-scale-unbalanced", title: "Tracker de La Jueza", resizable: true },
+    window: { frame: false },
     actions: {
       fase: TrackerJueza.#fase,
       irFase: TrackerJueza.#irFase,
@@ -51,23 +50,66 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
       crearHermana: TrackerJueza.#crearHermana,
       fondo: () => game.mrNosotras.elegirFondo(),
       seguridad: () => game.mrNosotras.abrirSeguridad(),
-      tutorial: () => game.mrNosotras.tutorial()
+      ayudas: () => game.packs.get(`${ID}.ayudas`)?.render(true),
+      ocultar: () => TrackerJueza.ocultar()
     }
   };
 
-  static MEMORIA = "tracker-jueza";
-  static SCROLL_MEMORIA = [".nb-jz-scroll"];
-
   static PARTS = {
-    tracker: { template: `${RUTA}/templates/apps/tracker.hbs`, scrollable: [".nb-jz-scroll"] }
+    tracker: { template: `${RUTA}/templates/apps/tracker.hbs` }
   };
+
+  /** Secciones desplegables que la persona ha abierto o cerrado (sobreviven a los repintados). */
+  #abiertos = new Map();
 
   /** Cuenta atrás de Prima: se repinta cada segundo sin tocar el resto. */
   #pulso = null;
   #avisado = 0;
 
-  static abrir() {
+  /** Muestra la mesa (y la recuerda como visible para esta persona). */
+  static async abrir() {
+    await game.settings.set(ID, "mesaOculta", false);
+    document.getElementById("nb-pastilla")?.remove();
     return (foundry.applications.instances.get("nb-tracker") ?? new TrackerJueza()).render({ force: true });
+  }
+
+  /** Oculta la mesa para esta persona: queda solo la escena de fondo y una pastilla para recuperarla. */
+  static async ocultar() {
+    await game.settings.set(ID, "mesaOculta", true);
+    await foundry.applications.instances.get("nb-tracker")?.close();
+    TrackerJueza.pastilla();
+  }
+
+  static pastilla() {
+    if (document.getElementById("nb-pastilla")) return;
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.id = "nb-pastilla";
+    boton.className = "mr-nosotras-las-brujas nb-pastilla";
+    boton.dataset.tooltip = "Mostrar la mesa de La Jueza";
+    boton.innerHTML = `<i class="fa-solid fa-scale-unbalanced"></i><span>La mesa</span>`;
+    boton.addEventListener("click", () => TrackerJueza.abrir());
+    document.body.append(boton);
+  }
+
+  /** La mesa ocupa la pantalla salvo los controles de Foundry: se ajusta a la barra lateral. */
+  static margenes() {
+    const lateral = document.getElementById("sidebar")?.getBoundingClientRect().width ?? 48;
+    const raiz = document.getElementById("nb-tracker");
+    raiz?.style.setProperty("--nb-der", `${Math.round(lateral + 12)}px`);
+  }
+
+  /** La mesa se coloca solo con CSS: Foundry no debe fijarle posición ni tamaño. */
+  setPosition() { return this.position; }
+  _updatePosition(position) { return position; }
+
+  _insertElement(element) {
+    super._insertElement(element);
+    if (!TrackerJueza.vigilante) {
+      TrackerJueza.vigilante = new ResizeObserver(() => TrackerJueza.margenes());
+      const lateral = document.getElementById("sidebar");
+      if (lateral) TrackerJueza.vigilante.observe(lateral);
+    }
   }
 
   async _prepareContext(options) {
@@ -154,7 +196,7 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
       fase: { ...fase, clave: estado.fase, nombre: fase.nombre, indice: indice + 1, total: ORDEN_FASES.length },
       esPrima: estado.fase === "prima",
       mostrarEscena: Boolean(s) || estado.fase === "sexta" || estado.fase === "completas",
-      mostrarSospechas: estado.menores.length > 0 || Boolean(s) || estado.fase === "sexta" || estado.fase === "completas",
+      mostrarSospechas: estado.menores.length > 0,
       marcador: marcador ? { ...marcador, img: imgMayor(marcador.romano) } : null,
       horas,
       siguienteFase: FASES[ORDEN_FASES[Math.min(ORDEN_FASES.length - 1, indice + 1)]]?.nombre ?? "",
@@ -189,6 +231,12 @@ export class TrackerJueza extends ConMemoria(HandlebarsApplicationMixin(Applicat
   async _onRender(context, options) {
     await super._onRender(context, options);
     pintarRetratos(this.element);
+    TrackerJueza.margenes();
+    for (const d of this.element.querySelectorAll("details[data-recuerda]")) {
+      const clave = d.dataset.recuerda;
+      if (this.#abiertos.has(clave)) d.open = this.#abiertos.get(clave);
+      d.addEventListener("toggle", () => this.#abiertos.set(clave, d.open));
+    }
     this.#armarReloj();
     if (!game.user.isGM) return;
     // Campos de texto del tracker: se guardan al salir del campo.
@@ -596,7 +644,7 @@ function pasoParaPintar(estado, todas, limite, esGM) {
 /** Solo La Jueza (cliente GM) mueve fichas del tracker. */
 const jueza = () => {
   if (game.user.isGM) return true;
-  ui.notifications.warn("La Jueza mueve el tracker: abre este panel desde el cliente del GM.");
+  ui.notifications.warn("La Jueza mueve la mesa: hazlo desde el cliente del GM.");
   return false;
 };
 

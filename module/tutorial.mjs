@@ -21,19 +21,21 @@ const unaHermana = () => game.actors.find(a => a.type === "hermana" && a.isOwner
 
 /** Preparación de cada paso: `<tour>.<paso>` → función. */
 const ANTES = {
-  "intro.fichas": async () => ui.actors?.activate?.(),
-  "intro.boton-jueza": async () => ui.actors?.activate?.(),
-  "intro.tracker": async () => { await TrackerJueza.abrir(); await esperar(500); },
+  "intro.fichas": async () => { ui.sidebar?.expand?.(); ui.actors?.activate?.(); },
+  "intro.mesa": async () => { await TrackerJueza.abrir(); await esperar(500); },
+  "intro.ahora": async () => { await TrackerJueza.abrir(); await esperar(300); },
+  "intro.barra": async () => { await TrackerJueza.abrir(); await esperar(300); },
+  "intro.hermanas": async () => { await TrackerJueza.abrir(); await esperar(300); },
   "intro.hoja": async () => { await abrirHoja(); },
   "intro.vinculos": async () => { await abrirHoja(); },
   "intro.seguridad": async () => { await TrackerJueza.abrir(); await esperar(300); },
-  "intro.ajustes": async () => ui.settings?.activate?.(),
-  "intro.fin": async () => { for (const app of foundry.applications.instances.values()) if (app.options?.classes?.includes("nb-tracker") || app.options?.classes?.includes("nb-hermana")) await app.close(); },
-  "hermana.fichas": async () => ui.actors?.activate?.(),
+  "intro.ajustes": async () => { ui.sidebar?.expand?.(); ui.settings?.activate?.(); },
+  "intro.fin": async () => { for (const app of foundry.applications.instances.values()) if (app.options?.classes?.includes("nb-hermana")) await app.close(); },
+  "hermana.fichas": async () => { ui.sidebar?.expand?.(); ui.actors?.activate?.(); },
   "hermana.hoja": async () => { await abrirHoja(); },
   "hermana.vinculos": async () => { await abrirHoja(); },
   "hermana.sospechas": async () => { await abrirHoja(); },
-  "hermana.chat": async () => ui.chat?.activate?.(),
+  "hermana.chat": async () => { ui.sidebar?.expand?.(); ui.chat?.activate?.(); },
   "hermana.fin": async () => { for (const app of foundry.applications.instances.values()) if (app.options?.classes?.includes("nb-hermana")) await app.close(); }
 };
 
@@ -63,8 +65,18 @@ export async function registrarTutorial() {
 }
 
 /** Arranca un tour del sistema; si ya hay otro en marcha, Foundry avisa. */
-export function empezarTutorial(clave = game.user.isGM ? "intro" : "hermana") {
-  return game.tours.get(`${ID}.${clave}`)?.start();
+/**
+ * Arranca un tour del sistema. Foundry solo admite un tour a la vez (en un mundo nuevo arranca el suyo de
+ * bienvenida): si hay otro en marcha, se cierra para dejar paso.
+ */
+export async function empezarTutorial(clave = game.user.isGM ? "intro" : "hermana") {
+  const tour = game.tours.get(`${ID}.${clave}`);
+  if (!tour) return ui.notifications.error("El tutorial no está disponible: reinstala el sistema o avisa a quien lo mantiene.");
+  const activo = foundry.nue.Tour.activeTour;
+  if (activo && activo !== tour) activo.exit();
+  ui.sidebar?.expand?.();
+  await tour.reset();
+  return tour.start();
 }
 
 /** La primera vez que entra alguien, se le ofrece el tutorial (una sola vez por navegador y mundo). */
@@ -73,7 +85,7 @@ export async function ofrecerTutorial() {
   await game.settings.set(ID, "tutorialOfrecido", true);
   const quiere = await DialogV2.confirm({
     window: { title: "¿Te enseño cómo se juega?", icon: "fa-solid fa-graduation-cap" },
-    content: "<p>Hay un tutorial guiado de unos tres minutos que te lleva por el tracker, las fichas y las cartas. Puedes repetirlo cuando quieras desde el botón del tracker o desde Configuración → Tours.</p>",
+    content: "<p>Hay un tutorial guiado de unos tres minutos que te lleva por la mesa, las fichas y las cartas. Puedes repetirlo cuando quieras desde Configuración → Tutorial guiado o desde Configuración → Tours.</p>",
     yes: { label: "Empezar el tutorial", icon: "fa-solid fa-graduation-cap" },
     no: { label: "Ahora no" },
     rejectClose: false
