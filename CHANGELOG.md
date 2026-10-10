@@ -1,5 +1,9 @@
 # Cambios
 
+## 1.5.1
+
+- **El fondo cubre toda la pantalla**: antes la escena se ajustaba para caber entera y dejaba bandas a los lados o abajo; ahora se amplía lo justo para taparlas, aunque la imagen se salga un poco del marco, y se reajusta al cambiar el tamaño de la ventana.
+
 ## 1.5.0
 
 **Toda la pantalla es la mesa**

@@ -47,3 +47,22 @@ export async function elegirFondo() {
   });
   if (clave) await activarFondo(clave);
 }
+
+/**
+ * El fondo cubre toda la pantalla: Foundry ajusta la escena para que quepa entera y deja bandas a los lados o
+ * abajo si la pantalla no es 16:9. Al cargar una de nuestras escenas se amplía lo justo para taparlas,
+ * aunque la imagen se salga un poco del marco.
+ */
+export function registrarCoberturaDeFondo() {
+  const cubrir = lienzo => {
+    const escena = lienzo.scene;
+    if (!escena?.getFlag(ID, "escenario")) return;
+    const { width, height } = lienzo.dimensions.sceneRect;
+    const pantalla = lienzo.app.screen;
+    const scale = Math.max(pantalla.width / width, pantalla.height / height);
+    const centro = lienzo.dimensions.sceneRect;
+    lienzo.pan({ x: centro.x + width / 2, y: centro.y + height / 2, scale });
+  };
+  Hooks.on("canvasReady", lienzo => setTimeout(() => cubrir(lienzo), 50));
+  window.addEventListener("resize", () => { if (globalThis.canvas?.ready) cubrir(globalThis.canvas); });
+}

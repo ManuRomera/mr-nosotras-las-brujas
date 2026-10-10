@@ -17,7 +17,7 @@ import { PanelSeguridad, registrarSeguridad } from "./module/apps/seguridad.mjs"
 import { PanelDiagnostico } from "./module/apps/diagnostico.mjs";
 import { registrarLupa } from "./module/lupa.mjs";
 import { registrarTutorial, empezarTutorial, ofrecerTutorial } from "./module/tutorial.mjs";
-import { activarFondo, elegirFondo } from "./module/escenario.mjs";
+import { activarFondo, elegirFondo, registrarCoberturaDeFondo } from "./module/escenario.mjs";
 import "./module/mr-credits.mjs";
 
 Hooks.once("init", () => {
@@ -32,6 +32,7 @@ Hooks.once("init", () => {
   registrarAccesibilidad();
   registrarSonido();
   registrarLupa();
+  registrarCoberturaDeFondo();
   game.settings.register(ID, "mesaOculta", { scope: "client", config: false, type: Boolean, default: false });
   game.settings.registerMenu(ID, "tutorialMenu", {
     name: "Tutorial guiado",
